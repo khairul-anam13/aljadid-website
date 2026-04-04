@@ -1,0 +1,80 @@
+{
+  "name": "Al Jadid Offset - Percetakan Karanganyar Berkualitas Sejak 2005",
+  "short_name": "Al Jadid Offset",
+  "description": "Percetakan Al Jadid Karanganyar melayani cetak MMT, cetak sticker, cetak buku, sampul rapot, sablon kaos, sablon tas, dan layanan percetakan berkualitas tinggi di Karanganyar sejak 2005.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2e7d32",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "id",
+  "dir": "ltr",
+  "categories": ["business", "printing", "services", "local"],
+  "screenshots": [
+    {
+      "src": "/images/screenshot-wide.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide"
+    },
+    {
+      "src": "/images/screenshot-narrow.png",
+      "sizes": "640x1136",
+      "type": "image/png",
+      "form_factor": "narrow"
+    }
+  ],
+  "icons": [
+    {
+      "src": "/favicon-16x16.png",
+      "sizes": "16x16",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Produk Kami",
+      "short_name": "Produk",
+      "description": "Lihat semua produk percetakan kami",
+      "url": "/products",
+      "icons": [{ "src": "/favicon-32x32.png", "sizes": "32x32" }]
+    },
+    {
+      "name": "Hubungi Kami",
+      "short_name": "Kontak",
+      "description": "Hubungi Al Jadid Offset",
+      "url": "/contact",
+      "icons": [{ "src": "/favicon-32x32.png", "sizes": "32x32" }]
+    },
+    {
+      "name": "Galeri",
+      "short_name": "Galeri",
+      "description": "Lihat portofolio kami",
+      "url": "/gallery",
+      "icons": [{ "src": "/favicon-32x32.png", "sizes": "32x32" }]
+    }
+  ]
+}

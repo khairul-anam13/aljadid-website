@@ -1,0 +1,32 @@
+User-agent: *
+Allow: /
+
+# Specific pages for SEO
+Allow: /products/cetak-mmt
+Allow: /products/cetak-sticker  
+Allow: /products/cetak-buku
+Allow: /products/sampul-rapot
+Allow: /products/sablon-kaos
+Allow: /products/sablon-tas
+Allow: /gallery
+Allow: /about
+Allow: /contact
+
+# Disallow admin or private areas
+Disallow: /admin/
+Disallow: /api/
+Disallow: /_next/
+Disallow: /private/
+
+# Allow search engines to crawl images
+Allow: /images/
+Allow: /*.jpg$
+Allow: /*.jpeg$
+Allow: /*.png$
+Allow: /*.gif$
+Allow: /*.webp$
+
+# Crawl delay (optional)
+Crawl-delay: 1
+
+Sitemap: https://aljadidofs.vercel.app/sitemap.xml
