@@ -5,7 +5,6 @@ import Image from "next/image"
 import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
-import { ThemeSwitcher } from "@/components/theme-switcher"
 import { motion } from "framer-motion"
 
 export function SiteHeader() {
@@ -68,9 +67,8 @@ export function SiteHeader() {
 
         {/* Right Side Actions */}
         <div className="flex items-center gap-3">
-          <ThemeSwitcher />
-          <Button asChild className="hidden md:flex glass-button">
-            <Link href="/contact">Hubungi Kami</Link>
+          <Button asChild className="hidden md:flex rounded-none font-bold uppercase tracking-widest bg-foreground text-background hover:bg-primary transition-colors border-[2px] border-foreground">
+            <Link href="/contact">KONSULTASI</Link>
           </Button>
         </div>
       </div>

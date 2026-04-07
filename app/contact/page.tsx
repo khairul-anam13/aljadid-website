@@ -33,11 +33,11 @@ export default function ContactPage() {
       <section className="w-full border-b-[3px] border-border bg-foreground text-background">
         <div className="container px-6 py-24 md:py-32 border-x-[3px] border-foreground mx-auto flex flex-col justify-end">
           <div className="inline-block bg-primary text-primary-foreground text-xs font-mono font-bold px-3 py-1 uppercase tracking-widest mb-6 self-start">
-             SINKRONISASI KOMUNIKASI
+             HUBUNGI KAMI
           </div>
           <h1 className="heading-xl text-balance">
-            <span className="block text-primary">JARINGAN</span>
-            <span className="block">KONTAK.</span>
+            <span className="block text-primary">LAYANAN</span>
+            <span className="block">RESPONSIF.</span>
           </h1>
         </div>
       </section>
@@ -51,10 +51,10 @@ export default function ContactPage() {
            <div className="col-span-1 md:col-span-2 xl:col-span-5 p-8 md:p-12 border-b-[3px] md:border-b-0 md:border-r-[3px] border-border bg-muted flex flex-col justify-between">
               <div>
                 <h2 className="font-display font-black text-4xl lg:text-6xl uppercase tracking-tighter mb-4 leading-[0.9]">
-                  PROTOKOL<br/><span className="text-primary">KONSULTASI</span>
+                  SIAP MEMBANTU<br/><span className="text-primary">ANDA</span>
                 </h2>
                 <p className="text-lg font-medium text-muted-foreground">
-                  Gunakan direktori akses komunikasi langsung untuk mereservasi slot cetak, mendiskusikan spesifikasi teknis (DPI/material), atau mengajukan kuotasi vendor.
+                  Kami siap mendiskusikan kebutuhan cetak Anda, memberikan penawaran harga terbaik, hingga konsultasi spesifikasi material yang tepat.
                 </p>
               </div>
               
@@ -77,7 +77,7 @@ export default function ContactPage() {
            {/* RIGHT: DATA INGEST FORM */}
            <div className="col-span-1 md:col-span-2 xl:col-span-7 p-8 md:p-12 xl:p-16 flex flex-col justify-center bg-background">
               <div className="font-mono text-xs uppercase tracking-widest font-bold text-muted-foreground mb-8">
-                  [ INJEKSI DATA / PERMINTAAN TIKET ]
+                  [ FORMULIR PESANAN & KONSULTASI ]
               </div>
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -114,7 +114,7 @@ export default function ContactPage() {
                 </div>
 
                 <Button type="submit" className="w-full h-16 rounded-none text-xl font-bold tracking-widest bg-foreground text-background hover:bg-primary border-[3px] border-foreground hover:border-primary transition-colors">
-                  TRANSMISI DATA
+                  KIRIM PESAN
                 </Button>
               </form>
            </div>

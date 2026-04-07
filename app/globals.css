@@ -139,5 +139,12 @@
   .swiss-cell {
     @apply border-b md:border-b-0 md:border-r border-border p-6 md:last:border-r-0 last:border-b-0;
   }
+
+  @keyframes scan {
+    0% { top: 0%; opacity: 0; }
+    5% { opacity: 1; }
+    95% { opacity: 1; }
+    100% { top: 100%; opacity: 0; }
+  }
 }
 

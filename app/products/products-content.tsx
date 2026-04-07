@@ -12,81 +12,14 @@ export default function ProductsContent() {
   const [activeCategory, setActiveCategory] = useState("Semua")
 
   const products = [
-    {
-      id: 1,
-      name: "CETAK MMT",
-      description: "Banner outdoor industrial grade tahan UV.",
-      image: "MMT",
-      category: "Promosi",
-      price: "RP 25.000 /M²",
-      isPopular: true,
-      details: ["Bahan Korea 440gsm", "Finishing mata ayam", "Min. order 2m²"],
-    },
-    {
-      id: 2,
-      name: "CETAK STICKER",
-      description: "Vinyl/chromo presisi untuk identitas produk.",
-      image: "STK",
-      category: "Promosi",
-      price: "RP 15.000 /LMBR",
-      details: ["Laminasi glossy/doff", "Water/heat resistant", "Min. order 50pcs"],
-    },
-    {
-      id: 3,
-      name: "CETAK BUKU",
-      description: "Publikasi massal kualitas offset absolut.",
-      image: "BKU",
-      category: "Bisnis",
-      price: "RP 8.000 /EKS",
-      isNew: true,
-      details: ["HVS 70/80gsm", "Cover Art Carton", "Perfect Binding"],
-    },
-    {
-      id: 4,
-      name: "SAMPUL RAPOT",
-      description: "Sistem durabilitas riwayat akademik K13.",
-      image: "RPT",
-      category: "Personal",
-      price: "RP 3.500 /PCS",
-      isPopular: true,
-      details: ["Kartolo 260gsm", "Foil Emas/Perak", "Min. order 100pcs"],
-    },
-    {
-      id: 5,
-      name: "KARTU NAMA",
-      description: "Modul representasi korporat dimensi pocket.",
-      image: "KRN",
-      category: "Bisnis",
-      price: "RP 100.000 /BOX",
-      details: ["Ivory 260gsm", "Full color 2 sisi", "Box = 100pcs"],
-    },
-    {
-      id: 6,
-      name: "BROSUR A5",
-      description: "Saluran informasi fisik sebaran masif.",
-      image: "BRS",
-      category: "Marketing",
-      price: "RP 2.500 /LMBR",
-      details: ["Art Paper 150gsm", "Folder 2-Lipat", "Full color"],
-    },
-    {
-      id: 7,
-      name: "X-BANNER",
-      description: "Berdiri vertikal untuk atensi ruang terbatas.",
-      image: "XBN",
-      category: "Promosi",
-      price: "RP 180.000 /UNT",
-      details: ["60x160 cm", "Termasuk stand", "Ready to deploy"],
-    },
-    {
-      id: 8,
-      name: "KOP SURAT",
-      description: "Legalitas visual komunikasi via korespondensi.",
-      image: "KOP",
-      category: "Bisnis",
-      price: "RP 300.000 /RIM",
-      details: ["A4 HVS 80gsm", "Offset print", "Rim = 500 lembar"],
-    },
+    { id: 1, name: "Cetak MMT", image: "/produk/mmt.png", category: "Promosi" },
+    { id: 2, name: "Cetak Sticker", image: "/produk/sticker.png", category: "Promosi" },
+    { id: 3, name: "Sampul Rapot", image: "/produk/rapot.png", category: "Personal" },
+    { id: 4, name: "Sablon Kaos", image: "/produk/kaos.png", category: "Promosi" },
+    { id: 5, name: "Plakat & Piala", image: "/produk/piala.png", category: "Personal" },
+    { id: 6, name: "Cetak Buku", image: "BKU", isTextImg: true, category: "Bisnis" },
+    { id: 7, name: "Kartu Nama", image: "KRN", isTextImg: true, category: "Bisnis" },
+    { id: 8, name: "Brosur Custom", image: "BRS", isTextImg: true, category: "Marketing" },
   ]
 
   return (
@@ -94,31 +27,48 @@ export default function ProductsContent() {
       {/* 
         HEADER 
       */}
-      <section className="w-full border-b-[3px] border-border bg-foreground text-background">
-        <div className="container px-6 py-24 md:py-32 border-x-[3px] border-border/80 mx-auto min-h-[40vh] flex flex-col justify-end">
-          <div className="inline-block bg-primary text-primary-foreground text-xs font-mono font-bold px-3 py-1 uppercase tracking-widest mb-6 self-start">
-             KATALOG MATERIAL / INDEKS HARGA
+      <section className="w-full border-b-[3px] border-border bg-foreground text-background relative overflow-hidden">
+        {/* Architectural Grid & Glow Background */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)] bg-[size:40px_40px]"></div>
+        <div className="absolute top-0 right-1/4 w-[600px] h-[600px] bg-primary/20 rounded-full blur-[150px] pointer-events-none -translate-y-1/2 translate-x-1/2"></div>
+        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-emerald-600/10 rounded-full blur-[100px] pointer-events-none translate-y-1/2 -translate-x-1/4"></div>
+        
+        <div className="container relative z-10 px-6 py-32 md:py-48 mx-auto flex flex-col items-center justify-center text-center min-h-[50vh]">
+          {/* Animated Status Badge */}
+          <div className="inline-flex items-center gap-3 bg-background/5 border-[2px] border-background/20 backdrop-blur-md text-background text-xs font-mono font-bold px-5 py-2.5 uppercase tracking-[0.25em] mb-12 rounded-full transform hover:scale-105 transition-transform duration-300 cursor-default">
+             <span className="w-2 h-2 rounded-full bg-primary relative">
+               <span className="absolute inset-0 rounded-full bg-primary animate-ping opacity-75"></span>
+             </span>
+             SKU KATALOG // UPDATE TERBARU
           </div>
-          <h1 className="heading-xl text-balance">
-            <span className="block text-primary">MANUFAKTUR</span>
-            <span className="block">PRODUK.</span>
+          
+          {/* Massive Typography */}
+          <h1 className="text-6xl md:text-8xl xl:text-[11rem] font-display font-black uppercase tracking-tighter leading-[0.75] text-balance mb-8">
+            <span className="block text-background/90 drop-shadow-2xl">Produk</span>
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-primary via-emerald-400 to-primary italic pr-4">AL JADID</span>
           </h1>
+          
+          {/* Description line */}
+          <p className="text-xl md:text-2xl text-background/60 max-w-2xl font-medium tracking-wide">
+            Temukan produk yang Anda butuhkan. Mulai dari identitas usaha, promosi, hingga kebutuhan internal—semua didukung layanan desain grafis.
+          </p>
+          
         </div>
       </section>
 
       {/* 
         PRODUCTS GRID & FILTERS 
       */}
-      <section className="w-full border-b-[3px] border-border bg-background">
-         <div className="container mx-auto border-x-[3px] border-border p-0">
-           <Tabs defaultValue="Semua" className="w-full rounded-none" onValueChange={setActiveCategory}>
-              <div className="border-b-[3px] border-border overflow-x-auto w-full scrollbar-none bg-muted">
-                <TabsList className="bg-transparent h-auto p-0 flex space-x-0 w-max min-w-full justify-start rounded-none">
+      <section className="w-full bg-muted py-16 md:py-24">
+         <div className="container px-6 mx-auto">
+           <Tabs defaultValue="Semua" className="w-full" onValueChange={setActiveCategory}>
+              <div className="mb-12 overflow-x-auto w-full scrollbar-none pb-4">
+                <TabsList className="bg-transparent h-auto p-0 flex space-x-2 w-max justify-start">
                   {categories.map((category) => (
                     <TabsTrigger
                       key={category}
                       value={category}
-                      className="rounded-none border-r-[3px] border-border py-4 px-6 md:px-10 text-sm font-bold uppercase tracking-widest font-mono data-[state=active]:bg-foreground data-[state=active]:text-background data-[state=active]:shadow-none transition-colors border-transparent"
+                      className="rounded-2xl border-[3px] border-border bg-background py-3 px-8 text-sm font-bold uppercase tracking-widest font-mono data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:border-primary transition-all duration-300 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-y-1 hover:shadow-[0px_0px_0px_0px_rgba(0,0,0,1)] data-[state=active]:translate-y-1 data-[state=active]:shadow-none"
                     >
                       {category}
                     </TabsTrigger>
@@ -127,43 +77,34 @@ export default function ProductsContent() {
               </div>
 
               <TabsContent value={activeCategory} className="mt-0 outline-none">
-                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
                     {products
                       .filter((prod) => activeCategory === "Semua" || prod.category === activeCategory)
-                      .map((product, index) => (
-                         <div key={product.id} className={`group flex flex-col border-b-[3px] border-r-[3px] border-border bg-background hover:bg-muted transition-colors relative
-                           ${(index + 1) % 1 === 0 ? "border-r-[3px]" : ""}
-                           md:${(index + 1) % 2 === 0 ? "border-r-0" : ""}
-                           lg:${(index + 1) % 4 === 0 ? "border-r-0" : ""}`}
-                         >
-                            {/* Badges */}
-                            <div className="absolute top-4 left-4 z-20 flex flex-col gap-2 pointer-events-none">
-                               <div className="bg-foreground text-background font-mono text-xs font-bold px-2 py-1 uppercase">{product.category}</div>
-                               {product.isPopular && <div className="bg-primary text-primary-foreground font-mono text-xs font-bold px-2 py-1 uppercase">POPULAR</div>}
-                               {product.isNew && <div className="bg-background text-foreground border-[2px] border-foreground font-mono text-xs font-bold px-2 py-1 uppercase">NEW</div>}
-                            </div>
-
+                      .map((product) => (
+                         <div key={product.id} className="group flex flex-col bg-background rounded-3xl border-[3px] border-border overflow-hidden transition-all duration-500 hover:shadow-[8px_8px_0px_0px_rgba(0,168,84,1)] hover:-translate-y-2">
                             {/* Image Slot */}
-                            <div className="w-full aspect-square border-b-[3px] border-border relative bg-foreground/5 overflow-hidden flex items-center justify-center">
-                               <span className="font-display font-black text-6xl text-border mix-blend-multiply opacity-50 group-hover:scale-110 group-hover:opacity-100 group-hover:text-primary transition-all duration-500">
-                                 {product.image}
-                               </span>
+                            <div className="w-full aspect-[4/3] relative bg-muted flex items-center justify-center overflow-hidden p-6 border-b-[3px] border-border">
+                               {product.isTextImg ? (
+                                 <span className="font-display font-black text-6xl text-foreground/20 group-hover:scale-110 transition-transform duration-700">
+                                   {product.image}
+                                 </span>
+                               ) : (
+                                 <Image
+                                   src={product.image}
+                                   alt={product.name}
+                                   fill
+                                   className="object-contain p-8 group-hover:scale-110 transition-transform duration-700 drop-shadow-xl"
+                                 />
+                               )}
                             </div>
 
-                            {/* Info Slot */}
-                            <div className="p-6 flex flex-col flex-1 justify-between">
-                               <div>
-                                 <h3 className="font-display font-black text-3xl uppercase tracking-tight mb-2 leading-[0.9]">{product.name}</h3>
-                                 <p className="font-medium text-muted-foreground mb-6 leading-snug">{product.description}</p>
-                                 <ul className="space-y-1 font-mono text-xs font-bold uppercase tracking-widest text-foreground/80 border-l-[3px] border-primary pl-4 mb-8">
-                                    {product.details.map((det, i) => (
-                                      <li key={i}>{det}</li>
-                                    ))}
-                                 </ul>
-                               </div>
-                               <div>
-                                 <div className="font-mono text-xs text-muted-foreground uppercase tracking-widest mb-1">RATING HARGA / BIAYA</div>
-                                 <div className="font-display font-black text-2xl text-primary">{product.price}</div>
+                            {/* Title Slot */}
+                            <div className="p-6 md:p-8 flex items-center justify-between bg-background z-10 relative">
+                               <h3 className="font-display font-black text-2xl lg:text-3xl uppercase tracking-tighter leading-none group-hover:text-primary transition-colors">
+                                 {product.name}
+                               </h3>
+                               <div className="w-10 h-10 rounded-full border-[3px] border-border flex items-center justify-center group-hover:bg-primary group-hover:border-primary group-hover:text-background transition-colors">
+                                 <ArrowRight className="w-5 h-5" />
                                </div>
                             </div>
                          </div>
@@ -180,11 +121,11 @@ export default function ProductsContent() {
       <section className="w-full bg-primary text-primary-foreground border-b-[3px] border-border">
          <div className="container px-6 py-24 md:py-32 flex flex-col justify-center items-center text-center">
             <h2 className="text-5xl md:text-7xl font-display font-black uppercase tracking-tighter leading-[0.9] mb-8 max-w-4xl">
-              TENTUKAN KUANTITAS <br/>& SPESIFIKASI <span className="text-background">SEKARANG.</span>
+              WUJUDKAN IDE ANDA <br/>DALAM BENTUK <span className="text-background">FISIK.</span>
             </h2>
             <Button asChild size="lg" className="rounded-none h-16 md:h-20 px-8 md:px-12 text-lg md:text-xl font-bold tracking-widest bg-foreground text-background hover:bg-background hover:text-foreground transition-colors border-[3px] border-foreground hover:border-background shadow-none">
               <Link href="/contact">
-                RILIS TIKET KONSULTASI <ArrowRight className="ml-3 h-6 w-6" />
+                KONSULTASI GRATIS <ArrowRight className="ml-3 h-6 w-6" />
               </Link>
             </Button>
          </div>

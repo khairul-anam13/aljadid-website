@@ -34,10 +34,10 @@ export default function GalleryPage() {
       <section className="w-full border-b-[3px] border-border bg-background text-foreground">
         <div className="container px-6 py-24 md:py-32 border-x-[3px] border-border mx-auto min-h-[40vh] flex flex-col justify-end">
           <div className="inline-block bg-primary text-primary-foreground text-xs font-mono font-bold px-3 py-1 uppercase tracking-widest mb-6 self-start">
-            ARSIP VISUAL / HASIL PRODUKSI
+            PORTOFOLIO / HASIL KARYA
           </div>
           <h1 className="heading-xl text-balance">
-            <span className="block text-primary">GALERI</span>
+            <span className="block text-primary">INSPIRASI</span>
             <span className="block">CETAK.</span>
           </h1>
         </div>
@@ -53,7 +53,7 @@ export default function GalleryPage() {
                   <TabsTrigger
                     key={category}
                     value={category}
-                    className="rounded-none border-r-[3px] border-border py-4 px-6 md:px-10 text-sm font-bold uppercase tracking-widest font-mono data-[state=active]:bg-foreground data-[state=active]:text-background data-[state=active]:shadow-none transition-colors border-transparent"
+                    className="rounded-none border-r-[3px] border-border py-4 px-6 md:px-10 text-sm font-bold uppercase tracking-widest font-mono data-[state=active]:bg-foreground data-[state=active]:text-background data-[state=active]:shadow-none transition-colors"
                   >
                     {category}
                   </TabsTrigger>
