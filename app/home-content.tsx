@@ -295,7 +295,7 @@ export default function HomeContent() {
                 </div>
                 <div className="w-full md:w-auto">
                   <Button asChild size="lg" className="w-full md:w-auto rounded-none h-16 md:h-20 px-8 md:px-12 text-lg md:text-xl font-bold tracking-widest bg-foreground text-background hover:bg-background hover:text-foreground transition-colors border-[3px] border-foreground hover:border-background shadow-none">
-                    <a href="https://wa.me/6281234567890" target="_blank" rel="noopener noreferrer">
+                    <a href="https://wa.me/6281393242084" target="_blank" rel="noopener noreferrer">
                       DISKUSIKAN SEKARANG <ArrowUpRight className="ml-3 h-6 w-6" />
                     </a>
                   </Button>
