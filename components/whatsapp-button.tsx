@@ -1,35 +1,107 @@
 "use client"
 
+import { useState } from "react"
 import { Button } from "@/components/ui/button"
-import { motion } from "framer-motion"
+import { motion, AnimatePresence } from "framer-motion"
+import Image from "next/image"
+import { X, MessageCircle } from "lucide-react"
 
 export function WhatsAppButton() {
+  const [isOpen, setIsOpen] = useState(false)
+
+  const contacts = [
+    { name: "Mba Lala Kantor 1", phone: "6283836323255", label: "+62 838-3632-3255", role: "CUSTOMER SERVICE" },
+    { name: "Mba Yuni Kantor 2", phone: "6283866649071", label: "+62 838-6664-9071", role: "CUSTOMER SERVICE" },
+    { name: "Khusus Partai Besar", phone: "6281246419239", label: "+62 812-4641-9239", role: "KHUSUS" },
+  ]
+
   return (
-    <motion.div
-      initial={{ scale: 0, opacity: 0 }}
-      animate={{ scale: 1, opacity: 1 }}
-      transition={{
-        type: "spring",
-        stiffness: 260,
-        damping: 20,
-        delay: 1,
-      }}
-      whileHover={{ scale: 1.1 }}
-      whileTap={{ scale: 0.9 }}
-      className="fixed bottom-20 md:bottom-6 right-6 z-50"
-    >
-      <Button
-        className="rounded-full w-14 h-14 p-0 shadow-lg bg-[#25D366]/90 hover:bg-[#20BD5A] backdrop-blur-sm"
-        onClick={() => window.open("https://wa.me/6281234567890", "_blank")}
-        aria-label="Chat via WhatsApp"
+    <div className="fixed bottom-24 md:bottom-8 right-8 z-50 flex flex-col items-end gap-4">
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.9, y: 20 }}
+            className="bg-background border-[3px] border-border p-4 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] w-[290px] md:w-[340px] mb-2"
+          >
+            <div className="flex items-center justify-between mb-4 border-b-[3px] border-border pb-3">
+              <div className="flex flex-col">
+                <h3 className="font-display font-black text-xl uppercase tracking-tight leading-none">HUBUNGI KAMI</h3>
+                <p className="font-mono text-[9px] font-bold text-muted-foreground mt-1">WHATSAPP PORTAL // ONLINE</p>
+              </div>
+              <button 
+                onClick={() => setIsOpen(false)}
+                className="w-8 h-8 flex items-center justify-center border-[2px] border-border hover:bg-primary hover:text-background transition-all"
+              >
+                <X size={16} />
+              </button>
+            </div>
+            
+            <div className="space-y-2">
+              {contacts.map((contact, idx) => (
+                <a
+                  key={idx}
+                  href={`https://wa.me/${contact.phone}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-center justify-between p-3 border-[2px] border-border hover:bg-primary transition-all duration-300 relative overflow-hidden"
+                >
+                  <div className="flex flex-col relative z-10">
+                    <span className="font-mono text-[9px] font-bold text-muted-foreground group-hover:text-background uppercase opacity-70">
+                      {contact.role}
+                    </span>
+                    <span className="font-bold text-[15px] group-hover:text-background uppercase tracking-tight">
+                      {contact.name}
+                    </span>
+                    <span className="font-mono text-[10px] text-muted-foreground group-hover:text-background/80 mt-1">
+                      {contact.label}
+                    </span>
+                  </div>
+                  <MessageCircle size={20} className="group-hover:text-background relative z-10 transition-transform group-hover:scale-110" />
+                  
+                  {/* Hover Background Animation */}
+                  <div className="absolute inset-0 bg-primary translate-y-full group-hover:translate-y-0 transition-transform duration-300 -z-0"></div>
+                </a>
+              ))}
+            </div>
+            <div className="mt-4 pt-3 border-t-[2px] border-border">
+              <p className="text-[10px] font-medium text-muted-foreground text-center">Tanggapan cepat selama jam operasional.</p>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <motion.div
+        initial={{ scale: 0, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{
+          type: "spring",
+          stiffness: 260,
+          damping: 20,
+          delay: 1.5,
+        }}
       >
-        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 90 90" fill="none">
-          <path
-            d="M90 43.841C90 68.066 70.562 87.5 46.352 87.5C38.437 87.5 30.93 85.5 24.375 81.96L0 90L8.325 66.5C4.125 59.75 1.875 51.98 1.875 43.841C1.875 19.58 21.3 0 46.352 0C70.562 0 90 19.58 90 43.841ZM46.352 6.956C25.313 6.956 8.85 23.381 8.85 43.841C8.85 51.86 11.438 59.736 16.275 66.195L11.25 80.044L25.65 75.094C31.8 79.344 38.775 81.694 46.352 81.694C67.387 81.694 83.85 65.27 83.85 44.81C83.85 24.351 67.387 6.956 46.352 6.956ZM68.775 53.666C68.4 53.666 67.65 53.666 67.275 53.291C66.525 53.291 66.15 52.916 65.025 52.541C64.275 52.166 62.775 51.416 61.65 51.041C61.275 50.666 60.525 50.666 60.15 50.666C59.4 50.666 59.025 51.041 58.65 51.416C58.275 51.791 57.15 52.916 56.775 53.291C56.4 53.666 56.025 53.666 55.65 53.291C55.275 53.291 54.15 52.916 52.65 52.166C51.15 51.416 49.65 50.291 48.525 48.791C48.15 48.041 47.4 47.291 47.025 46.541C46.65 46.166 46.65 45.791 47.025 45.416C47.025 45.041 47.4 44.666 47.775 44.291C47.775 44.291 48.15 43.916 48.15 43.541C48.525 43.166 48.525 42.791 48.525 42.416C48.525 42.041 48.15 41.291 47.775 40.916C47.4 40.541 46.275 38.291 45.9 37.541C45.525 36.416 45.15 36.416 44.775 36.416H43.65C43.275 36.416 42.525 36.416 41.775 37.166C41.4 37.541 40.275 38.666 40.275 40.916C40.275 43.166 41.775 45.416 42.15 45.791C42.525 46.166 47.025 53.291 54.15 56.291C55.275 56.666 56.4 57.041 57.15 57.416C58.65 57.791 59.775 57.791 60.9 57.416C62.025 57.041 63.9 56.291 64.275 55.166C64.65 54.041 64.65 53.291 64.275 52.916C64.275 52.916 63.9 52.541 63.15 52.541C62.775 53.291 69.525 53.666 68.775 53.666Z"
-            fill="white"
-          />
-        </svg>
-      </Button>
-    </motion.div>
+        <button
+          className={`rounded-full w-16 h-16 p-0 shadow-xl border-[4px] border-border overflow-hidden relative transition-all duration-300
+            ${isOpen ? 'bg-primary' : 'bg-[#25D366] hover:bg-[#20BD5A] hover:scale-105 active:scale-95'}`}
+          onClick={() => setIsOpen(!isOpen)}
+          aria-label="WhatsApp Contacts"
+        >
+          <div className="relative w-full h-full flex items-center justify-center p-3.5">
+             <Image 
+              src="/images/whatsapp.png" 
+              alt="WhatsApp" 
+              fill
+              className={`object-contain p-3.5 transition-all duration-300 ${isOpen ? 'rotate-90 scale-0 opacity-0' : 'rotate-0 scale-100 opacity-100'}`}
+            />
+            <X 
+              className={`absolute transition-all duration-300 text-background ${isOpen ? 'rotate-0 scale-100 opacity-100' : '-rotate-90 scale-0 opacity-0'}`} 
+              size={32}
+            />
+          </div>
+        </button>
+      </motion.div>
+    </div>
   )
 }

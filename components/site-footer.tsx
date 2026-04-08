@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { Phone, Mail, MapPin } from "lucide-react"
+import { Phone, MapPin } from "lucide-react"
 
 export function SiteFooter() {
   return (
@@ -93,20 +93,22 @@ export function SiteFooter() {
           </div>
           <div className="hidden md:block">
             <h3 className="text-lg font-semibold mb-4">Kontak</h3>
-            <ul className="space-y-3 text-muted-foreground">
+            <ul className="space-y-5 text-muted-foreground">
               <li className="flex items-start">
-                <Phone className="mr-2 h-5 w-5 shrink-0" />
-                <span>+62 271 1234 5678</span>
+                <Phone className="mr-3 h-5 w-5 shrink-0 text-primary" />
+                <span className="font-medium hover:text-primary transition-colors cursor-pointer">+62 813-9324-2084</span>
               </li>
               <li className="flex items-start">
-                <Mail className="mr-2 h-5 w-5 shrink-0" />
-                <span>info@aljadidoffset.com</span>
-              </li>
-              <li className="flex items-start">
-                <MapPin className="mr-2 h-5 w-5 shrink-0" />
-                <div>
-                  <p>Kantor Pusat: Jl. Percetakan No. 123, Solo, Jawa Tengah</p>
-                  <p className="mt-1">Cabang: Jl. Grafika No. 45, Solo, Jawa Tengah</p>
+                <MapPin className="mr-3 h-5 w-5 shrink-0 text-primary mt-0.5" />
+                <div className="space-y-4">
+                  <div>
+                    <strong className="block text-foreground uppercase text-[10px] font-mono tracking-widest mb-1">AL JADID 1 - BARAT</strong>
+                    <p className="text-sm leading-relaxed border-l-2 border-primary/30 pl-3">Jalan Menteri Supeno, Tegalgede, Kec. Karanganyar, Kabupaten Karanganyar, Jawa Tengah 57711</p>
+                  </div>
+                  <div>
+                    <strong className="block text-foreground uppercase text-[10px] font-mono tracking-widest mb-1">AL JADID 2 - TIMUR</strong>
+                    <p className="text-sm leading-relaxed border-l-2 border-primary/30 pl-3">Jl. Rm. Said No.74, Tegalgede, Kec. Karanganyar, Kabupaten Karanganyar, Jawa Tengah 57751</p>
+                  </div>
                 </div>
               </li>
             </ul>
