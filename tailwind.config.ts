@@ -11,8 +11,8 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["var(--font-manrope)", "sans-serif"],
-        display: ["var(--font-bricolage)", "sans-serif"],
+        sans: ["var(--font-sans)", "sans-serif"],
+        display: ["var(--font-display)", "serif"],
         mono: ["var(--font-mono)", "monospace"],
       },
       colors: {
@@ -46,6 +46,10 @@ const config: Config = {
           DEFAULT: 'hsl(var(--destructive))',
           foreground: 'hsl(var(--destructive-foreground))'
         },
+        highlight: {
+          DEFAULT: 'hsl(var(--highlight))',
+          foreground: 'hsl(var(--highlight-foreground))'
+        },
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
@@ -56,9 +60,9 @@ const config: Config = {
         }
       },
       borderRadius: {
-        lg: '0',
-        md: '0',
-        sm: '0'
+        lg: 'var(--radius)',
+        md: 'calc(var(--radius) - 6px)',
+        sm: 'calc(var(--radius) - 10px)'
       },
       keyframes: {
         'accordion-down': {

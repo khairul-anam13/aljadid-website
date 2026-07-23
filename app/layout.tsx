@@ -1,6 +1,6 @@
 import type React from "react"
 import type { Metadata, Viewport } from "next"
-import { Bricolage_Grotesque, Manrope, JetBrains_Mono } from "next/font/google"
+import { Fraunces, Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { SiteHeader } from "@/components/site-header"
@@ -10,14 +10,25 @@ import { WhatsAppButton } from "@/components/whatsapp-button"
 import { constructMetadata } from "@/components/seo/metadata"
 import { LocalBusinessJsonLd, WebsiteJsonLd } from "@/components/seo/json-ld"
 
-const bricolage = Bricolage_Grotesque({ subsets: ["latin"], variable: "--font-bricolage", display: "swap" })
-const manrope = Manrope({ subsets: ["latin"], variable: "--font-manrope", display: "swap" })
+const fraunces = Fraunces({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  style: ["normal", "italic"],
+  variable: "--font-display",
+  display: "swap",
+})
+const jakarta = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-sans",
+  display: "swap",
+})
 const jetbrainsMono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono", display: "swap" })
 
 export const metadata: Metadata = constructMetadata()
 
 export const viewport: Viewport = {
-  themeColor: "#ffffff",
+  themeColor: "#FBF6EC",
   colorScheme: "light",
   width: "device-width",
   initialScale: 1,
@@ -30,7 +41,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="id" suppressHydrationWarning className={`${bricolage.variable} ${manrope.variable} ${jetbrainsMono.variable}`}>
+    <html lang="id" suppressHydrationWarning className={`${fraunces.variable} ${jakarta.variable} ${jetbrainsMono.variable}`}>
       <head>
         {/* Favicons and Icons */}
         <link rel="icon" href="/favicon.ico" sizes="any" />
@@ -38,10 +49,10 @@ export default function RootLayout({
         <link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/manifest.json" />
-        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#0E8F4F" />
+        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#C1502E" />
 
         {/* Microsoft Tiles */}
-        <meta name="msapplication-TileColor" content="#0E8F4F" />
+        <meta name="msapplication-TileColor" content="#C1502E" />
         <meta name="msapplication-config" content="/browserconfig.xml" />
 
         {/* Mobile App Meta Tags */}
@@ -56,7 +67,7 @@ export default function RootLayout({
         <LocalBusinessJsonLd />
         <WebsiteJsonLd />
       </head>
-      <body className={`${manrope.className} font-sans antialiased selection:bg-primary selection:text-white`}>
+      <body className={`${jakarta.className} font-sans antialiased selection:bg-primary selection:text-primary-foreground`}>
         <ThemeProvider attribute="class" defaultTheme="light" forcedTheme="light" enableSystem={false} disableTransitionOnChange>
           <div className="relative flex min-h-screen flex-col">
             <SiteHeader />

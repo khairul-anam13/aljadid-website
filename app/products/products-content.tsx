@@ -22,123 +22,119 @@ export default function ProductsContent() {
     { id: 8, name: "Brosur Custom", image: "BRS", isTextImg: true, category: "Marketing" },
   ]
 
-  // Registration-mark accent rotation: green / blue / red signal colours
+  // Ink-swatch accent rotation: terracotta / teal / ochre
   const cardAccents = [
-    { shadow: "hover:shadow-[8px_8px_0px_0px_rgba(14,143,79,1)]", ring: "group-hover:bg-primary group-hover:border-primary", text: "group-hover:text-primary" },
-    { shadow: "hover:shadow-[8px_8px_0px_0px_rgba(21,84,179,1)]", ring: "group-hover:bg-secondary group-hover:border-secondary", text: "group-hover:text-secondary" },
-    { shadow: "hover:shadow-[8px_8px_0px_0px_rgba(215,38,61,1)]", ring: "group-hover:bg-destructive group-hover:border-destructive", text: "group-hover:text-destructive" },
+    { text: "group-hover:text-primary", ring: "group-hover:bg-primary group-hover:border-primary group-hover:text-primary-foreground" },
+    { text: "group-hover:text-secondary", ring: "group-hover:bg-secondary group-hover:border-secondary group-hover:text-secondary-foreground" },
+    { text: "group-hover:text-highlight", ring: "group-hover:bg-highlight group-hover:border-highlight group-hover:text-highlight-foreground" },
   ]
 
   return (
     <div className="w-full bg-background min-h-screen">
-      {/* 
-        HEADER 
+      {/*
+        HEADER
       */}
-      <section className="w-full border-b-[3px] border-border bg-foreground text-background relative overflow-hidden">
-        {/* Architectural Grid & Glow Background */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)] bg-[size:40px_40px]"></div>
-        <div className="absolute top-0 right-1/4 w-[600px] h-[600px] bg-primary/20 rounded-full blur-[150px] pointer-events-none -translate-y-1/2 translate-x-1/2"></div>
-        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-secondary/10 rounded-full blur-[100px] pointer-events-none translate-y-1/2 -translate-x-1/4"></div>
-        
-        <div className="container relative z-10 px-6 py-32 md:py-48 mx-auto flex flex-col items-center justify-center text-center min-h-[50vh]">
-          {/* Animated Status Badge */}
-          <div className="inline-flex items-center gap-3 bg-background/5 border-[2px] border-background/20 backdrop-blur-md text-background text-xs font-mono font-bold px-5 py-2.5 uppercase tracking-[0.25em] mb-12 rounded-full transform hover:scale-105 transition-transform duration-300 cursor-default">
-             <span className="w-2 h-2 rounded-full bg-primary relative">
-               <span className="absolute inset-0 rounded-full bg-primary animate-ping opacity-75"></span>
-             </span>
-             SKU KATALOG // UPDATE TERBARU
+      <section className="w-full bg-foreground text-background relative overflow-hidden section-padding">
+        <div className="absolute top-0 right-1/4 w-[600px] h-[600px] bg-primary/25 rounded-full blur-[150px] pointer-events-none -translate-y-1/2 translate-x-1/2"></div>
+        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-secondary/15 rounded-full blur-[100px] pointer-events-none translate-y-1/2 -translate-x-1/4"></div>
+
+        <div className="container relative z-10 mx-auto flex flex-col items-center justify-center text-center">
+          <div className="inline-flex items-center gap-3 bg-background/5 border border-background/15 backdrop-blur-md text-background text-xs font-semibold px-5 py-2.5 uppercase tracking-[0.2em] mb-10 rounded-full">
+            <span className="w-2 h-2 rounded-full bg-primary relative">
+              <span className="absolute inset-0 rounded-full bg-primary animate-ping opacity-75"></span>
+            </span>
+            Katalog &middot; Update Terbaru
           </div>
-          
-          {/* Massive Typography */}
-          <h1 className="text-6xl md:text-8xl xl:text-[11rem] font-display font-black uppercase tracking-tighter leading-[0.75] text-balance mb-8">
-            <span className="block text-background/90 drop-shadow-2xl">Produk</span>
-            <span className="block text-primary italic pr-4">AL JADID</span>
+
+          <h1 className="font-display text-6xl md:text-8xl xl:text-9xl font-medium tracking-tight leading-[1.02] text-balance mb-8">
+            <span className="block text-background/90">Produk</span>
+            <span className="block text-primary italic">Al Jadid</span>
           </h1>
-          
-          {/* Description line */}
-          <p className="text-xl md:text-2xl text-background/60 max-w-2xl font-medium tracking-wide">
-            Temukan produk yang Anda butuhkan. Mulai dari identitas usaha, promosi, hingga kebutuhan internal—semua didukung layanan desain grafis.
+
+          <p className="text-lg md:text-xl text-background/60 max-w-2xl leading-relaxed">
+            Temukan produk yang Anda butuhkan. Mulai dari identitas usaha, promosi, hingga kebutuhan internal &mdash; semua didukung layanan desain grafis.
           </p>
-          
         </div>
       </section>
 
-      {/* 
-        PRODUCTS GRID & FILTERS 
+      {/*
+        PRODUCTS GRID & FILTERS
       */}
-      <section className="w-full bg-muted py-16 md:py-24">
-         <div className="container px-6 mx-auto">
-           <Tabs defaultValue="Semua" className="w-full" onValueChange={setActiveCategory}>
-              <div className="mb-12 overflow-x-auto w-full scrollbar-none pb-4">
-                <TabsList className="bg-transparent h-auto p-0 flex space-x-2 w-max justify-start">
-                  {categories.map((category) => (
-                    <TabsTrigger
-                      key={category}
-                      value={category}
-                      className="rounded-2xl border-[3px] border-border bg-background py-3 px-8 text-sm font-bold uppercase tracking-widest font-mono data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:border-primary transition-all duration-300 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-y-1 hover:shadow-[0px_0px_0px_0px_rgba(0,0,0,1)] data-[state=active]:translate-y-1 data-[state=active]:shadow-none"
-                    >
-                      {category}
-                    </TabsTrigger>
-                  ))}
-                </TabsList>
+      <section className="w-full section-padding">
+        <div className="container">
+          <Tabs defaultValue="Semua" className="w-full" onValueChange={setActiveCategory}>
+            <div className="mb-12 overflow-x-auto w-full scrollbar-none pb-2">
+              <TabsList className="bg-transparent h-auto p-0 flex space-x-3 w-max justify-start">
+                {categories.map((category) => (
+                  <TabsTrigger
+                    key={category}
+                    value={category}
+                    className="rounded-full border border-border/70 bg-card py-2.5 px-6 text-sm font-semibold data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:border-primary transition-all duration-300 shadow-none"
+                  >
+                    {category}
+                  </TabsTrigger>
+                ))}
+              </TabsList>
+            </div>
+
+            <TabsContent value={activeCategory} className="mt-0 outline-none">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                {products
+                  .filter((prod) => activeCategory === "Semua" || prod.category === activeCategory)
+                  .map((product, index) => {
+                    const accent = cardAccents[index % cardAccents.length]
+                    return (
+                      <div key={product.id} className="group flex flex-col card-soft overflow-hidden transition-all duration-500 hover:-translate-y-1.5 hover:shadow-soft-lg">
+                        {/* Image Slot */}
+                        <div className="w-full aspect-[4/3] relative bg-muted flex items-center justify-center overflow-hidden p-6 border-b border-border/60">
+                          {product.isTextImg ? (
+                            <span className="font-display font-medium text-6xl text-foreground/15 group-hover:scale-110 transition-transform duration-700">
+                              {product.image}
+                            </span>
+                          ) : (
+                            <Image
+                              src={product.image}
+                              alt={product.name}
+                              fill
+                              className="object-contain p-8 group-hover:scale-110 transition-transform duration-700"
+                            />
+                          )}
+                        </div>
+
+                        {/* Title Slot */}
+                        <div className="p-6 flex items-center justify-between">
+                          <h3 className={`font-display text-xl font-medium leading-tight transition-colors ${accent.text}`}>
+                            {product.name}
+                          </h3>
+                          <div className={`w-10 h-10 shrink-0 rounded-full border border-border/70 flex items-center justify-center transition-colors ${accent.ring}`}>
+                            <ArrowRight className="w-4 h-4" />
+                          </div>
+                        </div>
+                      </div>
+                    )
+                  })}
               </div>
-
-              <TabsContent value={activeCategory} className="mt-0 outline-none">
-                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-                    {products
-                      .filter((prod) => activeCategory === "Semua" || prod.category === activeCategory)
-                      .map((product, index) => {
-                        const accent = cardAccents[index % cardAccents.length]
-                        return (
-                         <div key={product.id} className={`group flex flex-col bg-background rounded-3xl border-[3px] border-border overflow-hidden transition-all duration-500 ${accent.shadow} hover:-translate-y-2`}>
-                            {/* Image Slot */}
-                            <div className="w-full aspect-[4/3] relative bg-muted flex items-center justify-center overflow-hidden p-6 border-b-[3px] border-border">
-                               {product.isTextImg ? (
-                                 <span className="font-display font-black text-6xl text-foreground/20 group-hover:scale-110 transition-transform duration-700">
-                                   {product.image}
-                                 </span>
-                               ) : (
-                                 <Image
-                                   src={product.image}
-                                   alt={product.name}
-                                   fill
-                                   className="object-contain p-8 group-hover:scale-110 transition-transform duration-700 drop-shadow-xl"
-                                 />
-                               )}
-                            </div>
-
-                            {/* Title Slot */}
-                            <div className="p-6 md:p-8 flex items-center justify-between bg-background z-10 relative">
-                               <h3 className={`font-display font-black text-2xl lg:text-3xl uppercase tracking-tighter leading-none transition-colors ${accent.text}`}>
-                                 {product.name}
-                               </h3>
-                               <div className={`w-10 h-10 rounded-full border-[3px] border-border flex items-center justify-center group-hover:text-background transition-colors ${accent.ring}`}>
-                                 <ArrowRight className="w-5 h-5" />
-                               </div>
-                            </div>
-                         </div>
-                        )
-                      })}
-                 </div>
-              </TabsContent>
-           </Tabs>
-         </div>
+            </TabsContent>
+          </Tabs>
+        </div>
       </section>
 
-      {/* 
-        ACTION BRIDGE 
+      {/*
+        ACTION BRIDGE
       */}
-      <section className="w-full bg-primary text-primary-foreground border-b-[3px] border-border">
-         <div className="container px-6 py-24 md:py-32 flex flex-col justify-center items-center text-center">
-            <h2 className="text-5xl md:text-7xl font-display font-black uppercase tracking-tighter leading-[0.9] mb-8 max-w-4xl">
-              WUJUDKAN IDE ANDA <br/>DALAM BENTUK <span className="text-background">FISIK.</span>
+      <section className="w-full pb-16 md:pb-24">
+        <div className="container">
+          <div className="rounded-[2.5rem] bg-primary text-primary-foreground flex flex-col justify-center items-center text-center px-8 py-16 md:py-20">
+            <h2 className="font-display text-4xl md:text-6xl font-medium tracking-tight leading-[1.1] mb-9 max-w-3xl text-primary-foreground">
+              Wujudkan ide Anda dalam bentuk <span className="text-foreground">fisik.</span>
             </h2>
-            <Button asChild size="lg" className="rounded-none h-16 md:h-20 px-8 md:px-12 text-lg md:text-xl font-bold tracking-widest bg-foreground text-background hover:bg-background hover:text-foreground transition-colors border-[3px] border-foreground hover:border-background shadow-none">
+            <Button asChild size="lg" className="rounded-full h-14 md:h-16 px-8 md:px-10 text-base md:text-lg font-semibold bg-foreground text-background hover:bg-background hover:text-foreground transition-colors shadow-none">
               <Link href="/contact">
-                KONSULTASI GRATIS <ArrowRight className="ml-3 h-6 w-6" />
+                Konsultasi Gratis <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
-         </div>
+          </div>
+        </div>
       </section>
     </div>
   )
