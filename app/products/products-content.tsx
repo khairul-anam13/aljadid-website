@@ -22,6 +22,13 @@ export default function ProductsContent() {
     { id: 8, name: "Brosur Custom", image: "BRS", isTextImg: true, category: "Marketing" },
   ]
 
+  // Registration-mark accent rotation: green / blue / red signal colours
+  const cardAccents = [
+    { shadow: "hover:shadow-[8px_8px_0px_0px_rgba(14,143,79,1)]", ring: "group-hover:bg-primary group-hover:border-primary", text: "group-hover:text-primary" },
+    { shadow: "hover:shadow-[8px_8px_0px_0px_rgba(21,84,179,1)]", ring: "group-hover:bg-secondary group-hover:border-secondary", text: "group-hover:text-secondary" },
+    { shadow: "hover:shadow-[8px_8px_0px_0px_rgba(215,38,61,1)]", ring: "group-hover:bg-destructive group-hover:border-destructive", text: "group-hover:text-destructive" },
+  ]
+
   return (
     <div className="w-full bg-background min-h-screen">
       {/* 
@@ -31,7 +38,7 @@ export default function ProductsContent() {
         {/* Architectural Grid & Glow Background */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)] bg-[size:40px_40px]"></div>
         <div className="absolute top-0 right-1/4 w-[600px] h-[600px] bg-primary/20 rounded-full blur-[150px] pointer-events-none -translate-y-1/2 translate-x-1/2"></div>
-        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-emerald-600/10 rounded-full blur-[100px] pointer-events-none translate-y-1/2 -translate-x-1/4"></div>
+        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-secondary/10 rounded-full blur-[100px] pointer-events-none translate-y-1/2 -translate-x-1/4"></div>
         
         <div className="container relative z-10 px-6 py-32 md:py-48 mx-auto flex flex-col items-center justify-center text-center min-h-[50vh]">
           {/* Animated Status Badge */}
@@ -45,7 +52,7 @@ export default function ProductsContent() {
           {/* Massive Typography */}
           <h1 className="text-6xl md:text-8xl xl:text-[11rem] font-display font-black uppercase tracking-tighter leading-[0.75] text-balance mb-8">
             <span className="block text-background/90 drop-shadow-2xl">Produk</span>
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-primary via-emerald-400 to-primary italic pr-4">AL JADID</span>
+            <span className="block text-primary italic pr-4">AL JADID</span>
           </h1>
           
           {/* Description line */}
@@ -80,8 +87,10 @@ export default function ProductsContent() {
                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
                     {products
                       .filter((prod) => activeCategory === "Semua" || prod.category === activeCategory)
-                      .map((product) => (
-                         <div key={product.id} className="group flex flex-col bg-background rounded-3xl border-[3px] border-border overflow-hidden transition-all duration-500 hover:shadow-[8px_8px_0px_0px_rgba(0,168,84,1)] hover:-translate-y-2">
+                      .map((product, index) => {
+                        const accent = cardAccents[index % cardAccents.length]
+                        return (
+                         <div key={product.id} className={`group flex flex-col bg-background rounded-3xl border-[3px] border-border overflow-hidden transition-all duration-500 ${accent.shadow} hover:-translate-y-2`}>
                             {/* Image Slot */}
                             <div className="w-full aspect-[4/3] relative bg-muted flex items-center justify-center overflow-hidden p-6 border-b-[3px] border-border">
                                {product.isTextImg ? (
@@ -100,15 +109,16 @@ export default function ProductsContent() {
 
                             {/* Title Slot */}
                             <div className="p-6 md:p-8 flex items-center justify-between bg-background z-10 relative">
-                               <h3 className="font-display font-black text-2xl lg:text-3xl uppercase tracking-tighter leading-none group-hover:text-primary transition-colors">
+                               <h3 className={`font-display font-black text-2xl lg:text-3xl uppercase tracking-tighter leading-none transition-colors ${accent.text}`}>
                                  {product.name}
                                </h3>
-                               <div className="w-10 h-10 rounded-full border-[3px] border-border flex items-center justify-center group-hover:bg-primary group-hover:border-primary group-hover:text-background transition-colors">
+                               <div className={`w-10 h-10 rounded-full border-[3px] border-border flex items-center justify-center group-hover:text-background transition-colors ${accent.ring}`}>
                                  <ArrowRight className="w-5 h-5" />
                                </div>
                             </div>
                          </div>
-                      ))}
+                        )
+                      })}
                  </div>
               </TabsContent>
            </Tabs>

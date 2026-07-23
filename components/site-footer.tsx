@@ -95,19 +95,19 @@ export function SiteFooter() {
             <h3 className="text-lg font-semibold mb-4">Kontak</h3>
             <ul className="space-y-5 text-muted-foreground">
               <li className="flex items-start">
-                <Phone className="mr-3 h-5 w-5 shrink-0 text-primary" />
-                <span className="font-medium hover:text-primary transition-colors cursor-pointer">+62 813-9324-2084</span>
+                <Phone className="mr-3 h-5 w-5 shrink-0 text-secondary" />
+                <span className="font-medium hover:text-secondary transition-colors cursor-pointer">+62 813-9324-2084</span>
               </li>
               <li className="flex items-start">
-                <MapPin className="mr-3 h-5 w-5 shrink-0 text-primary mt-0.5" />
+                <MapPin className="mr-3 h-5 w-5 shrink-0 text-destructive mt-0.5" />
                 <div className="space-y-4">
                   <div>
                     <strong className="block text-foreground uppercase text-[10px] font-mono tracking-widest mb-1">AL JADID 1 - BARAT</strong>
-                    <p className="text-sm leading-relaxed border-l-2 border-primary/30 pl-3">Jalan Menteri Supeno, Tegalgede, Kec. Karanganyar, Kabupaten Karanganyar, Jawa Tengah 57711</p>
+                    <p className="text-sm leading-relaxed border-l-2 border-destructive/30 pl-3">Jalan Menteri Supeno, Tegalgede, Kec. Karanganyar, Kabupaten Karanganyar, Jawa Tengah 57711</p>
                   </div>
                   <div>
                     <strong className="block text-foreground uppercase text-[10px] font-mono tracking-widest mb-1">AL JADID 2 - TIMUR</strong>
-                    <p className="text-sm leading-relaxed border-l-2 border-primary/30 pl-3">Jl. Rm. Said No.74, Tegalgede, Kec. Karanganyar, Kabupaten Karanganyar, Jawa Tengah 57751</p>
+                    <p className="text-sm leading-relaxed border-l-2 border-destructive/30 pl-3">Jl. Rm. Said No.74, Tegalgede, Kec. Karanganyar, Kabupaten Karanganyar, Jawa Tengah 57751</p>
                   </div>
                 </div>
               </li>

@@ -4,39 +4,40 @@
 
 @layer base {
   :root {
-    /* SWISS MINIMALIST - LIGHT MODE */
-    /* Absolute Paper White vs Ink Black with Offset Red Focus */
+    /* SWISS PRINT REGISTRATION SYSTEM - LIGHT MODE */
+    /* Paper White / Ink Black structure with a 3-colour signal system: */
+    /* GREEN = brand / primary / go   BLUE = information / process   RED = location / priority */
     --background: 0 0% 100%;       /* Pure White (#FFFFFF) */
     --foreground: 0 0% 4%;         /* Ink Black (#0A0A0A) */
-    
+
     --card: 0 0% 100%;
     --card-foreground: 0 0% 4%;
-    
+
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 4%;
-    
-    --primary: 150 100% 33%;       /* Offset Green (#00A854) */
+
+    --primary: 150 82% 31%;        /* Signal Green (#0E8F4F) */
     --primary-foreground: 0 0% 100%;
-    
-    --secondary: 0 0% 96%;         /* Crisp Light Grey structure */
-    --secondary-foreground: 0 0% 4%;
-    
-    --accent: 150 100% 33%;        /* Offset Green */
-    --accent-foreground: 0 0% 100%;
-    
-    --destructive: 0 100% 50%;
+
+    --secondary: 216 79% 39%;      /* Signal Blue (#1554B3) */
+    --secondary-foreground: 0 0% 100%;
+
+    --accent: 216 33% 95%;         /* Pale blue-tinted structure for hover states */
+    --accent-foreground: 0 0% 4%;
+
+    --destructive: 352 70% 50%;    /* Signal Red (#D7263D) */
     --destructive-foreground: 0 0% 100%;
-    
+
     --muted: 0 0% 92%;
     --muted-foreground: 0 0% 40%;
-    
+
     --border: 0 0% 4%;            /* Extremely dark structural borders */
     --input: 0 0% 80%;
-    --ring: 150 100% 33%;
-    
+    --ring: 150 82% 31%;
+
     /* RADICAL EDGE ELIMINATION - No rounded corners, Swiss Precision */
     --radius: 0rem;
-    
+
     /* Support original chart/sidebar tokens if used by shadcn */
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 0 0% 4%;
@@ -44,32 +45,35 @@
   }
 
   .dark {
-    /* SWISS MINIMALIST - DARK MODE - INVERTED OPACITY */
+    /* SWISS PRINT REGISTRATION SYSTEM - DARK MODE - INVERTED OPACITY */
     --background: 0 0% 4%;         /* Ink Black */
     --foreground: 0 0% 98%;        /* Crisp Paper Light */
-    
+
     --card: 0 0% 4%;
     --card-foreground: 0 0% 98%;
-    
+
     --popover: 0 0% 4%;
     --popover-foreground: 0 0% 98%;
-    
-    --primary: 150 100% 33%;       /* Offset Green */
-    --primary-foreground: 0 0% 100%;
-    
-    --secondary: 0 0% 12%;         
-    --secondary-foreground: 0 0% 98%;
-    
-    --accent: 150 100% 33%;
-    --accent-foreground: 0 0% 100%;
-    
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    
+
+    --primary: 149 68% 42%;        /* Signal Green, brightened for dark bg (#22B368) */
+    --primary-foreground: 0 0% 4%;
+
+    --secondary: 217 91% 60%;      /* Signal Blue, brightened for dark bg (#3B82F6) */
+    --secondary-foreground: 0 0% 4%;
+
+    --accent: 0 0% 14%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 84% 60%;      /* Signal Red, brightened for dark bg (#EF4444) */
+    --destructive-foreground: 0 0% 4%;
+
+    --muted: 0 0% 12%;
+    --muted-foreground: 0 0% 65%;
+
     --border: 0 0% 98%;            /* Thick reversed pure white boundaries */
     --input: 0 0% 20%;
-    --ring: 150 100% 33%;
-    
+    --ring: 149 68% 42%;
+
     --sidebar-background: 0 0% 4%;
     --sidebar-foreground: 0 0% 98%;
     --sidebar-border: 0 0% 98%;

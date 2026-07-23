@@ -9,6 +9,9 @@ export const metadata: Metadata = constructMetadata({
 })
 
 export default function GalleryPage() {
+  // Print registration signal colours, tuned for legibility on the dark hover overlay
+  const clientTagColors = ["text-primary", "text-[#3B82F6]", "text-[#EF4444]"]
+
   const categories = ["Semua", "Kartu Nama", "Brosur", "Banner", "Kemasan", "Undangan", "Kertas"]
 
   const galleryItems = [
@@ -53,7 +56,7 @@ export default function GalleryPage() {
                   <TabsTrigger
                     key={category}
                     value={category}
-                    className="rounded-none border-r-[3px] border-border py-4 px-6 md:px-10 text-sm font-bold uppercase tracking-widest font-mono data-[state=active]:bg-foreground data-[state=active]:text-background data-[state=active]:shadow-none transition-colors"
+                    className="rounded-none border-r-[3px] border-border py-4 px-6 md:px-10 text-sm font-bold uppercase tracking-widest font-mono data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-none transition-colors"
                   >
                     {category}
                   </TabsTrigger>
@@ -93,7 +96,7 @@ export default function GalleryPage() {
 
                         {/* Content text */}
                         <div className="absolute inset-x-0 bottom-0 p-6 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 pointer-events-none text-background">
-                           <div className="font-mono text-xs uppercase tracking-widest text-primary mb-2">
+                           <div className={`font-mono text-xs uppercase tracking-widest mb-2 ${clientTagColors[index % clientTagColors.length]}`}>
                              // {item.client}
                            </div>
                            <h3 className="font-display font-black text-3xl uppercase leading-[0.9]">
