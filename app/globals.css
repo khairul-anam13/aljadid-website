@@ -4,79 +4,83 @@
 
 @layer base {
   :root {
-    /* SWISS PRINT REGISTRATION SYSTEM - LIGHT MODE */
-    /* Paper White / Ink Black structure with a 3-colour signal system: */
-    /* GREEN = brand / primary / go   BLUE = information / process   RED = location / priority */
-    --background: 0 0% 100%;       /* Pure White (#FFFFFF) */
-    --foreground: 0 0% 4%;         /* Ink Black (#0A0A0A) */
+    /* INK & PAPER - warm editorial print-craft system - LIGHT MODE */
+    /* Warm cream paper + ink, with a terracotta / teal / ochre ink-swatch accent trio */
+    --background: 40 65% 95%;      /* Warm Paper Cream (#FBF6EC) */
+    --foreground: 27 14% 12%;      /* Warm Ink (#241F1B) */
 
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 4%;
+    --card: 43 100% 99%;           /* Paper Card, slightly lighter than page bg (#FFFDF8) */
+    --card-foreground: 27 14% 12%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 4%;
+    --popover: 43 100% 99%;
+    --popover-foreground: 27 14% 12%;
 
-    --primary: 150 82% 31%;        /* Signal Green (#0E8F4F) */
-    --primary-foreground: 0 0% 100%;
+    --primary: 14 62% 47%;         /* Terracotta ink (#C1502E) */
+    --primary-foreground: 43 100% 99%;
 
-    --secondary: 216 79% 39%;      /* Signal Blue (#1554B3) */
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 172 59% 27%;      /* Deep teal ink (#1C6E63) */
+    --secondary-foreground: 43 100% 99%;
 
-    --accent: 216 33% 95%;         /* Pale blue-tinted structure for hover states */
-    --accent-foreground: 0 0% 4%;
+    --accent: 39 55% 90%;          /* Soft ochre-tinted paper for hover states (#F3E9D6) */
+    --accent-foreground: 27 14% 12%;
 
-    --destructive: 352 70% 50%;    /* Signal Red (#D7263D) */
-    --destructive-foreground: 0 0% 100%;
+    --highlight: 39 67% 51%;       /* Ochre ink, for badges / highlights (#D69A2D) */
+    --highlight-foreground: 27 14% 12%;
 
-    --muted: 0 0% 92%;
-    --muted-foreground: 0 0% 40%;
+    --destructive: 3 71% 41%;      /* Brick red, for alerts (#B3261E) */
+    --destructive-foreground: 43 100% 99%;
 
-    --border: 0 0% 4%;            /* Extremely dark structural borders */
-    --input: 0 0% 80%;
-    --ring: 150 82% 31%;
+    --muted: 39 42% 89%;           /* Warm beige (#EFE7D8) */
+    --muted-foreground: 30 9% 38%; /* Soft warm grey-brown (#6B6259) */
 
-    /* RADICAL EDGE ELIMINATION - No rounded corners, Swiss Precision */
-    --radius: 0rem;
+    --border: 39 36% 83%;          /* Soft warm hairline (#E3D8C3) */
+    --input: 40 36% 77%;
+    --ring: 14 62% 47%;
 
-    /* Support original chart/sidebar tokens if used by shadcn */
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 0 0% 4%;
-    --sidebar-border: 0 0% 4%;
+    /* Soft, tactile rounding - the opposite of the old brutalist 0-radius system */
+    --radius: 1.25rem;
+
+    --sidebar-background: 43 100% 99%;
+    --sidebar-foreground: 27 14% 12%;
+    --sidebar-border: 39 36% 83%;
   }
 
   .dark {
-    /* SWISS PRINT REGISTRATION SYSTEM - DARK MODE - INVERTED OPACITY */
-    --background: 0 0% 4%;         /* Ink Black */
-    --foreground: 0 0% 98%;        /* Crisp Paper Light */
+    /* INK & PAPER - DARK MODE - warm charcoal instead of paper */
+    --background: 26 15% 9%;       /* Warm charcoal (#1B1714) */
+    --foreground: 39 50% 92%;      /* Warm paper light (#F5EEE1) */
 
-    --card: 0 0% 4%;
-    --card-foreground: 0 0% 98%;
+    --card: 38 18% 12%;
+    --card-foreground: 39 50% 92%;
 
-    --popover: 0 0% 4%;
-    --popover-foreground: 0 0% 98%;
+    --popover: 38 18% 12%;
+    --popover-foreground: 39 50% 92%;
 
-    --primary: 149 68% 42%;        /* Signal Green, brightened for dark bg (#22B368) */
-    --primary-foreground: 0 0% 4%;
+    --primary: 18 74% 57%;         /* Terracotta, brightened (#E2703F) */
+    --primary-foreground: 26 15% 9%;
 
-    --secondary: 217 91% 60%;      /* Signal Blue, brightened for dark bg (#3B82F6) */
-    --secondary-foreground: 0 0% 4%;
+    --secondary: 172 58% 40%;      /* Teal, brightened (#2BA192) */
+    --secondary-foreground: 26 15% 9%;
 
-    --accent: 0 0% 14%;
-    --accent-foreground: 0 0% 98%;
+    --accent: 34 18% 15%;
+    --accent-foreground: 39 50% 92%;
 
-    --destructive: 0 84% 60%;      /* Signal Red, brightened for dark bg (#EF4444) */
-    --destructive-foreground: 0 0% 4%;
+    --highlight: 42 77% 60%;       /* Ochre, brightened (#E8B84B) */
+    --highlight-foreground: 26 15% 9%;
 
-    --muted: 0 0% 12%;
-    --muted-foreground: 0 0% 65%;
+    --destructive: 5 72% 65%;      /* Brick red, brightened (#E67065) */
+    --destructive-foreground: 26 15% 9%;
 
-    --border: 0 0% 98%;            /* Thick reversed pure white boundaries */
-    --input: 0 0% 20%;
-    --ring: 149 68% 42%;
+    --muted: 34 18% 15%;
+    --muted-foreground: 37 16% 65%;
 
-    --sidebar-background: 0 0% 4%;
-    --sidebar-foreground: 0 0% 98%;
-    --sidebar-border: 0 0% 98%;
+    --border: 38 20% 19%;
+    --input: 38 20% 19%;
+    --ring: 18 74% 57%;
+
+    --sidebar-background: 38 18% 12%;
+    --sidebar-foreground: 39 50% 92%;
+    --sidebar-border: 38 20% 19%;
   }
 }
 
@@ -93,40 +97,43 @@
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
-  
-  /* Apply display font forcefully to all crucial typography hierarchies */
+
   h1, h2, h3, h4, h5, h6 {
     @apply font-display font-medium tracking-tight text-foreground;
   }
 }
 
 @layer components {
-  /* Container forced structured grids */
   .container {
     @apply w-full mx-auto px-6 sm:px-8 lg:px-12;
-    max-width: 1400px;
+    max-width: 1320px;
   }
 
   .section-padding {
-    @apply py-16 sm:py-24 md:py-32;
+    @apply py-16 sm:py-24 md:py-28;
   }
-  
-  /* Extreme Typography Classes */
+
+  /* Editorial typography classes - serif display, generous but not shouting */
   .heading-xl {
-    @apply text-5xl sm:text-6xl md:text-8xl font-black uppercase tracking-tighter leading-[0.9];
+    @apply text-4xl sm:text-6xl md:text-7xl font-display font-medium tracking-tight leading-[1.05];
   }
 
   .heading-lg {
-    @apply text-4xl sm:text-5xl md:text-7xl font-bold uppercase tracking-tight leading-[1.0];
+    @apply text-3xl sm:text-4xl md:text-6xl font-display font-medium tracking-tight leading-[1.08];
   }
 
   .heading-md {
-    @apply text-2xl sm:text-3xl md:text-5xl font-bold tracking-tight leading-[1.1];
+    @apply text-2xl sm:text-3xl md:text-4xl font-display font-medium tracking-tight leading-[1.15];
   }
 
-  /* Utility removals: Glassmorphism completely purged in favor of pure block elements */
-  .swiss-panel {
-    @apply bg-background border-[3px] border-border;
+  /* Soft elevated surface, replaces the old hard-bordered swiss-panel */
+  .card-soft {
+    @apply bg-card border border-border/70 rounded-3xl shadow-soft;
+  }
+
+  /* Small rounded label / tag pill */
+  .tag-pill {
+    @apply inline-flex items-center gap-1.5 rounded-full px-3.5 py-1.5 text-xs font-semibold tracking-wide;
   }
 }
 
@@ -134,21 +141,17 @@
   .text-balance {
     text-wrap: balance;
   }
-  
-  /* Functional grid utility */
-  .swiss-grid {
-    @apply grid grid-cols-1 md:grid-cols-4 xl:grid-cols-12 gap-0 border-[3px] border-border;
-  }
-  
-  .swiss-cell {
-    @apply border-b md:border-b-0 md:border-r border-border p-6 md:last:border-r-0 last:border-b-0;
+
+  .shadow-soft {
+    box-shadow: 0 1px 2px rgba(36, 26, 16, 0.04), 0 12px 32px -8px rgba(36, 26, 16, 0.14);
   }
 
-  @keyframes scan {
-    0% { top: 0%; opacity: 0; }
-    5% { opacity: 1; }
-    95% { opacity: 1; }
-    100% { top: 100%; opacity: 0; }
+  .shadow-soft-lg {
+    box-shadow: 0 2px 4px rgba(36, 26, 16, 0.05), 0 24px 48px -12px rgba(36, 26, 16, 0.2);
+  }
+
+  .bg-grid-pattern {
+    background-image: linear-gradient(currentColor 1px, transparent 1px), linear-gradient(90deg, currentColor 1px, transparent 1px);
+    background-size: 32px 32px;
   }
 }
-

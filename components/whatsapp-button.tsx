@@ -23,21 +23,21 @@ export function WhatsAppButton() {
             initial={{ opacity: 0, scale: 0.9, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
-            className="bg-background border-[3px] border-border p-4 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] w-[290px] md:w-[340px] mb-2"
+            className="bg-card border border-border/70 rounded-3xl p-5 shadow-soft-lg w-[290px] md:w-[340px] mb-2"
           >
-            <div className="flex items-center justify-between mb-4 border-b-[3px] border-border pb-3">
+            <div className="flex items-center justify-between mb-4 border-b border-border/70 pb-3">
               <div className="flex flex-col">
-                <h3 className="font-display font-black text-xl uppercase tracking-tight leading-none">HUBUNGI KAMI</h3>
-                <p className="font-mono text-[9px] font-bold text-muted-foreground mt-1">WHATSAPP PORTAL // ONLINE</p>
+                <h3 className="font-display text-lg font-medium leading-none">Hubungi Kami</h3>
+                <p className="text-xs text-muted-foreground mt-1.5">WhatsApp &middot; online sekarang</p>
               </div>
-              <button 
+              <button
                 onClick={() => setIsOpen(false)}
-                className="w-8 h-8 flex items-center justify-center border-[2px] border-border hover:bg-primary hover:text-background transition-all"
+                className="w-8 h-8 flex items-center justify-center rounded-full border border-border/70 hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all"
               >
                 <X size={16} />
               </button>
             </div>
-            
+
             <div className="space-y-2">
               {contacts.map((contact, idx) => (
                 <a
@@ -45,28 +45,25 @@ export function WhatsAppButton() {
                   href={`https://wa.me/${contact.phone}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex items-center justify-between p-3 border-[2px] border-border hover:bg-primary transition-all duration-300 relative overflow-hidden"
+                  className="group flex items-center justify-between p-3 rounded-2xl border border-border/70 hover:bg-primary hover:border-primary transition-all duration-300"
                 >
-                  <div className="flex flex-col relative z-10">
-                    <span className="font-mono text-[9px] font-bold text-muted-foreground group-hover:text-background uppercase opacity-70">
+                  <div className="flex flex-col">
+                    <span className="text-[10px] font-semibold text-muted-foreground group-hover:text-primary-foreground/70 uppercase tracking-wide">
                       {contact.role}
                     </span>
-                    <span className="font-bold text-[15px] group-hover:text-background uppercase tracking-tight">
+                    <span className="font-semibold text-[15px] group-hover:text-primary-foreground">
                       {contact.name}
                     </span>
-                    <span className="font-mono text-[10px] text-muted-foreground group-hover:text-background/80 mt-1">
+                    <span className="text-xs text-muted-foreground group-hover:text-primary-foreground/80 mt-0.5">
                       {contact.label}
                     </span>
                   </div>
-                  <MessageCircle size={20} className="group-hover:text-background relative z-10 transition-transform group-hover:scale-110" />
-                  
-                  {/* Hover Background Animation */}
-                  <div className="absolute inset-0 bg-primary translate-y-full group-hover:translate-y-0 transition-transform duration-300 -z-0"></div>
+                  <MessageCircle size={20} className="text-muted-foreground group-hover:text-primary-foreground transition-transform group-hover:scale-110" />
                 </a>
               ))}
             </div>
-            <div className="mt-4 pt-3 border-t-[2px] border-border">
-              <p className="text-[10px] font-medium text-muted-foreground text-center">Tanggapan cepat selama jam operasional.</p>
+            <div className="mt-4 pt-3 border-t border-border/70">
+              <p className="text-[11px] text-muted-foreground text-center">Tanggapan cepat selama jam operasional.</p>
             </div>
           </motion.div>
         )}
@@ -83,20 +80,20 @@ export function WhatsAppButton() {
         }}
       >
         <button
-          className={`rounded-full w-16 h-16 p-0 shadow-xl border-[4px] border-border overflow-hidden relative transition-all duration-300
+          className={`rounded-full w-16 h-16 p-0 shadow-soft-lg overflow-hidden relative transition-all duration-300
             ${isOpen ? 'bg-primary' : 'bg-[#25D366] hover:bg-[#20BD5A] hover:scale-105 active:scale-95'}`}
           onClick={() => setIsOpen(!isOpen)}
           aria-label="WhatsApp Contacts"
         >
           <div className="relative w-full h-full flex items-center justify-center p-3.5">
-             <Image 
-              src="/images/whatsapp.png" 
-              alt="WhatsApp" 
+             <Image
+              src="/images/whatsapp.png"
+              alt="WhatsApp"
               fill
               className={`object-contain p-3.5 transition-all duration-300 ${isOpen ? 'rotate-90 scale-0 opacity-0' : 'rotate-0 scale-100 opacity-100'}`}
             />
-            <X 
-              className={`absolute transition-all duration-300 text-background ${isOpen ? 'rotate-0 scale-100 opacity-100' : '-rotate-90 scale-0 opacity-0'}`} 
+            <X
+              className={`absolute transition-all duration-300 text-primary-foreground ${isOpen ? 'rotate-0 scale-100 opacity-100' : '-rotate-90 scale-0 opacity-0'}`}
               size={32}
             />
           </div>

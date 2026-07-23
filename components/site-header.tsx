@@ -19,7 +19,7 @@ export function SiteHeader() {
   ]
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/60 backdrop-blur-lg supports-[backdrop-filter]:bg-background/60">
+    <header className="sticky top-0 z-50 w-full border-b border-border/70 bg-background/85 backdrop-blur-lg supports-[backdrop-filter]:bg-background/75">
       <div className="container flex h-16 items-center justify-between px-4 md:px-6">
         {/* Logo */}
         <div className="flex items-center">
@@ -67,8 +67,8 @@ export function SiteHeader() {
 
         {/* Right Side Actions */}
         <div className="flex items-center gap-3">
-          <Button asChild className="hidden md:flex rounded-none font-bold uppercase tracking-widest bg-foreground text-background hover:bg-primary transition-colors border-[2px] border-foreground">
-            <Link href="/contact">KONSULTASI</Link>
+          <Button asChild className="hidden md:flex rounded-full font-semibold bg-primary text-primary-foreground hover:bg-primary/90 transition-colors shadow-soft">
+            <Link href="/contact">Konsultasi</Link>
           </Button>
         </div>
       </div>

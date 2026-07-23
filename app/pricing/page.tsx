@@ -112,9 +112,9 @@ export default function PricingPage() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {pricingPackages.map((plan, index) => (
-              <Card key={index} className={`flex flex-col ${plan.popular ? "border-primary shadow-lg" : ""}`}>
+              <Card key={index} className={`flex flex-col overflow-hidden ${plan.popular ? "border-primary shadow-soft-lg" : ""}`}>
                 {plan.popular && (
-                  <div className="bg-primary text-primary-foreground text-center py-1 text-sm font-medium">
+                  <div className="bg-primary text-primary-foreground text-center py-1.5 text-sm font-medium">
                     Paling Populer
                   </div>
                 )}
