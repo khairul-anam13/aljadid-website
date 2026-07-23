@@ -7,6 +7,19 @@ import { ArrowRight, ArrowUpRight } from "lucide-react"
 import { motion } from "framer-motion"
 
 export default function HomeContent() {
+  // Print registration signal colours: green / blue / red, rotated across repeating content
+  const signalColors = [
+    { text: "text-primary", bg10: "bg-primary/10", border20: "border-primary/20", bg30: "bg-primary/30" },
+    { text: "text-secondary", bg10: "bg-secondary/10", border20: "border-secondary/20", bg30: "bg-secondary/30" },
+    { text: "text-destructive", bg10: "bg-destructive/10", border20: "border-destructive/20", bg30: "bg-destructive/30" },
+  ]
+  // Same rotation, tuned for legibility on dark (bg-foreground) sections
+  const signalColorsOnDark = [
+    signalColors[0],
+    { text: "text-[#3B82F6]", bg10: "bg-[#3B82F6]/10", border20: "border-[#3B82F6]/20", bg30: "bg-[#3B82F6]/30" },
+    signalColors[2],
+  ]
+
   const services = [
     { id: "01", category: "DOKUMEN / BISNIS", title: "Cetak Dokumen", desc: "Formulir, laporan, dan administrasi perkantoran dengan presisi tinggi.", image: "/produk/rapot.png" },
     { id: "02", category: "VISUAL OUTDOOR", title: "Cetak Banner", desc: "MMT skala besar untuk promosi luar ruang yang tahan cuaca.", image: "/produk/mmt.png" },
@@ -127,35 +140,33 @@ export default function HomeContent() {
 
           {/* Infinite Horizontal Marquee Services */}
           <div className="col-span-1 md:col-span-4 xl:col-span-12 overflow-hidden bg-background relative border-t-0">
-             {/* Fading Edges for better visual transition */}
-            <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none"></div>
-            <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none"></div>
-
-            <motion.div 
+            <motion.div
               className="flex min-w-max"
               animate={{ x: ["0%", "-50%"] }}
               transition={{ ease: "linear", duration: 40, repeat: Infinity }}
             >
-              {marqueeServices.map((service, index) => (
-                <div 
+              {marqueeServices.map((service, index) => {
+                const accent = signalColors[index % signalColors.length]
+                return (
+                <div
                   key={index}
                   className="w-72 md:w-80 p-6 border-r-[3px] border-border flex flex-col gap-6 bg-background hover:bg-muted transition-colors cursor-default"
                 >
                   {/* Compact Product Visual - Forced White Background */}
                   <div className="w-full aspect-square relative bg-white border-[3px] border-border overflow-hidden shrink-0 group/img shadow-inner">
                     {/* Technical Grid Overlay - Lighter for white background */}
-                    <div className="absolute inset-0 z-10 opacity-[0.03] pointer-events-none" 
+                    <div className="absolute inset-0 z-10 opacity-[0.03] pointer-events-none"
                       style={{ backgroundImage: 'linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)', backgroundSize: '15px 15px' }}>
                     </div>
-                    
+
                     {/* Product Image */}
                     <div className="absolute inset-0 p-6 flex items-center justify-center">
                       <div className="relative w-full h-full">
-                        <Image 
-                          src={service.image} 
-                          alt={service.title} 
-                          fill 
-                          className="object-contain transition-all duration-700 group-hover/img:scale-110 group-hover/img:rotate-2" 
+                        <Image
+                          src={service.image}
+                          alt={service.title}
+                          fill
+                          className="object-contain transition-all duration-700 group-hover/img:scale-110 group-hover/img:rotate-2"
                         />
                       </div>
                     </div>
@@ -169,14 +180,14 @@ export default function HomeContent() {
 
                     {/* Scan Line Animation */}
                     <div className="absolute inset-0 z-20 pointer-events-none opacity-0 group-hover/img:opacity-100 transition-opacity duration-300">
-                       <div className="w-full h-[2px] bg-primary/30 absolute top-0 animate-[scan_3s_linear_infinite]"></div>
+                       <div className={`w-full h-[2px] ${accent.bg30} absolute top-0 animate-[scan_3s_linear_infinite]`}></div>
                     </div>
                   </div>
 
                   {/* Product Info */}
                   <div className="flex flex-col space-y-2">
                     <div className="flex justify-between items-start">
-                      <span className="font-mono text-[9px] uppercase tracking-tighter font-bold text-primary px-1.5 py-0.5 bg-primary/10 border border-primary/20">
+                      <span className={`font-mono text-[9px] uppercase tracking-tighter font-bold px-1.5 py-0.5 border ${accent.text} ${accent.bg10} ${accent.border20}`}>
                         {service.category}
                       </span>
                     </div>
@@ -190,7 +201,8 @@ export default function HomeContent() {
                     </div>
                   </div>
                 </div>
-              ))}
+                )
+              })}
             </motion.div>
           </div>
         </div>
@@ -220,7 +232,7 @@ export default function HomeContent() {
           <div className="grid grid-cols-2 md:grid-cols-4 divide-x-[3px] divide-y-[3px] divide-border/40 border-l-[3px] border-border/40">
             {stats.map((stat, i) => (
               <div key={i} className="p-8 md:p-12 flex flex-col items-center justify-center text-center bg-foreground/20 hover:bg-background/5 transition-colors group">
-                <div className="font-display font-black text-primary text-4xl sm:text-5xl md:text-6xl tracking-tighter drop-shadow-md mb-2 group-hover:scale-105 transition-transform">
+                <div className={`font-display font-black ${signalColorsOnDark[i % signalColorsOnDark.length].text} text-4xl sm:text-5xl md:text-6xl tracking-tighter drop-shadow-md mb-2 group-hover:scale-105 transition-transform`}>
                   {stat.number}
                 </div>
                 <div className="text-xs sm:text-sm font-bold uppercase tracking-widest text-background/80">
@@ -248,10 +260,6 @@ export default function HomeContent() {
 
         {/* Moving Marquee Area - Repaired Infinite Scroll Loop logic */}
         <div className="w-full xl:w-2/3 flex items-center bg-background overflow-hidden relative border-y-[3px] xl:border-y-0 border-border">
-          {/* Fading Edges */}
-          <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none"></div>
-          <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none"></div>
-          
           {/* Fix: duration set to 60 for slower visibility, perfectly moving from 0 to -50% for identical loop matching */}
           <motion.div 
             className="flex min-w-max"
@@ -259,12 +267,12 @@ export default function HomeContent() {
             transition={{ ease: "linear", duration: 55, repeat: Infinity }}
           >
             {marqueeReviews.map((review, i) => (
-              <div 
-                key={i} 
+              <div
+                key={i}
                 className="w-80 md:w-[400px] p-8 md:p-12 border-r-[3px] border-border flex flex-col justify-between shrink-0 bg-background hover:bg-muted transition-colors cursor-default"
                 style={{ height: "450px" }}
               >
-                  <div className="font-mono text-xs uppercase text-primary font-bold mb-6">LOG / {review.id}</div>
+                  <div className={`font-mono text-xs uppercase font-bold mb-6 ${signalColors[i % signalColors.length].text}`}>LOG / {review.id}</div>
                   <h3 className="text-xl md:text-2xl font-bold lowercase leading-snug mb-6 text-foreground/90">&quot;{review.text}&quot;</h3>
                   <div className="flex items-center gap-4 pt-6 mt-auto border-t-[3px] border-border">
                     <div className="w-14 h-14 bg-foreground text-background flex items-center justify-center font-display font-black text-2xl shrink-0">{review.author.charAt(0)}</div>

@@ -38,10 +38,10 @@ export default function RootLayout({
         <link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/manifest.json" />
-        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#2e7d32" />
+        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#0E8F4F" />
 
         {/* Microsoft Tiles */}
-        <meta name="msapplication-TileColor" content="#00A854" />
+        <meta name="msapplication-TileColor" content="#0E8F4F" />
         <meta name="msapplication-config" content="/browserconfig.xml" />
 
         {/* Mobile App Meta Tags */}

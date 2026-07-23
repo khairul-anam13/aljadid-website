@@ -20,10 +20,17 @@ export default function ContactPage() {
   ]
 
   const contacts = [
-    { name: "Mba Lala Kantor 1", phone: "6283836323255", label: "+62 838-3632-3255", role: "CUSTOMER SERVICE" },
-    { name: "Mba Yuni Kantor 2", phone: "6283866649071", label: "+62 838-6664-9071", role: "CUSTOMER SERVICE" },
-    { name: "Pesanan Partai Besar", phone: "6281246419239", label: "+62 812-4641-9239", role: "PRIORITAS / MARKETING" },
+    { name: "Mba Lala Kantor 1", phone: "6283836323255", label: "+62 838-3632-3255", role: "CUSTOMER SERVICE", accent: "secondary" },
+    { name: "Mba Yuni Kantor 2", phone: "6283866649071", label: "+62 838-6664-9071", role: "CUSTOMER SERVICE", accent: "secondary" },
+    { name: "Pesanan Partai Besar", phone: "6281246419239", label: "+62 812-4641-9239", role: "PRIORITAS / MARKETING", accent: "destructive" },
   ]
+
+  // accent -> Tailwind class pairs (green/blue/red signal system)
+  const accentClasses = {
+    primary: { text: "text-primary", groupHoverText: "group-hover:text-primary" },
+    secondary: { text: "text-secondary", groupHoverText: "group-hover:text-secondary" },
+    destructive: { text: "text-destructive", groupHoverText: "group-hover:text-destructive" },
+  } as const
 
   return (
     <div className="w-full bg-background min-h-screen">
@@ -34,7 +41,7 @@ export default function ContactPage() {
         <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[50vh] xl:min-h-[60vh]">
           {/* Kiri: Tipografi Masif */}
           <div className="p-8 md:p-16 xl:p-24 flex flex-col justify-end border-b-[3px] border-background/20 lg:border-b-0 lg:border-r-[3px] relative">
-            <div className="font-mono text-xs font-bold text-primary mb-auto tracking-[0.4em] uppercase pt-4">
+            <div className="font-mono text-xs font-bold text-[#3B82F6] mb-auto tracking-[0.4em] uppercase pt-4">
               [ TERMINAL KOMUNIKASI ]
             </div>
             <h1 className="text-[5rem] md:text-[8rem] xl:text-[11rem] font-display font-black uppercase tracking-tighter leading-[0.75] mt-24 text-background">
@@ -53,11 +60,11 @@ export default function ContactPage() {
              </div>
              <div className="grid grid-cols-2 h-auto md:h-48 text-background">
                 <div className="p-8 border-r-[3px] border-background/20 flex flex-col justify-center bg-muted text-foreground">
-                  <span className="font-mono text-xs font-black text-primary uppercase mb-2">RESPONS</span>
+                  <span className="font-mono text-xs font-black text-secondary uppercase mb-2">RESPONS</span>
                   <span className="font-display text-2xl md:text-4xl font-black uppercase">CEPAT</span>
                 </div>
                 <div className="p-8 flex flex-col justify-center bg-foreground text-background">
-                  <span className="font-mono text-xs font-bold text-primary uppercase mb-2">AKSES</span>
+                  <span className="font-mono text-xs font-bold text-[#3B82F6] uppercase mb-2">AKSES</span>
                   <span className="font-display text-2xl md:text-4xl font-black uppercase">LANGSUNG</span>
                 </div>
              </div>
@@ -71,28 +78,31 @@ export default function ContactPage() {
       <section className="w-full border-b-[3px] border-border bg-background">
         <div className="container mx-auto px-0">
           <div className="grid grid-cols-1 md:grid-cols-3">
-            {contacts.map((contact, idx) => (
-              <a 
+            {contacts.map((contact, idx) => {
+              const accent = accentClasses[contact.accent as keyof typeof accentClasses]
+              return (
+              <a
                 key={idx}
                 href={`https://wa.me/${contact.phone}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group flex flex-col p-8 md:p-12 border-b-[3px] md:border-b-0 md:border-r-[3px] border-border last:border-r-0 hover:bg-muted transition-colors"
               >
-                <div className="font-mono text-[10px] font-bold text-primary mb-8 tracking-widest uppercase">
+                <div className={`font-mono text-[10px] font-bold mb-8 tracking-widest uppercase ${accent.text}`}>
                   {contact.role}
                 </div>
-                <h3 className="text-2xl md:text-3xl font-display font-black uppercase mb-2 group-hover:text-primary transition-colors">
+                <h3 className={`text-2xl md:text-3xl font-display font-black uppercase mb-2 transition-colors ${accent.groupHoverText}`}>
                   {contact.name}
                 </h3>
                 <div className="text-lg font-mono font-bold text-muted-foreground">
                   {contact.label}
                 </div>
-                <div className="mt-12 flex items-center text-[10px] font-mono font-black uppercase tracking-widest text-muted-foreground/50 group-hover:text-primary transition-colors">
+                <div className={`mt-12 flex items-center text-[10px] font-mono font-black uppercase tracking-widest text-muted-foreground/50 transition-colors ${accent.groupHoverText}`}>
                   HUBUNGI VIA WA <ArrowRight className="ml-2 w-4 h-4" />
                 </div>
               </a>
-            ))}
+              )
+            })}
           </div>
         </div>
       </section>
@@ -105,9 +115,9 @@ export default function ContactPage() {
            {locations.map((loc, i) => (
              <div key={i} className="flex flex-col md:flex-row border-b-[3px] border-border last:border-b-0">
                 <div className="w-full md:w-1/2 p-8 md:p-16 flex flex-col justify-center border-b-[3px] md:border-b-0 md:border-r-[3px] border-border">
-                   <span className="font-mono text-[10px] font-bold text-primary mb-4 block uppercase tracking-widest">// LOKASI 0{i+1}</span>
+                   <span className="font-mono text-[10px] font-bold text-destructive mb-4 block uppercase tracking-widest">// LOKASI 0{i+1}</span>
                    <h3 className="font-display font-black text-3xl md:text-5xl uppercase leading-none mb-6">{loc.name}</h3>
-                   <div className="w-12 h-1 bg-primary mb-6"></div>
+                   <div className="w-12 h-1 bg-destructive mb-6"></div>
                    <p className="font-medium text-lg md:text-xl uppercase text-muted-foreground leading-snug">
                      {loc.address}
                    </p>

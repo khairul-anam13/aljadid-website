@@ -35,8 +35,8 @@ export default function AboutPage() {
         <div className="absolute inset-0 z-0 opacity-5 pointer-events-none grayscale">
           <Image src="/images/kantor1.png" alt="Kantor Al Jadid Background" fill className="object-cover object-center" priority />
         </div>
-        <div className="absolute inset-0 z-0 pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle at 70% 30%, rgba(0, 168, 84, 0.05) 0%, transparent 50%)' }}></div>
-        
+        <div className="absolute top-[10%] right-[8%] z-0 w-24 h-24 md:w-40 md:h-40 border-[3px] border-primary/20 rounded-full pointer-events-none"></div>
+
         <div className="container relative z-10 px-6 py-24 md:py-48">
           <div className="inline-block bg-foreground text-background text-[10px] font-mono font-bold px-3 py-1 uppercase tracking-[0.2em] mb-8">
             PROFIL PERUSAHAAN / EST. 2005
@@ -80,7 +80,7 @@ export default function AboutPage() {
              <OfficeImageSwitcher />
             {/* Technical Overlay */}
             <div className="absolute inset-0 border-[20px] border-background/5 pointer-events-none"></div>
-            <div className="absolute bottom-12 left-12 bg-primary text-primary-foreground font-mono text-xs font-bold px-4 py-2 uppercase tracking-widest shadow-xl">
+            <div className="absolute bottom-12 left-12 bg-destructive text-destructive-foreground font-mono text-xs font-bold px-4 py-2 uppercase tracking-widest shadow-xl">
               LOC_REF: KJ-01 // OFFICE_ENV
             </div>
           </div>
@@ -180,12 +180,12 @@ export default function AboutPage() {
         <div className="container px-6 py-24 md:py-40">
           {/* Header Section - Full Width for Large Typography */}
           <div className="mb-24 md:mb-32">
-            <div className="font-mono text-[10px] uppercase font-bold text-primary mb-12 tracking-[0.4em]">// LOGISTIK & DISTRIBUSI</div>
+            <div className="font-mono text-[10px] uppercase font-bold text-[#EF4444] mb-12 tracking-[0.4em]">// LOGISTIK & DISTRIBUSI</div>
             <h2 className="text-6xl md:text-[9rem] xl:text-[12rem] font-display font-black uppercase tracking-tighter leading-[0.8] mb-16">
-              SIAP<br/><span className="text-primary italic">MENJANGKAU.</span>
+              SIAP<br/><span className="text-[#EF4444] italic">MENJANGKAU.</span>
             </h2>
             <div className="flex flex-col md:flex-row gap-12 items-start">
-               <div className="w-[100px] h-[3px] bg-primary mt-4 hidden md:block"></div>
+               <div className="w-[100px] h-[3px] bg-[#EF4444] mt-4 hidden md:block"></div>
                <p className="text-xl md:text-4xl font-medium text-background/60 max-w-4xl leading-tight">
                 Dari Karesidenan Surakarta hingga Kota di Provinsi lainnya, kami pastikan setiap pesanan sampai dengan aman, terbungkus rapi, dan siap pakai. Karena kepuasan Anda tidak boleh terhenti di jalan.
               </p>
@@ -195,7 +195,7 @@ export default function AboutPage() {
           {/* Grid Section - Full Width below */}
           <div className="w-full flex flex-wrap items-center justify-center gap-x-8 gap-y-4 md:gap-x-12 md:gap-y-8 border-t-[3px] border-background/10 pt-16">
             {[
-              { name: "KARANGANYAR", size: "text-4xl md:text-8xl", weight: "font-black", color: "text-primary" },
+              { name: "KARANGANYAR", size: "text-4xl md:text-8xl", weight: "font-black", color: "text-[#EF4444]" },
               { name: "SOLO", size: "text-3xl md:text-6xl", weight: "font-black", color: "text-background" },
               { name: "BOYOLALI", size: "text-2xl md:text-5xl", weight: "font-bold", color: "text-background/80" },
               { name: "KLATEN", size: "text-2xl md:text-4xl", weight: "font-bold", color: "text-background/60" },
@@ -211,7 +211,7 @@ export default function AboutPage() {
             ].map((city, index) => (
               <span 
                 key={index} 
-                className={`${city.size} ${city.weight} ${city.color} uppercase tracking-tighter hover:text-primary hover:scale-110 transition-all duration-300 cursor-default select-none hover:opacity-100`}
+                className={`${city.size} ${city.weight} ${city.color} uppercase tracking-tighter hover:text-[#EF4444] hover:scale-110 transition-all duration-300 cursor-default select-none hover:opacity-100`}
               >
                 {city.name}
               </span>
