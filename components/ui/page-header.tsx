@@ -4,6 +4,7 @@ import Link from "next/link"
 import { ChevronRight } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Reveal } from "@/components/reveal"
+import { RegistrationMark } from "@/components/print-marks"
 
 interface PageHeaderProps {
   title: string
@@ -14,36 +15,34 @@ interface PageHeaderProps {
   children?: React.ReactNode
 }
 
-// Inner-page hero: forest green band with breadcrumb, optional background photo and a green/red accent rule.
+// Inner-page hero: ink band with breadcrumb, an optional background photo, and a red/green cut-line.
 export function PageHeader({ title, description, eyebrow, image, className, children }: PageHeaderProps) {
   return (
     <section className={cn("relative overflow-hidden bg-secondary text-secondary-foreground", className)}>
-      {image && (
-        <Image src={image} alt="" fill priority sizes="100vw" className="object-cover opacity-25" />
-      )}
-      <div aria-hidden className="absolute inset-0 bg-gradient-to-r from-secondary via-secondary/90 to-secondary/40" />
-      <div aria-hidden className="absolute inset-0 bg-dots text-white/[0.07]" />
-      <div aria-hidden className="absolute -right-24 -top-24 h-72 w-72 rounded-full border-[40px] border-primary/30" />
+      {image && <Image src={image} alt="" fill priority sizes="100vw" className="object-cover opacity-30" />}
+      <div aria-hidden className="absolute inset-0 bg-secondary/85" />
+      <div aria-hidden className="absolute inset-0 bg-dots text-secondary-foreground/[0.06]" />
+      <RegistrationMark className="pointer-events-none absolute -right-6 -top-6 h-32 w-32 text-primary/25 sm:h-40 sm:w-40" />
 
       <div className="container relative py-16 md:py-24">
         <Reveal>
-          <nav aria-label="Breadcrumb" className="mb-6 flex items-center gap-1.5 text-sm text-white/60">
-            <Link href="/" className="transition-colors hover:text-white">
+          <nav aria-label="Breadcrumb" className="mb-6 flex items-center gap-1.5 font-mono text-xs uppercase tracking-wide text-secondary-foreground/55">
+            <Link href="/" className="transition-colors hover:text-secondary-foreground">
               Beranda
             </Link>
-            <ChevronRight className="h-4 w-4" />
-            <span className="text-white">{title}</span>
+            <ChevronRight className="h-3.5 w-3.5" />
+            <span className="text-secondary-foreground">{title}</span>
           </nav>
-          {eyebrow && <span className="eyebrow mb-4 text-red-300">{eyebrow}</span>}
-          <h1 className="heading-xl max-w-3xl text-balance text-white">{title}</h1>
+          {eyebrow && <span className="eyebrow mb-4 border-primary text-secondary-foreground">{eyebrow}</span>}
+          <h1 className="misprint-invert heading-xl max-w-3xl text-balance text-secondary-foreground">{title}</h1>
           {description && (
-            <p className="mt-5 max-w-2xl text-base leading-relaxed text-white/75 sm:text-lg">{description}</p>
+            <p className="mt-5 max-w-2xl font-serif text-base leading-relaxed text-secondary-foreground/75 sm:text-lg">{description}</p>
           )}
           {children}
         </Reveal>
       </div>
 
-      <div aria-hidden className="absolute inset-x-0 bottom-0 flex h-1.5">
+      <div aria-hidden className="absolute inset-x-0 bottom-0 flex h-[3px]">
         <span className="flex-1 bg-primary" />
         <span className="w-24 bg-highlight sm:w-40" />
       </div>

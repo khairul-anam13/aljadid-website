@@ -17,11 +17,11 @@ export function WhatsAppButton() {
             initial={{ opacity: 0, scale: 0.95, y: 16 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 16 }}
-            className="w-[300px] overflow-hidden rounded-2xl border border-border bg-card shadow-soft-lg md:w-[340px]"
+            className="w-[300px] overflow-hidden border-2 border-foreground bg-card shadow-soft-lg md:w-[340px]"
           >
             <div className="flex items-center justify-between bg-primary px-5 py-4 text-primary-foreground">
               <div>
-                <h3 className="text-base font-bold leading-none text-primary-foreground">Hubungi Kami</h3>
+                <h3 className="font-mono text-sm font-bold uppercase tracking-wide leading-none">Hubungi Kami</h3>
                 <p className="mt-1.5 flex items-center gap-1.5 text-xs text-primary-foreground/80">
                   <span className="h-2 w-2 rounded-full bg-[#25D366] ring-2 ring-white/40" />
                   WhatsApp &middot; online sekarang
@@ -30,7 +30,7 @@ export function WhatsAppButton() {
               <button
                 onClick={() => setIsOpen(false)}
                 aria-label="Tutup"
-                className="flex h-8 w-8 items-center justify-center rounded-full bg-white/15 transition-colors hover:bg-white/25"
+                className="flex h-8 w-8 items-center justify-center border-2 border-primary-foreground/30 transition-colors hover:bg-primary-foreground/15"
               >
                 <X size={16} />
               </button>
@@ -43,20 +43,20 @@ export function WhatsAppButton() {
                   href={waLink(contact.phone)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex items-center gap-3 rounded-xl border border-border p-3 transition-colors hover:border-primary/40 hover:bg-accent"
+                  className="group flex items-center gap-3 border-2 border-transparent p-3 transition-colors hover:border-foreground hover:bg-accent"
                 >
-                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-accent text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center border-2 border-foreground bg-accent text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
                     <MessageCircle size={18} />
                   </span>
                   <span className="flex min-w-0 flex-col">
-                    <span className="text-[10px] font-bold uppercase tracking-wide text-highlight">{contact.role}</span>
+                    <span className="font-mono text-[10px] font-bold uppercase tracking-wide text-highlight">{contact.role}</span>
                     <span className="truncate text-sm font-semibold">{contact.name}</span>
                     <span className="text-xs text-muted-foreground">{contact.label}</span>
                   </span>
                 </a>
               ))}
             </div>
-            <p className="border-t border-border px-4 py-3 text-center text-[11px] text-muted-foreground">
+            <p className="border-t-2 border-foreground/10 px-4 py-3 text-center font-mono text-[10px] uppercase tracking-wide text-muted-foreground">
               Tanggapan cepat selama jam operasional.
             </p>
           </motion.div>
@@ -69,7 +69,7 @@ export function WhatsAppButton() {
         transition={{ type: "spring", stiffness: 260, damping: 20, delay: 1.5 }}
       >
         <button
-          className={`relative h-14 w-14 overflow-hidden rounded-full p-0 shadow-soft-lg transition-all duration-300 md:h-16 md:w-16 ${
+          className={`relative h-14 w-14 overflow-hidden border-2 border-foreground p-0 shadow-soft transition-all duration-300 md:h-16 md:w-16 ${
             isOpen ? "bg-highlight" : "bg-[#25D366] hover:scale-105 hover:bg-[#20BD5A] active:scale-95"
           }`}
           onClick={() => setIsOpen(!isOpen)}
