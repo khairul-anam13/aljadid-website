@@ -1,45 +1,51 @@
-"use client"
-
+import type React from "react"
+import Image from "next/image"
+import Link from "next/link"
+import { ChevronRight } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { motion } from "framer-motion"
+import { Reveal } from "@/components/reveal"
 
 interface PageHeaderProps {
   title: string
   description?: string
+  eyebrow?: string
+  image?: string
   className?: string
+  children?: React.ReactNode
 }
 
-export function PageHeader({ title, description, className }: PageHeaderProps) {
+// Inner-page hero: forest green band with breadcrumb, optional background photo and a green/red accent rule.
+export function PageHeader({ title, description, eyebrow, image, className, children }: PageHeaderProps) {
   return (
-    <section className="w-full py-8 sm:py-12 md:py-16 lg:py-20 relative overflow-hidden">
-      <div className="absolute inset-0 bg-background/30 backdrop-blur-md"></div>
-      <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
+    <section className={cn("relative overflow-hidden bg-secondary text-secondary-foreground", className)}>
+      {image && (
+        <Image src={image} alt="" fill priority sizes="100vw" className="object-cover opacity-25" />
+      )}
+      <div aria-hidden className="absolute inset-0 bg-gradient-to-r from-secondary via-secondary/90 to-secondary/40" />
+      <div aria-hidden className="absolute inset-0 bg-dots text-white/[0.07]" />
+      <div aria-hidden className="absolute -right-24 -top-24 h-72 w-72 rounded-full border-[40px] border-primary/30" />
 
-      {/* Decorative elements - responsive sizing */}
-      <div className="absolute top-4 sm:top-8 md:top-10 right-[5%] sm:right-[10%] w-16 h-16 sm:w-24 sm:h-24 md:w-32 md:h-32 rounded-full bg-primary/10 blur-2xl md:blur-3xl"></div>
-      <div className="absolute bottom-4 sm:bottom-8 md:bottom-10 left-[5%] sm:left-[10%] w-20 h-20 sm:w-28 sm:h-28 md:w-40 md:h-40 rounded-full bg-secondary/10 blur-2xl md:blur-3xl"></div>
+      <div className="container relative py-16 md:py-24">
+        <Reveal>
+          <nav aria-label="Breadcrumb" className="mb-6 flex items-center gap-1.5 text-sm text-white/60">
+            <Link href="/" className="transition-colors hover:text-white">
+              Beranda
+            </Link>
+            <ChevronRight className="h-4 w-4" />
+            <span className="text-white">{title}</span>
+          </nav>
+          {eyebrow && <span className="eyebrow mb-4 text-red-300">{eyebrow}</span>}
+          <h1 className="heading-xl max-w-3xl text-balance text-white">{title}</h1>
+          {description && (
+            <p className="mt-5 max-w-2xl text-base leading-relaxed text-white/75 sm:text-lg">{description}</p>
+          )}
+          {children}
+        </Reveal>
+      </div>
 
-      <div className="container relative">
-        <div className={cn("flex flex-col items-center justify-center text-center max-w-4xl mx-auto", className)}>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="space-y-3 sm:space-y-4 md:space-y-6"
-          >
-            <h1 className="heading-lg text-balance">{title}</h1>
-            {description && (
-              <motion.p
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.2, duration: 0.5 }}
-                className="text-responsive text-muted-foreground max-w-3xl mx-auto text-balance leading-relaxed"
-              >
-                {description}
-              </motion.p>
-            )}
-          </motion.div>
-        </div>
+      <div aria-hidden className="absolute inset-x-0 bottom-0 flex h-1.5">
+        <span className="flex-1 bg-primary" />
+        <span className="w-24 bg-highlight sm:w-40" />
       </div>
     </section>
   )

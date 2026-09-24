@@ -1,130 +1,198 @@
 "use client"
 
-import type React from "react"
-import { ArrowRight } from "lucide-react"
+import { useState, type FormEvent } from "react"
+import { ArrowUpRight, Clock, MapPin, MessageCircle, Navigation, Phone, Send } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { PageHeader } from "@/components/ui/page-header"
+import { Reveal } from "@/components/reveal"
+import { SectionHeading } from "@/components/section-heading"
+import { businessHours, locations, mainPhone, services, waContacts, waLink } from "@/lib/site"
 
 export default function ContactPage() {
-  const locations = [
-    {
-      name: "Al Jadid 1 – Barat",
-      desc: "Pusat Produksi Cetak Massal",
-      address: "Jalan Menteri Supeno, Tegalgede, Kec. Karanganyar, Kabupaten Karanganyar, Jawa Tengah 57711",
-      mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1603.8122660831666!2d110.95672755050514!3d-7.601548781398075!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a1881ae22a67b%3A0x79fb09f7d40afd81!2sAl%20Jadid%20Offset!5e0!3m2!1sid!2sid!4v1775208060693!5m2!1sid!2sid",
-    },
-    {
-      name: "Al Jadid 2 – Timur",
-      desc: "Desain, ATK, & Produksi Spesialis",
-      address: "Jl. Rm. Said No.74, Tegalgede, Kec. Karanganyar, Kabupaten Karanganyar, Jawa Tengah 57751",
-      mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d825.4050709903312!2d110.95599397592463!3d-7.600863518159444!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a1919d31479f9%3A0xfc9c190f0f2e534!2sAl%20Jadid%20Offset%202!5e0!3m2!1sid!2sid!4v1775208103938!5m2!1sid!2sid",
-    },
-  ]
+  const [name, setName] = useState("")
+  const [need, setNeed] = useState(services[0].title)
+  const [recipient, setRecipient] = useState(waContacts[0].phone)
+  const [message, setMessage] = useState("")
 
-  const contacts = [
-    { name: "Mba Lala – Kantor 1", phone: "6283836323255", label: "+62 838-3632-3255", role: "Customer Service", accent: "secondary" },
-    { name: "Mba Yuni – Kantor 2", phone: "6283866649071", label: "+62 838-6664-9071", role: "Customer Service", accent: "secondary" },
-    { name: "Pesanan Partai Besar", phone: "6281246419239", label: "+62 812-4641-9239", role: "Prioritas & Marketing", accent: "destructive" },
-  ]
-
-  const accentClasses = {
-    primary: { text: "text-primary", groupHoverText: "group-hover:text-primary" },
-    secondary: { text: "text-secondary", groupHoverText: "group-hover:text-secondary" },
-    destructive: { text: "text-destructive", groupHoverText: "group-hover:text-destructive" },
-  } as const
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    const text = [`Halo Al Jadid, saya ${name.trim()}.`, `Kebutuhan: ${need}`, message.trim()].filter(Boolean).join("\n")
+    window.open(waLink(recipient, text), "_blank", "noopener,noreferrer")
+  }
 
   return (
-    <div className="w-full bg-background min-h-screen">
+    <div className="w-full">
+      <PageHeader
+        eyebrow="Hubungi Kami"
+        title="Kontak & Lokasi"
+        description="Konsultasi material, estimasi biaya, dan eksekusi produksi tanpa basa-basi. Tim kami siap merespons dengan cepat."
+        image="/images/kantor2.png"
+      />
+
       {/*
-        HERO / HEADER
+        CONTACT CHANNELS + FORM
       */}
-      <section className="w-full section-padding">
-        <div className="container">
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
-            <div className="lg:col-span-3 rounded-[2rem] bg-foreground text-background p-8 md:p-14 flex flex-col justify-between min-h-[320px] shadow-soft">
-              <div className="text-xs font-semibold text-[#2AA192] tracking-[0.3em] uppercase">
-                Terminal Komunikasi
+      <section className="section-padding">
+        <div className="container grid gap-8 lg:grid-cols-12">
+          <Reveal className="space-y-5 lg:col-span-5">
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
+              <div className="rounded-2xl border border-border bg-muted p-6">
+                <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary text-white">
+                  <Clock className="h-5 w-5" />
+                </span>
+                <h3 className="mt-4 text-sm font-semibold text-muted-foreground">Jam Operasional</h3>
+                <p className="mt-1 font-bold">{businessHours}</p>
               </div>
-              <h1 className="font-display text-6xl md:text-7xl xl:text-8xl font-medium tracking-tight leading-[1.02] mt-16 text-background">
-                Sapa <span className="text-primary italic">kami.</span>
-              </h1>
+              <a
+                href={`tel:+${mainPhone.wa}`}
+                className="group rounded-2xl border border-border bg-muted p-6 transition-colors hover:border-primary/30 hover:bg-accent"
+              >
+                <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-highlight text-white">
+                  <Phone className="h-5 w-5" />
+                </span>
+                <h3 className="mt-4 text-sm font-semibold text-muted-foreground">Telepon</h3>
+                <p className="mt-1 font-bold group-hover:text-primary">{mainPhone.label}</p>
+              </a>
             </div>
 
-            <div className="lg:col-span-2 flex flex-col gap-6">
-              <div className="flex-1 rounded-[2rem] bg-primary text-primary-foreground p-8 md:p-10 flex flex-col justify-center shadow-soft">
-                <span className="w-12 h-[3px] rounded-full bg-primary-foreground/70 mb-6"></span>
-                <p className="text-2xl md:text-3xl font-medium leading-snug">
-                  Konsultasi material, estimasi biaya, dan eksekusi produksi tanpa basa-basi.
-                </p>
-              </div>
-              <div className="grid grid-cols-2 gap-6">
-                <div className="rounded-[1.5rem] bg-muted p-6 flex flex-col justify-center">
-                  <span className="text-xs font-semibold text-secondary uppercase tracking-wide mb-1">Respons</span>
-                  <span className="font-display text-2xl font-medium">Cepat</span>
-                </div>
-                <div className="rounded-[1.5rem] bg-foreground text-background p-6 flex flex-col justify-center">
-                  <span className="text-xs font-semibold text-[#2AA192] uppercase tracking-wide mb-1">Akses</span>
-                  <span className="font-display text-2xl font-medium">Langsung</span>
-                </div>
-              </div>
+            <div className="rounded-2xl border border-border bg-white p-6 shadow-soft">
+              <h3 className="text-lg font-bold">WhatsApp Customer Service</h3>
+              <p className="mt-1 text-sm text-muted-foreground">Pilih kontak sesuai kebutuhan Anda.</p>
+              <ul className="mt-5 space-y-3">
+                {waContacts.map((contact) => (
+                  <li key={contact.phone}>
+                    <a
+                      href={waLink(contact.phone)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group flex items-center gap-4 rounded-xl border border-border p-4 transition-colors hover:border-primary/40 hover:bg-accent"
+                    >
+                      <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-accent text-primary transition-colors group-hover:bg-primary group-hover:text-white">
+                        <MessageCircle className="h-5 w-5" />
+                      </span>
+                      <span className="min-w-0 flex-1">
+                        <span className="block text-[11px] font-bold uppercase tracking-wide text-highlight">{contact.role}</span>
+                        <span className="block truncate font-semibold">{contact.name}</span>
+                        <span className="text-sm text-muted-foreground">{contact.label}</span>
+                      </span>
+                      <ArrowUpRight className="h-5 w-5 shrink-0 text-muted-foreground transition-colors group-hover:text-primary" />
+                    </a>
+                  </li>
+                ))}
+              </ul>
             </div>
-          </div>
+          </Reveal>
+
+          <Reveal className="lg:col-span-7" delay={0.1}>
+            <form onSubmit={handleSubmit} className="h-full rounded-2xl border border-border bg-white p-6 shadow-soft sm:p-10">
+              <span className="eyebrow mb-3">Kirim Pesan</span>
+              <h2 className="heading-md">Ceritakan kebutuhan cetak Anda</h2>
+              <p className="mt-2 text-muted-foreground">
+                Isi formulir di bawah, pesan Anda akan langsung terkirim melalui WhatsApp.
+              </p>
+
+              <div className="mt-8 grid gap-5 sm:grid-cols-2">
+                <label className="block sm:col-span-2">
+                  <span className="mb-2 block text-sm font-semibold">Nama / Instansi</span>
+                  <input
+                    required
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    placeholder="Contoh: Budi – SMK Negeri 1"
+                    className="field"
+                  />
+                </label>
+                <label className="block">
+                  <span className="mb-2 block text-sm font-semibold">Kebutuhan</span>
+                  <select value={need} onChange={(e) => setNeed(e.target.value)} className="field">
+                    {services.map((service) => (
+                      <option key={service.title}>{service.title}</option>
+                    ))}
+                    <option>Lainnya</option>
+                  </select>
+                </label>
+                <label className="block">
+                  <span className="mb-2 block text-sm font-semibold">Kirim ke</span>
+                  <select value={recipient} onChange={(e) => setRecipient(e.target.value)} className="field">
+                    {waContacts.map((contact) => (
+                      <option key={contact.phone} value={contact.phone}>
+                        {contact.name}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+                <label className="block sm:col-span-2">
+                  <span className="mb-2 block text-sm font-semibold">Pesan</span>
+                  <textarea
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
+                    rows={5}
+                    placeholder="Jumlah, ukuran, bahan, tenggat waktu, dll."
+                    className="field h-auto resize-y py-3"
+                  />
+                </label>
+              </div>
+
+              <Button type="submit" size="lg" className="mt-6 h-12 w-full font-semibold sm:w-auto">
+                <Send /> Kirim via WhatsApp
+              </Button>
+            </form>
+          </Reveal>
         </div>
       </section>
 
       {/*
-        MODULAR CONTACTS
+        LOCATIONS
       */}
-      <section className="w-full section-padding pt-0">
+      <section className="section-padding bg-muted">
         <div className="container">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {contacts.map((contact, idx) => {
-              const accent = accentClasses[contact.accent as keyof typeof accentClasses]
-              return (
-                <a
-                  key={idx}
-                  href={`https://wa.me/${contact.phone}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group card-soft flex flex-col p-8 hover:-translate-y-1 transition-transform"
-                >
-                  <div className={`tag-pill w-fit mb-6 border ${accent.text} ${accent.text === "text-primary" ? "bg-primary/10 border-primary/25" : accent.text === "text-secondary" ? "bg-secondary/10 border-secondary/25" : "bg-destructive/10 border-destructive/25"}`}>
-                    {contact.role}
-                  </div>
-                  <h3 className={`text-2xl font-display font-medium mb-2 transition-colors ${accent.groupHoverText}`}>
-                    {contact.name}
-                  </h3>
-                  <div className="text-base text-muted-foreground">
-                    {contact.label}
-                  </div>
-                  <div className={`mt-10 flex items-center text-xs font-semibold uppercase tracking-wide text-muted-foreground/60 transition-colors ${accent.groupHoverText}`}>
-                    Hubungi via WhatsApp <ArrowRight className="ml-2 w-4 h-4" />
-                  </div>
-                </a>
-              )
-            })}
-          </div>
-        </div>
-      </section>
+          <Reveal>
+            <SectionHeading
+              eyebrow="Lokasi Kami"
+              title={
+                <>
+                  Kunjungi <span className="text-primary">kantor kami</span>
+                </>
+              }
+              description="Dua lokasi di Tegalgede, Karanganyar — siap melayani pesanan Anda secara langsung."
+            />
+          </Reveal>
 
-      {/*
-        MAP LOCATION GRID
-      */}
-      <section className="w-full section-padding pt-0">
-        <div className="container flex flex-col gap-6">
-          {locations.map((loc, i) => (
-            <div key={i} className="card-soft flex flex-col md:flex-row overflow-hidden">
-              <div className="w-full md:w-1/2 p-8 md:p-14 flex flex-col justify-center">
-                <span className="tag-pill w-fit bg-destructive/10 text-destructive border border-destructive/25 mb-5">Lokasi 0{i + 1}</span>
-                <h3 className="font-display text-2xl md:text-4xl font-medium leading-tight mb-5">{loc.name}</h3>
-                <div className="w-10 h-1 rounded-full bg-destructive mb-5"></div>
-                <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
-                  {loc.address}
-                </p>
-              </div>
-              <div className="w-full md:w-1/2 min-h-[320px] relative bg-muted">
-                <iframe src={loc.mapUrl} className="absolute inset-0 w-full h-full border-none opacity-80 hover:opacity-100 transition-opacity" loading="lazy" />
-              </div>
-            </div>
-          ))}
+          <div className="mt-12 grid gap-6 lg:grid-cols-2">
+            {locations.map((loc, i) => (
+              <Reveal key={loc.name} delay={i * 0.08}>
+                <article className="flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-white shadow-soft">
+                  <div className="relative aspect-[16/9] bg-muted">
+                    <iframe
+                      src={loc.mapUrl}
+                      title={`Peta lokasi ${loc.name}`}
+                      className="absolute inset-0 h-full w-full border-0"
+                      loading="lazy"
+                      referrerPolicy="no-referrer-when-downgrade"
+                      allowFullScreen
+                    />
+                  </div>
+                  <div className="flex flex-1 flex-col p-6 sm:p-8">
+                    <span className="tag-pill w-fit bg-highlight/10 text-highlight">Lokasi 0{i + 1}</span>
+                    <h3 className="mt-4 text-2xl font-bold">{loc.name}</h3>
+                    <p className="mt-1 text-sm font-semibold text-primary">{loc.desc}</p>
+                    <p className="mt-4 flex flex-1 items-start gap-3 leading-relaxed text-muted-foreground">
+                      <MapPin className="mt-1 h-5 w-5 shrink-0 text-highlight" />
+                      {loc.address}
+                    </p>
+                    <a
+                      href={loc.directionsUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-6 inline-flex w-fit items-center gap-2 rounded-full border border-primary/30 px-5 py-2.5 text-sm font-semibold text-primary transition-colors hover:bg-primary hover:text-white"
+                    >
+                      <Navigation className="h-4 w-4" /> Petunjuk Arah
+                    </a>
+                  </div>
+                </article>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
     </div>

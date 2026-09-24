@@ -1,139 +1,160 @@
 "use client"
 
+import { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
+import { AnimatePresence, motion } from "framer-motion"
+import { ArrowRight, BookOpen, CreditCard, FileText, MessageCircle, type LucideIcon } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { ArrowRight } from "lucide-react"
-import { useState } from "react"
+import { PageHeader } from "@/components/ui/page-header"
+import { Reveal } from "@/components/reveal"
+import { waContacts, waLink } from "@/lib/site"
+
+type Product = {
+  id: number
+  name: string
+  category: string
+  image?: string
+  icon?: LucideIcon
+}
+
+const categories = ["Semua", "Bisnis", "Marketing", "Promosi", "Personal"]
+
+const products: Product[] = [
+  { id: 1, name: "Cetak MMT", image: "/produk/mmt.png", category: "Promosi" },
+  { id: 2, name: "Cetak Sticker", image: "/produk/sticker.png", category: "Promosi" },
+  { id: 3, name: "Sampul Rapot", image: "/produk/rapot.png", category: "Personal" },
+  { id: 4, name: "Sablon Kaos", image: "/produk/kaos.png", category: "Promosi" },
+  { id: 5, name: "Plakat & Piala", image: "/produk/piala.png", category: "Personal" },
+  { id: 6, name: "Cetak Buku", icon: BookOpen, category: "Bisnis" },
+  { id: 7, name: "Kartu Nama", icon: CreditCard, category: "Bisnis" },
+  { id: 8, name: "Brosur Custom", icon: FileText, category: "Marketing" },
+]
 
 export default function ProductsContent() {
-  const categories = ["Semua", "Bisnis", "Marketing", "Promosi", "Personal"]
   const [activeCategory, setActiveCategory] = useState("Semua")
-
-  const products = [
-    { id: 1, name: "Cetak MMT", image: "/produk/mmt.png", category: "Promosi" },
-    { id: 2, name: "Cetak Sticker", image: "/produk/sticker.png", category: "Promosi" },
-    { id: 3, name: "Sampul Rapot", image: "/produk/rapot.png", category: "Personal" },
-    { id: 4, name: "Sablon Kaos", image: "/produk/kaos.png", category: "Promosi" },
-    { id: 5, name: "Plakat & Piala", image: "/produk/piala.png", category: "Personal" },
-    { id: 6, name: "Cetak Buku", image: "BKU", isTextImg: true, category: "Bisnis" },
-    { id: 7, name: "Kartu Nama", image: "KRN", isTextImg: true, category: "Bisnis" },
-    { id: 8, name: "Brosur Custom", image: "BRS", isTextImg: true, category: "Marketing" },
-  ]
-
-  // Ink-swatch accent rotation: terracotta / teal / ochre
-  const cardAccents = [
-    { text: "group-hover:text-primary", ring: "group-hover:bg-primary group-hover:border-primary group-hover:text-primary-foreground" },
-    { text: "group-hover:text-secondary", ring: "group-hover:bg-secondary group-hover:border-secondary group-hover:text-secondary-foreground" },
-    { text: "group-hover:text-highlight", ring: "group-hover:bg-highlight group-hover:border-highlight group-hover:text-highlight-foreground" },
-  ]
+  const visible = products.filter((p) => activeCategory === "Semua" || p.category === activeCategory)
 
   return (
-    <div className="w-full bg-background min-h-screen">
-      {/*
-        HEADER
-      */}
-      <section className="w-full bg-foreground text-background relative overflow-hidden section-padding">
-        <div className="absolute top-0 right-1/4 w-[600px] h-[600px] bg-primary/25 rounded-full blur-[150px] pointer-events-none -translate-y-1/2 translate-x-1/2"></div>
-        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-secondary/15 rounded-full blur-[100px] pointer-events-none translate-y-1/2 -translate-x-1/4"></div>
+    <div className="w-full">
+      <PageHeader
+        eyebrow="Katalog · Update Terbaru"
+        title="Produk & Layanan"
+        description="Temukan produk yang Anda butuhkan. Mulai dari identitas usaha, promosi, hingga kebutuhan internal — semua didukung layanan desain grafis."
+        image="/images/kantor2-2.png"
+      />
 
-        <div className="container relative z-10 mx-auto flex flex-col items-center justify-center text-center">
-          <div className="inline-flex items-center gap-3 bg-background/5 border border-background/15 backdrop-blur-md text-background text-xs font-semibold px-5 py-2.5 uppercase tracking-[0.2em] mb-10 rounded-full">
-            <span className="w-2 h-2 rounded-full bg-primary relative">
-              <span className="absolute inset-0 rounded-full bg-primary animate-ping opacity-75"></span>
-            </span>
-            Katalog &middot; Update Terbaru
-          </div>
-
-          <h1 className="font-display text-6xl md:text-8xl xl:text-9xl font-medium tracking-tight leading-[1.02] text-balance mb-8">
-            <span className="block text-background/90">Produk</span>
-            <span className="block text-primary italic">Al Jadid</span>
-          </h1>
-
-          <p className="text-lg md:text-xl text-background/60 max-w-2xl leading-relaxed">
-            Temukan produk yang Anda butuhkan. Mulai dari identitas usaha, promosi, hingga kebutuhan internal &mdash; semua didukung layanan desain grafis.
-          </p>
-        </div>
-      </section>
-
-      {/*
-        PRODUCTS GRID & FILTERS
-      */}
-      <section className="w-full section-padding">
+      <section className="section-padding">
         <div className="container">
-          <Tabs defaultValue="Semua" className="w-full" onValueChange={setActiveCategory}>
-            <div className="mb-12 overflow-x-auto w-full scrollbar-none pb-2">
-              <TabsList className="bg-transparent h-auto p-0 flex space-x-3 w-max justify-start">
-                {categories.map((category) => (
-                  <TabsTrigger
-                    key={category}
-                    value={category}
-                    className="rounded-full border border-border/70 bg-card py-2.5 px-6 text-sm font-semibold data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:border-primary transition-all duration-300 shadow-none"
-                  >
-                    {category}
-                  </TabsTrigger>
-                ))}
-              </TabsList>
+          <div className="mb-10 flex flex-col justify-between gap-6 md:flex-row md:items-center">
+            <div>
+              <h2 className="text-2xl font-bold sm:text-3xl">Katalog Produk</h2>
+              <p className="mt-1 text-sm text-muted-foreground">
+                Menampilkan {visible.length} produk{activeCategory !== "Semua" && ` kategori ${activeCategory}`}
+              </p>
             </div>
 
-            <TabsContent value={activeCategory} className="mt-0 outline-none">
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                {products
-                  .filter((prod) => activeCategory === "Semua" || prod.category === activeCategory)
-                  .map((product, index) => {
-                    const accent = cardAccents[index % cardAccents.length]
-                    return (
-                      <div key={product.id} className="group flex flex-col card-soft overflow-hidden transition-all duration-500 hover:-translate-y-1.5 hover:shadow-soft-lg">
-                        {/* Image Slot */}
-                        <div className="w-full aspect-[4/3] relative bg-muted flex items-center justify-center overflow-hidden p-6 border-b border-border/60">
-                          {product.isTextImg ? (
-                            <span className="font-display font-medium text-6xl text-foreground/15 group-hover:scale-110 transition-transform duration-700">
-                              {product.image}
-                            </span>
-                          ) : (
-                            <Image
-                              src={product.image}
-                              alt={product.name}
-                              fill
-                              className="object-contain p-8 group-hover:scale-110 transition-transform duration-700"
-                            />
-                          )}
-                        </div>
-
-                        {/* Title Slot */}
-                        <div className="p-6 flex items-center justify-between">
-                          <h3 className={`font-display text-xl font-medium leading-tight transition-colors ${accent.text}`}>
-                            {product.name}
-                          </h3>
-                          <div className={`w-10 h-10 shrink-0 rounded-full border border-border/70 flex items-center justify-center transition-colors ${accent.ring}`}>
-                            <ArrowRight className="w-4 h-4" />
-                          </div>
-                        </div>
-                      </div>
-                    )
-                  })}
+            <div className="scrollbar-none -mx-4 overflow-x-auto px-4 sm:mx-0 sm:px-0">
+              <div role="tablist" aria-label="Filter kategori" className="inline-flex gap-1 rounded-full border border-border bg-muted p-1">
+                {categories.map((category) => {
+                  const active = activeCategory === category
+                  return (
+                    <button
+                      key={category}
+                      role="tab"
+                      aria-selected={active}
+                      onClick={() => setActiveCategory(category)}
+                      className={`whitespace-nowrap rounded-full px-5 py-2 text-sm font-semibold transition-colors ${
+                        active ? "bg-primary text-primary-foreground shadow-soft" : "text-muted-foreground hover:text-primary"
+                      }`}
+                    >
+                      {category}
+                    </button>
+                  )
+                })}
               </div>
-            </TabsContent>
-          </Tabs>
+            </div>
+          </div>
+
+          <motion.div layout className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            <AnimatePresence mode="popLayout">
+              {visible.map((product) => {
+                const Icon = product.icon
+                return (
+                  <motion.article
+                    key={product.id}
+                    layout
+                    initial={{ opacity: 0, scale: 0.96 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.96 }}
+                    transition={{ duration: 0.25 }}
+                    className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-white transition-shadow duration-300 hover:border-primary/30 hover:shadow-soft-lg"
+                  >
+                    <div className="relative flex aspect-[4/3] items-center justify-center overflow-hidden bg-gradient-to-br from-accent to-muted">
+                      {product.image ? (
+                        <Image
+                          src={product.image}
+                          alt={product.name}
+                          fill
+                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                          className="object-contain p-8 mix-blend-multiply transition-transform duration-500 group-hover:scale-110"
+                        />
+                      ) : (
+                        Icon && (
+                          <span className="flex h-24 w-24 items-center justify-center rounded-3xl bg-white text-primary shadow-soft transition-transform duration-500 group-hover:scale-110">
+                            <Icon className="h-11 w-11" strokeWidth={1.5} />
+                          </span>
+                        )
+                      )}
+                      <span className="tag-pill absolute left-4 top-4 bg-white text-primary shadow-soft">{product.category}</span>
+                    </div>
+
+                    <div className="flex flex-1 flex-col p-5">
+                      <h3 className="text-lg font-bold transition-colors group-hover:text-primary">{product.name}</h3>
+                      <a
+                        href={waLink(waContacts[0].phone, `Halo Al Jadid, saya ingin tanya harga ${product.name}.`)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-highlight transition-colors hover:text-primary"
+                      >
+                        <MessageCircle className="h-4 w-4" />
+                        Tanya Harga
+                        <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                      </a>
+                    </div>
+                  </motion.article>
+                )
+              })}
+            </AnimatePresence>
+          </motion.div>
         </div>
       </section>
 
       {/*
-        ACTION BRIDGE
+        CTA
       */}
-      <section className="w-full pb-16 md:pb-24">
+      <section className="pb-16 sm:pb-20 lg:pb-24">
         <div className="container">
-          <div className="rounded-[2.5rem] bg-primary text-primary-foreground flex flex-col justify-center items-center text-center px-8 py-16 md:py-20">
-            <h2 className="font-display text-4xl md:text-6xl font-medium tracking-tight leading-[1.1] mb-9 max-w-3xl text-primary-foreground">
-              Wujudkan ide Anda dalam bentuk <span className="text-foreground">fisik.</span>
-            </h2>
-            <Button asChild size="lg" className="rounded-full h-14 md:h-16 px-8 md:px-10 text-base md:text-lg font-semibold bg-foreground text-background hover:bg-background hover:text-foreground transition-colors shadow-none">
-              <Link href="/contact">
-                Konsultasi Gratis <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
-            </Button>
-          </div>
+          <Reveal>
+            <div className="relative overflow-hidden rounded-3xl bg-secondary px-6 py-14 text-center text-secondary-foreground sm:px-12 md:py-20">
+              <div aria-hidden className="absolute inset-0 bg-dots text-white/[0.07]" />
+              <div aria-hidden className="absolute -left-16 -top-16 h-56 w-56 rounded-full bg-primary/60 blur-2xl" />
+              <div aria-hidden className="absolute -bottom-16 -right-16 h-56 w-56 rounded-full bg-highlight/70 blur-2xl" />
+              <div className="relative mx-auto max-w-2xl">
+                <h2 className="heading-lg text-balance text-white">
+                  Wujudkan ide Anda dalam bentuk <span className="text-emerald-300">fisik</span>.
+                </h2>
+                <p className="mt-4 text-base text-white/75 sm:text-lg">
+                  Tidak menemukan produk yang Anda cari? Tim kami siap membantu kebutuhan cetak custom Anda.
+                </p>
+                <Button asChild size="lg" className="mt-8 h-14 bg-highlight px-8 text-base font-semibold hover:bg-highlight/90">
+                  <Link href="/contact">
+                    Konsultasi Gratis <ArrowRight />
+                  </Link>
+                </Button>
+              </div>
+            </div>
+          </Reveal>
         </div>
       </section>
     </div>

@@ -18,41 +18,44 @@ export function MobileNav() {
   ]
 
   return (
-    <div className="fixed bottom-0 left-0 z-50 w-full h-16 bg-background/90 backdrop-blur-lg border-t border-border/70 md:hidden">
+    <nav
+      aria-label="Navigasi seluler"
+      className="fixed bottom-0 left-0 z-50 h-16 w-full border-t border-border bg-white/95 backdrop-blur-lg md:hidden"
+    >
       <div className="grid h-full grid-cols-5">
-        {navItems.map((item, index) => {
+        {navItems.map((item) => {
           const Icon = item.icon
           const isActive = pathname === item.href
           return (
             <Link
               key={item.href}
               href={item.href}
+              aria-current={isActive ? "page" : undefined}
               className={cn(
-                "flex flex-col items-center justify-center relative transition-colors duration-200",
+                "relative flex flex-col items-center justify-center gap-1 transition-colors duration-200",
                 isActive ? "text-primary" : "text-muted-foreground",
               )}
             >
-              <motion.div
-                initial={{ y: 10, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: index * 0.05, duration: 0.3 }}
-                whileTap={{ scale: 0.9 }}
-                className="flex flex-col items-center justify-center gap-1"
+              {isActive && (
+                <motion.span
+                  layoutId="mobileActiveTab"
+                  className="absolute top-0 h-0.5 w-10 rounded-full bg-highlight"
+                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                />
+              )}
+              <span
+                className={cn(
+                  "flex h-7 w-12 items-center justify-center rounded-full transition-colors",
+                  isActive && "bg-accent",
+                )}
               >
                 <Icon className="h-5 w-5" />
-                <span className="text-xs font-medium">{item.name}</span>
-                {isActive && (
-                  <motion.div
-                    layoutId="activeTab"
-                    className="absolute -top-0.5 left-1/2 w-1 h-1 bg-primary rounded-full -translate-x-1/2"
-                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                  />
-                )}
-              </motion.div>
+              </span>
+              <span className="text-[11px] font-semibold">{item.name}</span>
             </Link>
           )
         })}
       </div>
-    </div>
+    </nav>
   )
 }
