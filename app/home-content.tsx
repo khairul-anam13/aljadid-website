@@ -2,289 +2,527 @@
 
 import Image from "next/image"
 import Link from "next/link"
+import { motion, useReducedMotion } from "framer-motion"
+import {
+  ArrowRight,
+  ArrowUpRight,
+  Award,
+  CheckCircle2,
+  Clock,
+  FolderCheck,
+  MessageSquareText,
+  Package,
+  Palette,
+  Printer,
+  Quote,
+  ShieldCheck,
+  Truck,
+  Users,
+} from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, ArrowUpRight, Quote } from "lucide-react"
-import { motion } from "framer-motion"
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel"
+import { Reveal } from "@/components/reveal"
+import { SectionHeading } from "@/components/section-heading"
+import { services } from "@/lib/site"
+
+const stats = [
+  { number: "20+", label: "Tahun Pengalaman", icon: Award },
+  { number: "5.000+", label: "Klien Produktif", icon: Users },
+  { number: "500K+", label: "Proyek Selesai", icon: FolderCheck },
+  { number: "09.00–17.00", label: "Senin s/d Sabtu", icon: Clock },
+]
+
+const heroPoints = ["Kualitas terjamin", "Akurasi warna", "Tepat waktu"]
+
+const aboutPoints = [
+  "Mesin cetak digital & offset terkini",
+  "Tim produksi berpengalaman",
+  "Didukung layanan desain grafis",
+  "Pengiriman ke berbagai kota",
+]
+
+const advantages = [
+  {
+    icon: ShieldCheck,
+    title: "Kualitas Tanpa Kompromi",
+    desc: "Standar cetak industrial dengan akurasi warna yang konsisten di setiap pesanan.",
+  },
+  {
+    icon: Clock,
+    title: "Tepat Waktu",
+    desc: "Produksi terjadwal agar pesanan selesai sesuai tenggat yang disepakati.",
+  },
+  {
+    icon: Palette,
+    title: "Layanan Desain Grafis",
+    desc: "Tim desain siap membantu mewujudkan ide Anda sebelum naik cetak.",
+  },
+  {
+    icon: Truck,
+    title: "Jangkauan Luas",
+    desc: "Pesanan dikemas rapi dan dikirim aman hingga ke luar Karesidenan Surakarta.",
+  },
+]
+
+const steps = [
+  { icon: MessageSquareText, title: "Konsultasi", desc: "Hubungi CS kami via WhatsApp atau datang langsung ke kantor." },
+  { icon: Palette, title: "Desain & Persetujuan", desc: "Kirim desain Anda atau buat bersama tim desain kami." },
+  { icon: Printer, title: "Produksi", desc: "Pesanan diproses dengan kontrol kualitas di setiap tahap." },
+  { icon: Package, title: "Ambil / Kirim", desc: "Ambil di kantor atau kami kirim ke alamat Anda." },
+]
+
+const reviews = [
+  { text: "Durabilitas sampul rapot sekolah sangat superior. Integrasi bahan di luar ekspektasi anggaran awal kami.", author: "Budi S.", org: "Instansi Sekolah" },
+  { text: "Dimensi cetak skala raksasa outdoor kami diproses tanpa penurunan resolusi pixel sedikitpun. Sangat memuaskan.", author: "Siti Rahayu", org: "Retail Corp" },
+  { text: "Presisi potong dan keseragaman warna pada cetak masal sangat konsisten. Vendor yang benar-benar terpercaya.", author: "Arif H.", org: "Event Organizer" },
+  { text: "Sablon seragam karyawan selesai tepat waktu dengan jahitan kuat. Sangat direkomendasikan untuk industri.", author: "Nisa M.", org: "Corporate" },
+  { text: "Warna cetakan brosur sama persis dengan kode pantone yang kami minta. Kualitas offset tak tertandingi.", author: "Dimas", org: "Agency Iklan" },
+]
 
 export default function HomeContent() {
-  // Ink-swatch accent rotation: terracotta / teal / ochre
-  const inkAccents = [
-    { text: "text-primary", bg: "bg-primary", fg: "text-primary-foreground", tint: "bg-primary/10", border: "border-primary/25" },
-    { text: "text-secondary", bg: "bg-secondary", fg: "text-secondary-foreground", tint: "bg-secondary/10", border: "border-secondary/25" },
-    { text: "text-highlight", bg: "bg-highlight", fg: "text-highlight-foreground", tint: "bg-highlight/15", border: "border-highlight/30" },
-  ]
-
-  const services = [
-    { id: "01", category: "Dokumen & Bisnis", title: "Cetak Dokumen", desc: "Formulir, laporan, dan administrasi perkantoran dengan presisi tinggi.", image: "/produk/rapot.png" },
-    { id: "02", category: "Visual Outdoor", title: "Cetak Banner", desc: "MMT skala besar untuk promosi luar ruang yang tahan cuaca.", image: "/produk/mmt.png" },
-    { id: "03", category: "Produk & Retail", title: "Stiker Label", desc: "Label vinyl dan cutting custom untuk identitas produk Anda.", image: "/produk/sticker.png" },
-    { id: "04", category: "Pendidikan", title: "Sampul Rapot", desc: "Produksi sampul rapot sekolah dengan standar durabilitas tinggi.", image: "/produk/rapot.png" },
-    { id: "05", category: "Penghargaan", title: "Piala & Plakat", desc: "Penghargaan eksklusif dan souvenir akrilik dengan desain elegan.", image: "/produk/piala.png" },
-    { id: "06", category: "Konveksi", title: "Sablon & Merch", desc: "Sablon kaos dan merchandise branding untuk komunitas & instansi.", image: "/produk/kaos.png" },
-  ]
-
-  const marqueeServices = [...services, ...services]
-
-  const stats = [
-    { number: "20+", label: "Tahun Pengalaman" },
-    { number: "5.000+", label: "Klien Produktif" },
-    { number: "500K+", label: "Proyek Selesai" },
-    { number: "09.00–17.00", label: "Senin s/d Sabtu" },
-  ]
-
-  const reviews = [
-    { id: "01", text: "Durabilitas sampul rapot sekolah sangat superior. Integrasi bahan di luar ekspektasi anggaran awal kami.", author: "Budi S.", org: "Instansi Sekolah" },
-    { id: "02", text: "Dimensi cetak skala raksasa outdoor kami diproses tanpa penurunan resolusi pixel sedikitpun. Sangat memuaskan.", author: "Siti Rahayu", org: "Retail Corp" },
-    { id: "03", text: "Presisi potong dan keseragaman warna pada cetak masal sangat konsisten. Vendor yang benar-benar terpercaya.", author: "Arif H.", org: "Event Organizer" },
-    { id: "04", text: "Sablon seragam karyawan selesai tepat waktu dengan jahitan kuat. Sangat direkomendasikan untuk industri.", author: "Nisa M.", org: "Corporate" },
-    { id: "05", text: "Warna cetakan brosur sama persis dengan kode pantone yang kami minta. Kualitas offset tak tertandingi.", author: "Dimas", org: "Agency Iklan" },
-  ]
-
-  const marqueeReviews = [...reviews, ...reviews]
+  const reduceMotion = useReducedMotion()
 
   return (
-    <div className="w-full">
+    <div className="w-full overflow-x-clip">
       {/*
-        HERO SECTION
+        HERO
       */}
-      <section className="relative w-full overflow-hidden section-padding">
-        <div className="container">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="lg:col-span-7"
-            >
-              <div className="tag-pill bg-highlight/15 text-highlight-foreground border border-highlight/30 mb-6">
-                <span className="w-1.5 h-1.5 rounded-full bg-highlight" />
-                Est. 2005 &middot; Karanganyar
-              </div>
-              <h1 className="heading-xl text-balance mb-6">
-                Detail, kualitas, &amp; <span className="text-primary italic">solusi</span> cetak Anda.
-              </h1>
-              <p className="text-lg md:text-xl text-muted-foreground max-w-xl leading-relaxed mb-9">
-                Partner setia produksi visual Anda sejak 2005. Menghadirkan standar cetak industrial dengan akurasi warna dan ketepatan waktu yang mutlak.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 mb-12">
-                <Button asChild size="lg" className="rounded-full h-14 px-8 text-base font-semibold shadow-soft">
-                  <Link href="/products">Mulai Bersama Kami <ArrowRight className="ml-2 h-5 w-5" /></Link>
-                </Button>
-              </div>
-              <div className="grid grid-cols-2 gap-4 max-w-md">
-                {stats.slice(0, 2).map((stat, i) => (
-                  <div key={i} className="card-soft p-5">
-                    <div className="font-display text-2xl lg:text-3xl font-medium text-primary mb-1 leading-none">{stat.number}</div>
-                    <div className="text-xs font-medium text-muted-foreground">{stat.label}</div>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
+      <section className="relative overflow-hidden bg-gradient-to-b from-accent via-accent/40 to-background">
+        <div
+          aria-hidden
+          className="absolute inset-0 bg-dots text-primary/15 [mask-image:radial-gradient(ellipse_at_top_right,black,transparent_65%)]"
+        />
+        <div aria-hidden className="absolute -left-40 top-1/3 h-80 w-80 rounded-full bg-primary/10 blur-3xl" />
 
-            <motion.div
-              initial={{ opacity: 0, scale: 0.96 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.7, delay: 0.1 }}
-              className="lg:col-span-5"
-            >
-              <div className="relative aspect-[4/5] rounded-[2rem] overflow-hidden shadow-soft-lg border border-border/70">
-                <Image
-                  src="/images/kantor1.png"
-                  alt="Kantor Al Jadid Offset"
-                  fill
-                  className="object-cover object-center"
-                  priority
-                />
-                <div className="absolute bottom-5 left-5 right-5 card-soft bg-card/90 backdrop-blur-sm p-4 flex items-center gap-3">
-                  <div className="relative w-11 h-11 shrink-0 rounded-full overflow-hidden bg-white border border-border/70">
-                    <Image src="/images/logo.png" alt="Logo Al Jadid" fill className="object-contain p-1" />
-                  </div>
-                  <div>
-                    <div className="font-display text-base font-medium leading-tight">Al Jadid Offset</div>
-                    <div className="text-xs text-muted-foreground">Percetakan &amp; kreasi visual</div>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/*
-        SERVICES SECTION
-      */}
-      <section className="w-full section-padding bg-muted/50">
-        <div className="container">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-12">
-            <h2 className="heading-lg text-balance">Solusi visual, satu atap.</h2>
-            <p className="max-w-md text-muted-foreground leading-relaxed">
-              Layanan kami mencakup spektrum luas, mulai dari kebutuhan manufaktur, branding produk, hingga distribusi perlengkapan sekolah.
-            </p>
-          </div>
-        </div>
-
-        {/* Infinite Horizontal Marquee Services */}
-        <div className="w-full overflow-hidden relative">
+        <div className="container relative grid items-center gap-14 pb-28 pt-12 md:pt-20 lg:grid-cols-2 lg:gap-12 lg:pb-36">
           <motion.div
-            className="flex min-w-max gap-5 px-6"
-            animate={{ x: ["0%", "-50%"] }}
-            transition={{ ease: "linear", duration: 40, repeat: Infinity }}
+            initial={reduceMotion ? false : { opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           >
-            {marqueeServices.map((service, index) => {
-              const accent = inkAccents[index % inkAccents.length]
-              return (
-                <div
-                  key={index}
-                  className="w-72 md:w-80 card-soft p-4 flex flex-col gap-4 shrink-0"
-                >
-                  <div className="w-full aspect-square relative bg-white rounded-2xl overflow-hidden shrink-0 border border-border/60">
-                    <div className="absolute inset-0 p-6 flex items-center justify-center">
-                      <div className="relative w-full h-full">
-                        <Image
-                          src={service.image}
-                          alt={service.title}
-                          fill
-                          className="object-contain transition-transform duration-700 hover:scale-105"
-                        />
-                      </div>
-                    </div>
-                  </div>
+            <span className="inline-flex items-center gap-2 rounded-full border border-primary/15 bg-white px-4 py-2 text-xs font-semibold text-primary shadow-soft sm:text-sm">
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-highlight opacity-60" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-highlight" />
+              </span>
+              Percetakan Terpercaya di Karanganyar Sejak 2005
+            </span>
 
-                  <div className="flex flex-col space-y-2">
-                    <span className={`tag-pill w-fit ${accent.text} ${accent.tint} border ${accent.border}`}>
-                      {service.category}
-                    </span>
-                    <div>
-                      <h3 className="font-display text-xl font-medium leading-tight text-foreground">
-                        {service.title}
-                      </h3>
-                      <p className="mt-1.5 text-muted-foreground text-sm leading-snug line-clamp-2 min-h-[2.5rem]">
-                        {service.desc}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              )
-            })}
+            <h1 className="heading-xl mt-6 text-balance">
+              Solusi <span className="text-primary">Percetakan Profesional</span> untuk Bisnis &amp; Instansi Anda
+            </h1>
+
+            <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+              Partner setia produksi visual Anda sejak 2005. Menghadirkan standar cetak industrial dengan akurasi warna dan
+              ketepatan waktu yang mutlak.
+            </p>
+
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <Button asChild size="lg" className="h-14 px-7 text-base font-semibold">
+                <Link href="/products">
+                  Lihat Produk <ArrowRight />
+                </Link>
+              </Button>
+              <Button
+                asChild
+                size="lg"
+                variant="outline"
+                className="h-14 border-primary/30 bg-white px-7 text-base font-semibold text-primary hover:bg-accent hover:text-primary"
+              >
+                <Link href="/contact">Konsultasi Gratis</Link>
+              </Button>
+            </div>
+
+            <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-3">
+              {heroPoints.map((point) => (
+                <li key={point} className="flex items-center gap-2 text-sm font-medium text-foreground/80">
+                  <CheckCircle2 className="h-5 w-5 text-primary" />
+                  {point}
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+
+          <motion.div
+            initial={reduceMotion ? false : { opacity: 0, scale: 0.96 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+            className="relative mx-auto w-full max-w-xl lg:max-w-none"
+          >
+            <div aria-hidden className="absolute -right-3 -top-3 h-full w-full rounded-[2rem] bg-primary sm:-right-5 sm:-top-5" />
+            <div aria-hidden className="absolute -bottom-6 -left-6 h-28 w-28 rounded-full bg-dots text-highlight/40" />
+            <div className="relative aspect-[4/3] overflow-hidden rounded-[2rem] border-4 border-white shadow-soft-lg">
+              <Image
+                src="/images/kantor2.png"
+                alt="Kantor Al Jadid Offset di Karanganyar"
+                fill
+                priority
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-cover"
+              />
+            </div>
+
+            <div className="absolute -bottom-8 left-4 flex items-center gap-3 rounded-2xl border border-border bg-white p-4 shadow-soft-lg sm:left-8">
+              <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-highlight text-white">
+                <Award className="h-6 w-6" />
+              </span>
+              <span>
+                <span className="block text-2xl font-extrabold leading-none text-foreground">20+</span>
+                <span className="text-xs font-medium text-muted-foreground">Tahun Pengalaman</span>
+              </span>
+            </div>
+
+            <div className="absolute -top-6 left-4 hidden items-center gap-3 rounded-2xl border border-border bg-white p-3 pr-5 shadow-soft-lg sm:flex md:-left-6">
+              <span className="relative h-11 w-11 overflow-hidden rounded-full border border-border bg-white">
+                <Image src="/images/logo.png" alt="" fill sizes="44px" className="object-contain p-1" />
+              </span>
+              <span>
+                <span className="block text-sm font-bold leading-tight">Al Jadid Offset</span>
+                <span className="text-xs text-muted-foreground">Percetakan &amp; kreasi visual</span>
+              </span>
+            </div>
           </motion.div>
         </div>
       </section>
 
       {/*
-        STATEMENT & SECONDARY STATS SECTION
+        STATS STRIP
       */}
-      <section className="relative w-full bg-foreground text-background overflow-hidden section-padding">
-        <div className="absolute inset-0 z-0 opacity-15 mix-blend-luminosity grayscale pointer-events-none">
-          <Image src="/images/kantor2.png" alt="Proses Cetak" fill className="object-cover" />
+      <section className="relative z-10 -mt-14 lg:-mt-16">
+        <div className="container">
+          <Reveal>
+            <div className="grid grid-cols-2 overflow-hidden rounded-2xl bg-primary text-primary-foreground shadow-soft-lg lg:grid-cols-4">
+              {stats.map((stat, i) => {
+                const Icon = stat.icon
+                return (
+                  <div
+                    key={stat.label}
+                    className={`flex flex-col items-start gap-3 p-5 sm:flex-row sm:items-center sm:p-8 ${
+                      i % 2 === 0 ? "border-r border-white/15" : ""
+                    } ${i < 2 ? "border-b border-white/15 lg:border-b-0" : ""} ${i === 1 ? "lg:border-r" : ""}`}
+                  >
+                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white/15">
+                      <Icon className="h-5 w-5" />
+                    </span>
+                    <span>
+                      <span className="block whitespace-nowrap text-xl font-extrabold leading-tight tracking-tight sm:text-[1.75rem]">{stat.number}</span>
+                      <span className="text-xs font-medium text-white/75 sm:text-sm">{stat.label}</span>
+                    </span>
+                  </div>
+                )
+              })}
+            </div>
+          </Reveal>
         </div>
+      </section>
 
-        <div className="container relative z-10">
-          <div className="flex flex-col lg:flex-row justify-between gap-12 mb-16">
-            <div className="w-full lg:w-1/2">
-              <h2 className="font-display text-4xl lg:text-5xl font-medium leading-[1.1] tracking-tight text-background">
-                Setiap milimeter adalah komitmen kami terhadap <span className="text-primary italic">kualitas</span> Anda.
-              </h2>
+      {/*
+        ABOUT PREVIEW
+      */}
+      <section className="section-padding">
+        <div className="container grid items-center gap-14 lg:grid-cols-2 lg:gap-20">
+          <Reveal className="relative order-2 lg:order-1">
+            <div className="relative aspect-[5/4] overflow-hidden rounded-3xl shadow-soft-lg">
+              <Image
+                src="/images/foto-bersama2.jpg"
+                alt="Tim Al Jadid Offset"
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-cover"
+              />
             </div>
-            <div className="w-full lg:w-1/2 flex items-end">
-              <p className="text-lg text-background/60 leading-relaxed max-w-md">
-                Teknologi cetak dan pemotongan terkini untuk memastikan akurasi hasil yang konsisten dan memuaskan setiap saat.
-              </p>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {stats.map((stat, i) => (
-              <div key={i} className="rounded-2xl bg-background/5 border border-background/10 p-6 md:p-8 flex flex-col items-center justify-center text-center hover:bg-background/10 transition-colors">
-                <div className="font-display font-medium text-3xl sm:text-4xl md:text-5xl tracking-tight mb-2 text-background">
-                  {stat.number}
-                </div>
-                <div className="text-xs sm:text-sm font-medium text-background/60">
-                  {stat.label}
-                </div>
+            <div className="absolute -bottom-8 -right-2 w-2/5 overflow-hidden rounded-2xl border-4 border-white shadow-soft-lg sm:-right-6">
+              <div className="relative aspect-square">
+                <Image src="/images/kantor2-2.png" alt="Kantor Al Jadid 2" fill sizes="240px" className="object-cover" />
               </div>
+            </div>
+            <div className="absolute -left-3 top-6 rounded-2xl bg-highlight px-5 py-4 text-white shadow-soft-lg sm:-left-6">
+              <span className="block text-xs font-semibold uppercase tracking-wider text-white/80">Sejak</span>
+              <span className="block text-3xl font-extrabold leading-none">2005</span>
+            </div>
+          </Reveal>
+
+          <Reveal className="order-1 lg:order-2" delay={0.1}>
+            <SectionHeading
+              eyebrow="Tentang Kami"
+              title={
+                <>
+                  Mitra cetak <span className="text-primary">terpercaya</span> di jantung Karanganyar
+                </>
+              }
+            />
+            <p className="mt-6 text-base leading-relaxed text-muted-foreground sm:text-lg">
+              Dimulai pada tahun 2005, <strong className="text-foreground">Al Jadid Offset</strong> tumbuh dengan satu keyakinan
+              sederhana: kualitas tidak boleh dikompromikan. Dari mesin cetak manual hingga teknologi digital terkini, kami
+              melayani ribuan instansi, pelaku bisnis, dan sekolah yang menghargai ketajaman detail.
+            </p>
+            <ul className="mt-8 grid gap-4 sm:grid-cols-2">
+              {aboutPoints.map((point) => (
+                <li key={point} className="flex items-start gap-3 text-sm font-semibold text-foreground">
+                  <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-accent text-primary">
+                    <CheckCircle2 className="h-4 w-4" />
+                  </span>
+                  {point}
+                </li>
+              ))}
+            </ul>
+            <Button asChild size="lg" className="mt-10 font-semibold">
+              <Link href="/about">
+                Selengkapnya Tentang Kami <ArrowRight />
+              </Link>
+            </Button>
+          </Reveal>
+        </div>
+      </section>
+
+      {/*
+        SERVICES
+      */}
+      <section className="section-padding bg-muted">
+        <div className="container">
+          <Reveal className="mb-12 flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
+            <SectionHeading
+              eyebrow="Layanan Kami"
+              title={
+                <>
+                  Solusi visual lengkap dalam <span className="text-primary">satu atap</span>
+                </>
+              }
+              description="Mulai dari kebutuhan manufaktur, branding produk, hingga perlengkapan sekolah — semuanya kami kerjakan."
+            />
+            <Button asChild variant="outline" className="shrink-0 border-primary/30 bg-white font-semibold text-primary hover:bg-accent hover:text-primary">
+              <Link href="/products">
+                Semua Produk <ArrowRight />
+              </Link>
+            </Button>
+          </Reveal>
+
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {services.map((service, i) => (
+              <Reveal key={service.title} delay={(i % 3) * 0.08}>
+                <Link
+                  href="/products"
+                  className="group flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-white transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-soft-lg"
+                >
+                  <div className="relative aspect-[16/10] overflow-hidden bg-gradient-to-br from-accent to-white">
+                    <Image
+                      src={service.image}
+                      alt={service.title}
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      className="object-contain p-8 mix-blend-multiply transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <span className="tag-pill absolute left-4 top-4 bg-white text-primary shadow-soft">{service.category}</span>
+                  </div>
+                  <div className="flex flex-1 flex-col p-6">
+                    <h3 className="text-xl font-bold transition-colors group-hover:text-primary">{service.title}</h3>
+                    <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">{service.desc}</p>
+                    <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-highlight">
+                      Pelajari lebih lanjut
+                      <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                    </span>
+                  </div>
+                </Link>
+              </Reveal>
             ))}
           </div>
         </div>
       </section>
 
       {/*
-        CLIENT / REVIEW SECTION
+        WHY US
       */}
-      <section className="relative w-full section-padding">
-        <div className="container">
-          <div className="max-w-xl mb-12">
-            <h2 className="heading-lg text-balance">
-              Dipercaya ribuan <span className="text-primary italic">klien</span>.
-            </h2>
-            <p className="mt-4 text-muted-foreground leading-relaxed">
-              Telah tervalidasi oleh berbagai instansi pendidikan, korporasi, hingga UMKM di seluruh wilayah Karesidenan Surakarta.
-            </p>
-          </div>
-        </div>
+      <section className="section-padding relative overflow-hidden bg-secondary text-secondary-foreground">
+        <div aria-hidden className="absolute inset-0 bg-dots text-white/[0.06]" />
+        <div aria-hidden className="absolute -right-32 -top-32 h-96 w-96 rounded-full bg-primary/40 blur-3xl" />
 
-        <div className="w-full overflow-hidden relative">
-          <motion.div
-            className="flex min-w-max gap-5 px-6"
-            animate={{ x: ["0%", "-50%"] }}
-            transition={{ ease: "linear", duration: 55, repeat: Infinity }}
-          >
-            {marqueeReviews.map((review, i) => {
-              const accent = inkAccents[i % inkAccents.length]
+        <div className="container relative grid gap-12 lg:grid-cols-12 lg:gap-16">
+          <Reveal className="lg:col-span-5">
+            <SectionHeading
+              invert
+              eyebrow="Mengapa Kami"
+              title={
+                <>
+                  Setiap milimeter adalah komitmen kami terhadap <span className="text-emerald-300">kualitas</span> Anda
+                </>
+              }
+              description="Teknologi cetak dan pemotongan terkini untuk memastikan akurasi hasil yang konsisten dan memuaskan setiap saat."
+            />
+            <div className="relative mt-10 hidden aspect-[16/10] overflow-hidden rounded-2xl border border-white/10 lg:block">
+              <Image src="/images/kantor1.png" alt="Kantor Al Jadid 1" fill sizes="40vw" className="object-cover" />
+            </div>
+          </Reveal>
+
+          <div className="grid content-center gap-5 sm:grid-cols-2 lg:col-span-7">
+            {advantages.map((item, i) => {
+              const Icon = item.icon
               return (
-                <div
-                  key={i}
-                  className="w-80 md:w-[380px] p-8 card-soft flex flex-col justify-between shrink-0"
-                  style={{ minHeight: "320px" }}
-                >
-                  <Quote className={`h-7 w-7 mb-5 ${accent.text}`} strokeWidth={1.5} />
-                  <h3 className="text-lg leading-snug mb-6 text-foreground/90 flex-1">&ldquo;{review.text}&rdquo;</h3>
-                  <div className="flex items-center gap-3 pt-5 mt-auto border-t border-border/70">
-                    <div className={`w-11 h-11 rounded-full flex items-center justify-center font-display font-medium text-lg shrink-0 ${accent.bg} ${accent.fg}`}>
-                      {review.author.charAt(0)}
-                    </div>
-                    <div className="overflow-hidden">
-                      <div className="font-semibold text-sm text-foreground truncate">{review.author}</div>
-                      <div className="text-muted-foreground text-xs mt-0.5 truncate">{review.org}</div>
-                    </div>
+                <Reveal key={item.title} delay={i * 0.08}>
+                  <div className="group h-full rounded-2xl border border-white/10 bg-white/[0.04] p-7 transition-colors hover:border-white/20 hover:bg-white/[0.08]">
+                    <span
+                      className={`flex h-12 w-12 items-center justify-center rounded-xl ${
+                        i === 0 ? "bg-highlight text-white" : "bg-primary text-white"
+                      }`}
+                    >
+                      <Icon className="h-6 w-6" />
+                    </span>
+                    <h3 className="mt-6 text-lg font-bold text-white">{item.title}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-white/70">{item.desc}</p>
                   </div>
-                </div>
+                </Reveal>
               )
             })}
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/*
-        CTA FOOTER BRIDGE
+        PROCESS
       */}
-      <section className="relative w-full flex flex-col">
+      <section className="section-padding">
         <div className="container">
-          <div className="relative bg-primary text-primary-foreground overflow-hidden rounded-[2.5rem]">
-            <div className="absolute inset-0 z-0 opacity-15 mix-blend-multiply grayscale pointer-events-none">
-              <Image src="/images/kantor2-2.png" alt="Lokasi Operasional" fill className="object-cover" />
-            </div>
-            <div className="px-8 py-16 md:px-16 md:py-20 flex flex-col md:flex-row justify-between items-center gap-10 relative z-10">
-              <h2 className="font-display text-4xl md:text-6xl font-medium tracking-tight leading-[1.1] text-center md:text-left text-primary-foreground">
-                Wujudkan visi Anda bersama kami.
-              </h2>
-              <div className="w-full md:w-auto shrink-0">
-                <Button asChild size="lg" className="w-full md:w-auto rounded-full h-14 md:h-16 px-8 md:px-10 text-base md:text-lg font-semibold bg-foreground text-background hover:bg-background hover:text-foreground transition-colors shadow-none">
-                  <a href="https://wa.me/6281393242084" target="_blank" rel="noopener noreferrer">
-                    Diskusikan Sekarang <ArrowUpRight className="ml-2 h-5 w-5" />
-                  </a>
-                </Button>
-              </div>
-            </div>
+          <Reveal>
+            <SectionHeading
+              align="center"
+              eyebrow="Cara Pemesanan"
+              title={
+                <>
+                  Pesan cetak dalam <span className="text-primary">4 langkah mudah</span>
+                </>
+              }
+              description="Proses yang jelas dari konsultasi hingga pesanan sampai di tangan Anda."
+            />
+          </Reveal>
+
+          <div className="relative mt-14 grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
+            <div aria-hidden className="absolute left-[12.5%] right-[12.5%] top-8 hidden border-t-2 border-dashed border-primary/25 lg:block" />
+            {steps.map((step, i) => {
+              const Icon = step.icon
+              return (
+                <Reveal key={step.title} delay={i * 0.08} className="relative flex flex-col items-center text-center">
+                  <span className="relative flex h-16 w-16 items-center justify-center rounded-2xl bg-primary text-white shadow-soft-lg">
+                    <Icon className="h-7 w-7" />
+                    <span className="absolute -right-2 -top-2 flex h-7 w-7 items-center justify-center rounded-full border-2 border-white bg-highlight text-xs font-bold text-white">
+                      {i + 1}
+                    </span>
+                  </span>
+                  <h3 className="mt-6 text-lg font-bold">{step.title}</h3>
+                  <p className="mt-2 max-w-[16rem] text-sm leading-relaxed text-muted-foreground">{step.desc}</p>
+                </Reveal>
+              )
+            })}
           </div>
         </div>
+      </section>
 
-        {/* Website Ads Footer Strip */}
-        <div className="w-full py-4 flex items-center justify-center mt-8">
-          <p className="text-xs md:text-sm text-muted-foreground text-center px-4">
-            Apabila ingin membuat website seperti ini hubungi <a href="https://wa.me/6281393242084" target="_blank" rel="noopener noreferrer" className="text-secondary font-medium hover:text-primary transition-colors underline underline-offset-4">0813-9324-2084</a>
-          </p>
+      {/*
+        TESTIMONIALS
+      */}
+      <section className="section-padding bg-muted">
+        <div className="container">
+          <Carousel opts={{ align: "start", loop: true }} className="w-full">
+            <Reveal className="mb-12 flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
+              <SectionHeading
+                eyebrow="Testimoni"
+                title={
+                  <>
+                    Dipercaya ribuan <span className="text-primary">klien</span>
+                  </>
+                }
+                description="Telah tervalidasi oleh berbagai instansi pendidikan, korporasi, hingga UMKM di seluruh wilayah Karesidenan Surakarta."
+              />
+              <div className="flex gap-3">
+                <CarouselPrevious className="static h-12 w-12 translate-y-0 border-border bg-white hover:border-primary hover:bg-primary hover:text-white" />
+                <CarouselNext className="static h-12 w-12 translate-y-0 border-border bg-white hover:border-primary hover:bg-primary hover:text-white" />
+              </div>
+            </Reveal>
+
+            <CarouselContent className="-ml-6">
+              {reviews.map((review, i) => (
+                <CarouselItem key={review.author} className="pl-6 md:basis-1/2 lg:basis-1/3">
+                  <figure className="flex h-full flex-col rounded-2xl border border-border bg-white p-8 shadow-soft">
+                    <Quote className={`h-8 w-8 ${i % 2 === 0 ? "text-primary" : "text-highlight"}`} />
+                    <blockquote className="mt-5 flex-1 text-base leading-relaxed text-foreground/85">
+                      &ldquo;{review.text}&rdquo;
+                    </blockquote>
+                    <figcaption className="mt-8 flex items-center gap-3 border-t border-border pt-6">
+                      <span
+                        className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-lg font-bold text-white ${
+                          i % 2 === 0 ? "bg-primary" : "bg-highlight"
+                        }`}
+                      >
+                        {review.author.charAt(0)}
+                      </span>
+                      <span>
+                        <span className="block text-sm font-bold">{review.author}</span>
+                        <span className="text-xs text-muted-foreground">{review.org}</span>
+                      </span>
+                    </figcaption>
+                  </figure>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+          </Carousel>
         </div>
       </section>
+
+      {/*
+        CTA
+      */}
+      <section className="section-padding pb-8 sm:pb-10">
+        <div className="container">
+          <Reveal>
+            <div className="relative overflow-hidden rounded-3xl bg-primary px-6 py-14 text-primary-foreground sm:px-12 md:py-20">
+              <div aria-hidden className="absolute inset-0 bg-dots text-white/10" />
+              <div aria-hidden className="absolute -right-20 -top-24 h-52 w-52 rounded-full bg-highlight/90" />
+              <div aria-hidden className="absolute -bottom-24 right-40 h-48 w-48 rounded-full border-[28px] border-white/10" />
+
+              <div className="relative flex flex-col items-start justify-between gap-10 lg:flex-row lg:items-center">
+                <div className="max-w-2xl">
+                  <h2 className="heading-lg text-balance text-white">Wujudkan visi Anda bersama kami.</h2>
+                  <p className="mt-4 text-base leading-relaxed text-white/80 sm:text-lg">
+                    Konsultasikan kebutuhan cetak Anda sekarang — gratis, cepat, dan tanpa basa-basi.
+                  </p>
+                </div>
+                <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
+                  <Button
+                    asChild
+                    size="lg"
+                    className="h-14 bg-white px-8 text-base font-semibold text-primary shadow-none hover:bg-white/90"
+                  >
+                    <a href="https://wa.me/6281393242084" target="_blank" rel="noopener noreferrer">
+                      Diskusikan Sekarang <ArrowUpRight />
+                    </a>
+                  </Button>
+                  <Button
+                    asChild
+                    size="lg"
+                    variant="outline"
+                    className="h-14 border-white/40 bg-transparent px-8 text-base font-semibold text-white hover:bg-white/10 hover:text-white"
+                  >
+                    <Link href="/contact">Lihat Lokasi</Link>
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Website Ads Footer Strip */}
+      <div className="flex w-full items-center justify-center pb-8">
+        <p className="px-4 text-center text-xs text-muted-foreground md:text-sm">
+          Apabila ingin membuat website seperti ini hubungi{" "}
+          <a
+            href="https://wa.me/6281393242084"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-medium text-primary underline underline-offset-4 transition-colors hover:text-highlight"
+          >
+            0813-9324-2084
+          </a>
+        </p>
+      </div>
     </div>
   )
 }

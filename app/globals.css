@@ -4,83 +4,81 @@
 
 @layer base {
   :root {
-    /* INK & PAPER - warm editorial print-craft system - LIGHT MODE */
-    /* Warm cream paper + ink, with a terracotta / teal / ochre ink-swatch accent trio */
-    --background: 40 65% 95%;      /* Warm Paper Cream (#FBF6EC) */
-    --foreground: 27 14% 12%;      /* Warm Ink (#241F1B) */
+    /* AL JADID CORPORATE - clean business profile system - LIGHT MODE */
+    /* Brand green on white, with the logo red as the sub/accent colour */
+    --background: 0 0% 100%;         /* White (#FFFFFF) */
+    --foreground: 150 30% 9%;        /* Deep green-black ink (#101F17) */
 
-    --card: 43 100% 99%;           /* Paper Card, slightly lighter than page bg (#FFFDF8) */
-    --card-foreground: 27 14% 12%;
+    --card: 0 0% 100%;
+    --card-foreground: 150 30% 9%;
 
-    --popover: 43 100% 99%;
-    --popover-foreground: 27 14% 12%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 150 30% 9%;
 
-    --primary: 14 62% 47%;         /* Terracotta ink (#C1502E) */
-    --primary-foreground: 43 100% 99%;
+    --primary: 147 84% 27%;          /* Brand green (#0B7F3F) */
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 172 59% 27%;      /* Deep teal ink (#1C6E63) */
-    --secondary-foreground: 43 100% 99%;
+    --secondary: 152 68% 13%;        /* Forest green, for dark sections (#0B3822) */
+    --secondary-foreground: 0 0% 100%;
 
-    --accent: 39 55% 90%;          /* Soft ochre-tinted paper for hover states (#F3E9D6) */
-    --accent-foreground: 27 14% 12%;
+    --accent: 140 45% 95%;           /* Mint tint, for hover states & soft panels (#EBF7EF) */
+    --accent-foreground: 147 84% 22%;
 
-    --highlight: 39 67% 51%;       /* Ochre ink, for badges / highlights (#D69A2D) */
-    --highlight-foreground: 27 14% 12%;
+    --highlight: 0 72% 51%;          /* Brand red, the sub colour (#DC2828) */
+    --highlight-foreground: 0 0% 100%;
 
-    --destructive: 3 71% 41%;      /* Brick red, for alerts (#B3261E) */
-    --destructive-foreground: 43 100% 99%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
 
-    --muted: 39 42% 89%;           /* Warm beige (#EFE7D8) */
-    --muted-foreground: 30 9% 38%; /* Soft warm grey-brown (#6B6259) */
+    --muted: 140 20% 96%;            /* Soft green-grey surface (#F3F7F4) */
+    --muted-foreground: 150 8% 38%;  /* (#59685F) */
 
-    --border: 39 36% 83%;          /* Soft warm hairline (#E3D8C3) */
-    --input: 40 36% 77%;
-    --ring: 14 62% 47%;
+    --border: 140 16% 90%;           /* (#E1E9E4) */
+    --input: 140 16% 85%;
+    --ring: 147 84% 27%;
 
-    /* Soft, tactile rounding - the opposite of the old brutalist 0-radius system */
-    --radius: 1.25rem;
+    --radius: 1rem;
 
-    --sidebar-background: 43 100% 99%;
-    --sidebar-foreground: 27 14% 12%;
-    --sidebar-border: 39 36% 83%;
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 150 30% 9%;
+    --sidebar-border: 140 16% 90%;
   }
 
   .dark {
-    /* INK & PAPER - DARK MODE - warm charcoal instead of paper */
-    --background: 26 15% 9%;       /* Warm charcoal (#1B1714) */
-    --foreground: 39 50% 92%;      /* Warm paper light (#F5EEE1) */
+    --background: 152 40% 6%;
+    --foreground: 140 20% 95%;
 
-    --card: 38 18% 12%;
-    --card-foreground: 39 50% 92%;
+    --card: 152 35% 9%;
+    --card-foreground: 140 20% 95%;
 
-    --popover: 38 18% 12%;
-    --popover-foreground: 39 50% 92%;
+    --popover: 152 35% 9%;
+    --popover-foreground: 140 20% 95%;
 
-    --primary: 18 74% 57%;         /* Terracotta, brightened (#E2703F) */
-    --primary-foreground: 26 15% 9%;
+    --primary: 145 63% 45%;
+    --primary-foreground: 152 40% 6%;
 
-    --secondary: 172 58% 40%;      /* Teal, brightened (#2BA192) */
-    --secondary-foreground: 26 15% 9%;
+    --secondary: 152 50% 12%;
+    --secondary-foreground: 140 20% 95%;
 
-    --accent: 34 18% 15%;
-    --accent-foreground: 39 50% 92%;
+    --accent: 152 30% 14%;
+    --accent-foreground: 140 20% 95%;
 
-    --highlight: 42 77% 60%;       /* Ochre, brightened (#E8B84B) */
-    --highlight-foreground: 26 15% 9%;
+    --highlight: 0 84% 64%;
+    --highlight-foreground: 152 40% 6%;
 
-    --destructive: 5 72% 65%;      /* Brick red, brightened (#E67065) */
-    --destructive-foreground: 26 15% 9%;
+    --destructive: 0 84% 64%;
+    --destructive-foreground: 152 40% 6%;
 
-    --muted: 34 18% 15%;
-    --muted-foreground: 37 16% 65%;
+    --muted: 152 30% 12%;
+    --muted-foreground: 140 10% 65%;
 
-    --border: 38 20% 19%;
-    --input: 38 20% 19%;
-    --ring: 18 74% 57%;
+    --border: 152 25% 18%;
+    --input: 152 25% 18%;
+    --ring: 145 63% 45%;
 
-    --sidebar-background: 38 18% 12%;
-    --sidebar-foreground: 39 50% 92%;
-    --sidebar-border: 38 20% 19%;
+    --sidebar-background: 152 35% 9%;
+    --sidebar-foreground: 140 20% 95%;
+    --sidebar-border: 152 25% 18%;
   }
 }
 
@@ -99,41 +97,55 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-display font-medium tracking-tight text-foreground;
+    @apply font-display font-bold tracking-tight text-foreground;
   }
 }
 
 @layer components {
   .container {
-    @apply w-full mx-auto px-6 sm:px-8 lg:px-12;
-    max-width: 1320px;
+    @apply w-full mx-auto px-4 sm:px-6 lg:px-8;
+    max-width: 1280px;
   }
 
   .section-padding {
-    @apply py-16 sm:py-24 md:py-28;
+    @apply py-16 sm:py-20 lg:py-24;
   }
 
-  /* Editorial typography classes - serif display, generous but not shouting */
   .heading-xl {
-    @apply text-4xl sm:text-6xl md:text-7xl font-display font-medium tracking-tight leading-[1.05];
+    @apply text-4xl sm:text-5xl lg:text-6xl font-display font-extrabold tracking-tight leading-[1.08];
   }
 
   .heading-lg {
-    @apply text-3xl sm:text-4xl md:text-6xl font-display font-medium tracking-tight leading-[1.08];
+    @apply text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold tracking-tight leading-[1.12];
   }
 
   .heading-md {
-    @apply text-2xl sm:text-3xl md:text-4xl font-display font-medium tracking-tight leading-[1.15];
+    @apply text-2xl sm:text-3xl lg:text-4xl font-display font-bold tracking-tight leading-[1.2];
   }
 
-  /* Soft elevated surface, replaces the old hard-bordered swiss-panel */
+  /* Small uppercase section label with a red rule */
+  .eyebrow {
+    @apply inline-flex items-center gap-3 text-xs sm:text-sm font-bold uppercase tracking-[0.16em] text-highlight;
+  }
+
+  .eyebrow::before {
+    content: "";
+    @apply block h-0.5 w-8 rounded-full bg-current;
+  }
+
+  /* Clean elevated surface */
   .card-soft {
-    @apply bg-card border border-border/70 rounded-3xl shadow-soft;
+    @apply bg-card border border-border rounded-2xl shadow-soft;
   }
 
   /* Small rounded label / tag pill */
   .tag-pill {
-    @apply inline-flex items-center gap-1.5 rounded-full px-3.5 py-1.5 text-xs font-semibold tracking-wide;
+    @apply inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold;
+  }
+
+  /* Native form fields */
+  .field {
+    @apply flex h-12 w-full rounded-xl border border-input bg-background px-4 text-sm text-foreground transition-colors placeholder:text-muted-foreground focus-visible:outline-none focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-primary/20;
   }
 }
 
@@ -143,15 +155,28 @@
   }
 
   .shadow-soft {
-    box-shadow: 0 1px 2px rgba(36, 26, 16, 0.04), 0 12px 32px -8px rgba(36, 26, 16, 0.14);
+    box-shadow: 0 1px 2px rgba(11, 56, 34, 0.04), 0 8px 24px -8px rgba(11, 56, 34, 0.12);
   }
 
   .shadow-soft-lg {
-    box-shadow: 0 2px 4px rgba(36, 26, 16, 0.05), 0 24px 48px -12px rgba(36, 26, 16, 0.2);
+    box-shadow: 0 2px 4px rgba(11, 56, 34, 0.05), 0 24px 48px -12px rgba(11, 56, 34, 0.22);
+  }
+
+  .bg-dots {
+    background-image: radial-gradient(currentColor 1px, transparent 1px);
+    background-size: 22px 22px;
   }
 
   .bg-grid-pattern {
     background-image: linear-gradient(currentColor 1px, transparent 1px), linear-gradient(90deg, currentColor 1px, transparent 1px);
     background-size: 32px 32px;
+  }
+
+  .scrollbar-none {
+    scrollbar-width: none;
+  }
+
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
   }
 }

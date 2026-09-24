@@ -113,13 +113,13 @@ export function constructMetadata({
         {
           rel: "mask-icon",
           url: "/safari-pinned-tab.svg",
-          color: "#C1502E",
+          color: "#0B7F3F",
         },
       ],
     },
     manifest: "/manifest.json",
     other: {
-      "msapplication-TileColor": "#C1502E",
+      "msapplication-TileColor": "#0B7F3F",
       "msapplication-config": "/browserconfig.xml",
     },
   }

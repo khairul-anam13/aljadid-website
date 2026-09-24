@@ -28,9 +28,9 @@ export function OfficeImageSwitcher() {
         >
           <Image
             src={images[index]}
-            alt="Al Jadid Office"
+            alt="Kantor Al Jadid Offset"
             fill
-            className="object-cover grayscale hover:grayscale-0 transition-all duration-700"
+            className="object-cover"
             sizes="(max-width: 1280px) 100vw, 50vw"
           />
         </motion.div>

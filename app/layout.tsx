@@ -1,6 +1,6 @@
 import type React from "react"
 import type { Metadata, Viewport } from "next"
-import { Fraunces, Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google"
+import { Plus_Jakarta_Sans } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { SiteHeader } from "@/components/site-header"
@@ -10,25 +10,17 @@ import { WhatsAppButton } from "@/components/whatsapp-button"
 import { constructMetadata } from "@/components/seo/metadata"
 import { LocalBusinessJsonLd, WebsiteJsonLd } from "@/components/seo/json-ld"
 
-const fraunces = Fraunces({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  style: ["normal", "italic"],
-  variable: "--font-display",
-  display: "swap",
-})
 const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "500", "600", "700", "800"],
   variable: "--font-sans",
   display: "swap",
 })
-const jetbrainsMono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono", display: "swap" })
 
 export const metadata: Metadata = constructMetadata()
 
 export const viewport: Viewport = {
-  themeColor: "#FBF6EC",
+  themeColor: "#0B7F3F",
   colorScheme: "light",
   width: "device-width",
   initialScale: 1,
@@ -41,7 +33,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="id" suppressHydrationWarning className={`${fraunces.variable} ${jakarta.variable} ${jetbrainsMono.variable}`}>
+    <html lang="id" suppressHydrationWarning className={jakarta.variable}>
       <head>
         {/* Favicons and Icons */}
         <link rel="icon" href="/favicon.ico" sizes="any" />
@@ -49,10 +41,10 @@ export default function RootLayout({
         <link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/manifest.json" />
-        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#C1502E" />
+        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#0B7F3F" />
 
         {/* Microsoft Tiles */}
-        <meta name="msapplication-TileColor" content="#C1502E" />
+        <meta name="msapplication-TileColor" content="#0B7F3F" />
         <meta name="msapplication-config" content="/browserconfig.xml" />
 
         {/* Mobile App Meta Tags */}
