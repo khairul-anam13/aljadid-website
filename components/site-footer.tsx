@@ -14,7 +14,7 @@ const socials = [
     href: "#",
     icon: (
       <>
-        <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+        <rect x="2" y="2" width="20" height="20" rx="0" ry="0" />
         <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
         <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
       </>
@@ -29,8 +29,8 @@ const socials = [
 
 export function SiteFooter() {
   return (
-    <footer className="relative bg-secondary pb-16 text-white/70 md:pb-0">
-      <div aria-hidden className="flex h-1.5">
+    <footer className="relative bg-secondary pb-16 text-secondary-foreground/70 md:pb-0">
+      <div aria-hidden className="flex h-[3px]">
         <span className="flex-1 bg-primary" />
         <span className="w-24 bg-highlight sm:w-40" />
       </div>
@@ -38,11 +38,13 @@ export function SiteFooter() {
       <div className="container grid grid-cols-2 gap-10 py-14 lg:grid-cols-12 lg:gap-8 lg:py-16">
         {/* Brand */}
         <div className="col-span-2 lg:col-span-4">
-          <div className="inline-flex rounded-2xl bg-white p-3">
+          <div className="inline-flex border-2 border-secondary-foreground/20 bg-background p-3">
             <Image src="/images/logo.png" alt="Al Jadid Offset" width={140} height={86} className="h-12 w-auto" />
           </div>
-          <p className="mt-5 max-w-sm leading-relaxed">
-            Menyediakan layanan percetakan berkualitas tinggi untuk kebutuhan bisnis dan personal Anda sejak 2005.
+          <p className="mt-5 max-w-sm font-serif leading-relaxed">
+            Mencetak dokumen, promosi, dan penghargaan untuk bisnis, sekolah, dan instansi di
+            Karanganyar sejak 2005 — sekaligus mendidik tukang cetak generasi berikutnya lewat
+            program magang kami.
           </p>
           <div className="mt-6 flex gap-3">
             {socials.map((social) => (
@@ -50,7 +52,7 @@ export function SiteFooter() {
                 key={social.label}
                 href={social.href}
                 aria-label={social.label}
-                className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-highlight"
+                className="flex h-10 w-10 items-center justify-center border-2 border-secondary-foreground/20 text-secondary-foreground transition-colors hover:border-primary hover:bg-primary"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -72,11 +74,11 @@ export function SiteFooter() {
 
         {/* Links */}
         <div className="lg:col-span-2">
-          <h3 className="mb-5 text-base font-bold text-white">Tautan</h3>
-          <ul className="space-y-3 text-sm">
+          <h3 className="mb-5 font-mono text-xs font-bold uppercase tracking-wider text-secondary-foreground">Tautan</h3>
+          <ul className="space-y-3 text-sm font-serif">
             {navItems.map((item) => (
               <li key={item.href}>
-                <Link href={item.href} className="transition-colors hover:text-white">
+                <Link href={item.href} className="transition-colors hover:text-secondary-foreground">
                   {item.name}
                 </Link>
               </li>
@@ -86,11 +88,11 @@ export function SiteFooter() {
 
         {/* Services */}
         <div className="lg:col-span-2">
-          <h3 className="mb-5 text-base font-bold text-white">Layanan</h3>
-          <ul className="space-y-3 text-sm">
+          <h3 className="mb-5 font-mono text-xs font-bold uppercase tracking-wider text-secondary-foreground">Layanan</h3>
+          <ul className="space-y-3 text-sm font-serif">
             {services.map((service) => (
               <li key={service.title}>
-                <Link href="/products" className="transition-colors hover:text-white">
+                <Link href="/products" className="transition-colors hover:text-secondary-foreground">
                   {service.title}
                 </Link>
               </li>
@@ -100,23 +102,23 @@ export function SiteFooter() {
 
         {/* Contact */}
         <div className="col-span-2 lg:col-span-4">
-          <h3 className="mb-5 text-base font-bold text-white">Kontak</h3>
-          <ul className="space-y-4 text-sm">
+          <h3 className="mb-5 font-mono text-xs font-bold uppercase tracking-wider text-secondary-foreground">Kontak</h3>
+          <ul className="space-y-4 text-sm font-serif">
             <li className="flex items-start gap-3">
-              <Phone className="mt-0.5 h-4 w-4 shrink-0 text-red-300" />
-              <a href={`tel:+${mainPhone.wa}`} className="font-semibold text-white transition-colors hover:text-red-300">
+              <Phone className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+              <a href={`tel:+${mainPhone.wa}`} className="font-semibold text-secondary-foreground transition-colors hover:text-primary">
                 {mainPhone.label}
               </a>
             </li>
             <li className="flex items-start gap-3">
-              <Clock className="mt-0.5 h-4 w-4 shrink-0 text-red-300" />
+              <Clock className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
               <span>{businessHours}</span>
             </li>
             {locations.map((loc) => (
               <li key={loc.name} className="flex items-start gap-3">
-                <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-red-300" />
+                <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
                 <div>
-                  <strong className="block font-semibold text-white">{loc.name}</strong>
+                  <strong className="block font-semibold text-secondary-foreground">{loc.name}</strong>
                   <span className="leading-relaxed">{loc.address}</span>
                 </div>
               </li>
@@ -125,10 +127,10 @@ export function SiteFooter() {
         </div>
       </div>
 
-      <div className="border-t border-white/10">
-        <div className="container flex flex-col items-center justify-between gap-2 py-6 text-center text-xs sm:flex-row sm:text-left">
-          <p>&copy; {new Date().getFullYear()} Al Jadid Offset. Hak Cipta Dilindungi.</p>
-          <p>Percetakan &amp; Kreasi Visual &middot; Karanganyar</p>
+      <div className="border-t-2 border-secondary-foreground/15">
+        <div className="container flex flex-col items-center justify-between gap-2 py-6 text-center font-mono text-[11px] uppercase tracking-wide sm:flex-row sm:text-left">
+          <p>&copy; {new Date().getFullYear()} Al Jadid Offset. Hak cipta dilindungi.</p>
+          <p>Percetakan &amp; kreasi visual · Karanganyar</p>
         </div>
       </div>
     </footer>

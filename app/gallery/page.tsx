@@ -5,6 +5,7 @@ import { constructMetadata } from "@/components/seo/metadata"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Button } from "@/components/ui/button"
 import { PageHeader } from "@/components/ui/page-header"
+import { cn } from "@/lib/utils"
 
 export const metadata: Metadata = constructMetadata({
   title: "Galeri - Al Jadid Offset",
@@ -37,12 +38,12 @@ const galleryItems = [
   { id: 12, title: "Brosur Asset #03", category: "Brosur", client: "PT Properti Sejahtera" },
 ]
 
-// Alternating tile tints keep the grid lively until real portfolio photos are added.
+// Flat, alternating tints keep the grid lively until real portfolio photos are added — no gradients.
 const tileStyles = [
-  "from-primary to-secondary text-white",
-  "from-accent to-muted text-primary",
-  "from-highlight to-red-700 text-white",
-  "from-muted to-accent text-primary",
+  "bg-secondary text-secondary-foreground",
+  "bg-accent text-foreground",
+  "bg-primary text-primary-foreground",
+  "bg-highlight text-highlight-foreground",
 ]
 
 export default function GalleryPage() {
@@ -59,12 +60,12 @@ export default function GalleryPage() {
         <div className="container">
           <Tabs defaultValue="Semua" className="w-full">
             <div className="scrollbar-none -mx-4 mb-10 overflow-x-auto px-4 sm:mx-0 sm:px-0">
-              <TabsList className="inline-flex h-auto gap-1 rounded-full border border-border bg-muted p-1">
+              <TabsList className="inline-flex h-auto gap-1 rounded-none border-2 border-foreground bg-card p-1">
                 {categories.map((category) => (
                   <TabsTrigger
                     key={category}
                     value={category}
-                    className="rounded-full px-5 py-2 text-sm font-semibold text-muted-foreground shadow-none transition-colors hover:text-primary data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-soft"
+                    className="rounded-none px-5 py-2 font-mono text-xs font-bold uppercase tracking-wide text-muted-foreground shadow-none transition-colors hover:text-primary data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
                   >
                     {category}
                   </TabsTrigger>
@@ -82,23 +83,19 @@ export default function GalleryPage() {
                       return (
                         <article
                           key={item.id}
-                          className="group overflow-hidden rounded-2xl border border-border bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-soft-lg"
+                          className="group overflow-hidden border-2 border-foreground bg-card transition-all duration-200 hover:shadow-soft"
                         >
-                          <div
-                            className={`relative flex aspect-square items-center justify-center overflow-hidden bg-gradient-to-br ${
-                              tileStyles[index % tileStyles.length]
-                            }`}
-                          >
+                          <div className={cn("relative flex aspect-square items-center justify-center overflow-hidden border-b-2 border-foreground", tileStyles[index % tileStyles.length])}>
                             <div aria-hidden className="absolute inset-0 bg-dots opacity-20" />
-                            <span className="absolute right-5 top-4 text-5xl font-extrabold opacity-20">
+                            <span className="absolute right-5 top-4 font-mono text-4xl font-bold opacity-25">
                               {item.id.toString().padStart(2, "0")}
                             </span>
                             <Icon className="relative h-20 w-20 transition-transform duration-500 group-hover:scale-110" strokeWidth={1.25} />
                           </div>
                           <div className="p-5">
-                            <span className="text-xs font-bold uppercase tracking-wider text-highlight">{item.category}</span>
-                            <h3 className="mt-1 text-lg font-bold">{item.title}</h3>
-                            <p className="mt-1 text-sm text-muted-foreground">{item.client}</p>
+                            <span className="font-mono text-xs font-bold uppercase tracking-wider text-highlight">{item.category}</span>
+                            <h3 className="mt-1 font-display text-lg uppercase tracking-tight">{item.title}</h3>
+                            <p className="mt-1 font-serif text-sm text-muted-foreground">{item.client}</p>
                           </div>
                         </article>
                       )
@@ -108,10 +105,10 @@ export default function GalleryPage() {
             ))}
           </Tabs>
 
-          <div className="mt-16 flex flex-col items-center gap-5 rounded-3xl border border-border bg-accent px-6 py-12 text-center">
+          <div className="mt-16 flex flex-col items-center gap-5 border-2 border-foreground bg-accent px-6 py-12 text-center shadow-print">
             <h2 className="heading-md text-balance">Ingin hasil cetak seperti ini?</h2>
-            <p className="max-w-xl text-muted-foreground">Ceritakan kebutuhan Anda, tim kami siap membantu dari desain hingga produksi.</p>
-            <Button asChild size="lg" className="font-semibold">
+            <p className="max-w-xl font-serif text-muted-foreground">Ceritakan kebutuhan Anda, tim kami siap membantu dari desain hingga produksi.</p>
+            <Button asChild size="lg">
               <Link href="/contact">
                 Hubungi Kami <ArrowRight />
               </Link>

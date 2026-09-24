@@ -14,13 +14,13 @@ export function SectionHeading({ eyebrow, title, description, align = "left", in
   return (
     <div className={cn("max-w-2xl", align === "center" && "mx-auto text-center", className)}>
       {eyebrow && (
-        <span className={cn("eyebrow mb-4", align === "center" && "justify-center", invert && "text-red-300")}>
+        <span className={cn("eyebrow mb-4", align === "center" && "justify-center", invert && "border-primary text-secondary-foreground")}>
           {eyebrow}
         </span>
       )}
-      <h2 className={cn("heading-lg text-balance", invert && "text-white")}>{title}</h2>
+      <h2 className={cn("heading-lg text-balance", invert ? "misprint-invert text-secondary-foreground" : "misprint")}>{title}</h2>
       {description && (
-        <p className={cn("mt-4 text-base sm:text-lg leading-relaxed", invert ? "text-white/70" : "text-muted-foreground")}>
+        <p className={cn("mt-4 font-serif text-base sm:text-lg leading-relaxed", invert ? "text-secondary-foreground/70" : "text-muted-foreground")}>
           {description}
         </p>
       )}

@@ -4,81 +4,81 @@
 
 @layer base {
   :root {
-    /* AL JADID CORPORATE - clean business profile system - LIGHT MODE */
-    /* Brand green on white, with the logo red as the sub/accent colour */
-    --background: 0 0% 100%;         /* White (#FFFFFF) */
-    --foreground: 150 30% 9%;        /* Deep green-black ink (#101F17) */
+    /* AL JADID — "BUKTI CETAK" system. See DESIGN.md for the full rationale. */
+    /* Dominant pole 1: Kertas Kraft (uncoated paper), the page's main canvas */
+    --background: 42 42% 93%;
+    --foreground: 255 20% 10%;      /* Tinta Pekat — ink-indigo black, echoes the logo's calligraphy */
 
-    --card: 0 0% 100%;
-    --card-foreground: 150 30% 9%;
+    --card: 44 46% 96%;             /* a slightly cleaner sheet sitting on the kraft canvas */
+    --card-foreground: 255 20% 10%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 150 30% 9%;
+    --popover: 44 46% 97%;
+    --popover-foreground: 255 20% 10%;
 
-    --primary: 147 84% 27%;          /* Brand green (#0B7F3F) */
-    --primary-foreground: 0 0% 100%;
+    --primary: 8 74% 46%;           /* Merah Cetak — sampled from the logo's red swoosh */
+    --primary-foreground: 42 45% 96%;
 
-    --secondary: 152 68% 13%;        /* Forest green, for dark sections (#0B3822) */
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 255 20% 10%;       /* Dominant pole 2: Tinta Pekat, for full-bleed dark sections */
+    --secondary-foreground: 42 40% 94%;
 
-    --accent: 140 45% 95%;           /* Mint tint, for hover states & soft panels (#EBF7EF) */
-    --accent-foreground: 147 84% 22%;
+    --accent: 40 32% 87%;           /* soft kraft tint for hover panels */
+    --accent-foreground: 255 20% 10%;
 
-    --highlight: 0 72% 51%;          /* Brand red, the sub colour (#DC2828) */
-    --highlight-foreground: 0 0% 100%;
+    --highlight: 150 68% 24%;       /* Hijau Plat — sampled from the logo's green wordmark */
+    --highlight-foreground: 42 45% 96%;
 
-    --destructive: 0 72% 51%;
-    --destructive-foreground: 0 0% 100%;
+    --destructive: 8 78% 42%;
+    --destructive-foreground: 42 45% 96%;
 
-    --muted: 140 20% 96%;            /* Soft green-grey surface (#F3F7F4) */
-    --muted-foreground: 150 8% 38%;  /* (#59685F) */
+    --muted: 40 26% 85%;
+    --muted-foreground: 30 8% 40%;
 
-    --border: 140 16% 90%;           /* (#E1E9E4) */
-    --input: 140 16% 85%;
-    --ring: 147 84% 27%;
+    --border: 40 18% 75%;
+    --input: 40 18% 72%;
+    --ring: 8 74% 46%;
 
-    --radius: 1rem;
+    --radius: 0px;
 
-    --sidebar-background: 0 0% 100%;
-    --sidebar-foreground: 150 30% 9%;
-    --sidebar-border: 140 16% 90%;
+    --sidebar-background: 44 46% 96%;
+    --sidebar-foreground: 255 20% 10%;
+    --sidebar-border: 40 18% 75%;
   }
 
   .dark {
-    --background: 152 40% 6%;
-    --foreground: 140 20% 95%;
+    --background: 255 20% 9%;
+    --foreground: 42 35% 92%;
 
-    --card: 152 35% 9%;
-    --card-foreground: 140 20% 95%;
+    --card: 255 18% 12%;
+    --card-foreground: 42 35% 92%;
 
-    --popover: 152 35% 9%;
-    --popover-foreground: 140 20% 95%;
+    --popover: 255 18% 12%;
+    --popover-foreground: 42 35% 92%;
 
-    --primary: 145 63% 45%;
-    --primary-foreground: 152 40% 6%;
+    --primary: 8 74% 54%;
+    --primary-foreground: 255 20% 9%;
 
-    --secondary: 152 50% 12%;
-    --secondary-foreground: 140 20% 95%;
+    --secondary: 42 30% 90%;
+    --secondary-foreground: 255 20% 9%;
 
-    --accent: 152 30% 14%;
-    --accent-foreground: 140 20% 95%;
+    --accent: 255 15% 18%;
+    --accent-foreground: 42 35% 92%;
 
-    --highlight: 0 84% 64%;
-    --highlight-foreground: 152 40% 6%;
+    --highlight: 150 55% 42%;
+    --highlight-foreground: 255 20% 9%;
 
-    --destructive: 0 84% 64%;
-    --destructive-foreground: 152 40% 6%;
+    --destructive: 8 78% 54%;
+    --destructive-foreground: 255 20% 9%;
 
-    --muted: 152 30% 12%;
-    --muted-foreground: 140 10% 65%;
+    --muted: 255 15% 16%;
+    --muted-foreground: 40 12% 65%;
 
-    --border: 152 25% 18%;
-    --input: 152 25% 18%;
-    --ring: 145 63% 45%;
+    --border: 255 15% 22%;
+    --input: 255 15% 22%;
+    --ring: 8 74% 54%;
 
-    --sidebar-background: 152 35% 9%;
-    --sidebar-foreground: 140 20% 95%;
-    --sidebar-border: 152 25% 18%;
+    --sidebar-background: 255 18% 12%;
+    --sidebar-foreground: 42 35% 92%;
+    --sidebar-border: 255 15% 22%;
   }
 }
 
@@ -97,7 +97,11 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-display font-bold tracking-tight text-foreground;
+    @apply font-display font-normal uppercase tracking-tight text-foreground;
+  }
+
+  ::selection {
+    @apply bg-primary text-primary-foreground;
   }
 }
 
@@ -112,40 +116,45 @@
   }
 
   .heading-xl {
-    @apply text-4xl sm:text-5xl lg:text-6xl font-display font-extrabold tracking-tight leading-[1.08];
+    @apply text-5xl sm:text-7xl lg:text-8xl font-display uppercase tracking-tight leading-[0.92];
   }
 
   .heading-lg {
-    @apply text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold tracking-tight leading-[1.12];
+    @apply text-4xl sm:text-5xl lg:text-6xl font-display uppercase tracking-tight leading-[0.95];
   }
 
   .heading-md {
-    @apply text-2xl sm:text-3xl lg:text-4xl font-display font-bold tracking-tight leading-[1.2];
+    @apply text-3xl sm:text-4xl font-display uppercase tracking-tight leading-[1];
   }
 
-  /* Small uppercase section label with a red rule */
+  /* Rubber-stamp style section label: boxed mono caps, not a soft pill */
   .eyebrow {
-    @apply inline-flex items-center gap-3 text-xs sm:text-sm font-bold uppercase tracking-[0.16em] text-highlight;
+    @apply inline-flex items-center gap-2 border-2 border-current px-3 py-1 font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-primary;
   }
 
-  .eyebrow::before {
-    content: "";
-    @apply block h-0.5 w-8 rounded-full bg-current;
+  /* Sharp-cornered surface with a hard, offset "double-print" shadow instead of blur */
+  .press-card {
+    @apply bg-card border-2 border-foreground shadow-print;
   }
 
-  /* Clean elevated surface */
-  .card-soft {
-    @apply bg-card border border-border rounded-2xl shadow-soft;
-  }
-
-  /* Small rounded label / tag pill */
+  /* Job-ticket label: sharp corners, mono caps */
   .tag-pill {
-    @apply inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold;
+    @apply inline-flex items-center gap-1.5 border-2 border-current px-3 py-1 font-mono text-[11px] font-bold uppercase tracking-wider;
   }
 
-  /* Native form fields */
+  /* Native form fields, sharp + thick border */
   .field {
-    @apply flex h-12 w-full rounded-xl border border-input bg-background px-4 text-sm text-foreground transition-colors placeholder:text-muted-foreground focus-visible:outline-none focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-primary/20;
+    @apply flex h-12 w-full border-2 border-foreground bg-card px-4 font-sans text-sm text-foreground transition-colors placeholder:text-muted-foreground focus-visible:outline-none focus-visible:border-primary;
+  }
+
+  /* Signature element: a flat red duplicate offset behind the text, like a misregistered plate */
+  .misprint {
+    text-shadow: 4px 4px 0 hsl(var(--primary) / 0.9);
+  }
+
+  /* For light text on the ink section (bg-secondary): same red duplicate, kept legible either way. */
+  .misprint-invert {
+    text-shadow: 4px 4px 0 hsl(var(--primary) / 0.85);
   }
 }
 
@@ -154,22 +163,36 @@
     text-wrap: balance;
   }
 
+  /* Repurposed: hard "double-print" offset shadows, no blur — see DESIGN.md #4 */
   .shadow-soft {
-    box-shadow: 0 1px 2px rgba(11, 56, 34, 0.04), 0 8px 24px -8px rgba(11, 56, 34, 0.12);
+    box-shadow: 4px 4px 0 0 hsl(var(--foreground));
   }
 
   .shadow-soft-lg {
-    box-shadow: 0 2px 4px rgba(11, 56, 34, 0.05), 0 24px 48px -12px rgba(11, 56, 34, 0.22);
+    box-shadow: 7px 7px 0 0 hsl(var(--foreground));
   }
 
+  /* Halftone dot screen, mimics an offset raster — replaces the old plain dot-grid */
   .bg-dots {
-    background-image: radial-gradient(currentColor 1px, transparent 1px);
-    background-size: 22px 22px;
+    background-image: radial-gradient(currentColor 1.5px, transparent 1.5px);
+    background-size: 12px 12px;
   }
 
   .bg-grid-pattern {
     background-image: linear-gradient(currentColor 1px, transparent 1px), linear-gradient(90deg, currentColor 1px, transparent 1px);
     background-size: 32px 32px;
+  }
+
+  /* Subtle paper grain, so the kraft background isn't a flat empty tone.
+     Caller must also set `relative` or `absolute` for the ::after to size against. */
+  .bg-grain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.05;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
 
   .scrollbar-none {

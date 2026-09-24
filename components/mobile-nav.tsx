@@ -20,7 +20,7 @@ export function MobileNav() {
   return (
     <nav
       aria-label="Navigasi seluler"
-      className="fixed bottom-0 left-0 z-50 h-16 w-full border-t border-border bg-white/95 backdrop-blur-lg md:hidden"
+      className="fixed bottom-0 left-0 z-50 h-16 w-full border-t-2 border-foreground bg-card/95 backdrop-blur-lg md:hidden"
     >
       <div className="grid h-full grid-cols-5">
         {navItems.map((item) => {
@@ -33,25 +33,18 @@ export function MobileNav() {
               aria-current={isActive ? "page" : undefined}
               className={cn(
                 "relative flex flex-col items-center justify-center gap-1 transition-colors duration-200",
-                isActive ? "text-primary" : "text-muted-foreground",
+                isActive ? "bg-foreground text-background" : "text-muted-foreground",
               )}
             >
               {isActive && (
                 <motion.span
                   layoutId="mobileActiveTab"
-                  className="absolute top-0 h-0.5 w-10 rounded-full bg-highlight"
+                  className="absolute top-0 h-[3px] w-10 bg-primary"
                   transition={{ type: "spring", stiffness: 300, damping: 30 }}
                 />
               )}
-              <span
-                className={cn(
-                  "flex h-7 w-12 items-center justify-center rounded-full transition-colors",
-                  isActive && "bg-accent",
-                )}
-              >
-                <Icon className="h-5 w-5" />
-              </span>
-              <span className="text-[11px] font-semibold">{item.name}</span>
+              <Icon className="h-5 w-5" />
+              <span className="font-mono text-[10px] font-bold uppercase tracking-wide">{item.name}</span>
             </Link>
           )
         })}

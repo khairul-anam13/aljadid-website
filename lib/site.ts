@@ -38,12 +38,42 @@ export const locations = [
 ]
 
 export const services = [
-  { category: "Dokumen & Bisnis", title: "Cetak Dokumen", desc: "Formulir, laporan, dan administrasi perkantoran dengan presisi tinggi.", image: "/produk/rapot.png" },
-  { category: "Visual Outdoor", title: "Cetak Banner", desc: "MMT skala besar untuk promosi luar ruang yang tahan cuaca.", image: "/produk/mmt.png" },
-  { category: "Produk & Retail", title: "Stiker Label", desc: "Label vinyl dan cutting custom untuk identitas produk Anda.", image: "/produk/sticker.png" },
-  { category: "Pendidikan", title: "Sampul Rapot", desc: "Produksi sampul rapot sekolah dengan standar durabilitas tinggi.", image: "/produk/rapot.png" },
-  { category: "Penghargaan", title: "Piala & Plakat", desc: "Penghargaan eksklusif dan souvenir akrilik dengan desain elegan.", image: "/produk/piala.png" },
-  { category: "Konveksi", title: "Sablon & Merch", desc: "Sablon kaos dan merchandise branding untuk komunitas & instansi.", image: "/produk/kaos.png" },
+  {
+    category: "Dokumen & Bisnis",
+    title: "Cetak Dokumen",
+    desc: "HVS 70–80gsm, dijilid lakban atau spiral kawat, tetap rapi walau difotokopi ulang berkali-kali.",
+    image: "/produk/rapot.png",
+  },
+  {
+    category: "Visual Outdoor",
+    title: "Cetak Banner MMT",
+    desc: "Flexi China 280gsm atau Korea 340gsm, mata ayam tiap 50cm, tahan panas dan hujan langsung tanpa pudar.",
+    image: "/produk/mmt.png",
+  },
+  {
+    category: "Produk & Retail",
+    title: "Stiker Label",
+    desc: "Vinyl chromo atau oracal, cutting kontur presisi mesin, laminasi glossy atau doff sesuai pesanan.",
+    image: "/produk/sticker.png",
+  },
+  {
+    category: "Pendidikan",
+    title: "Sampul Rapot",
+    desc: "Art carton 260gsm laminasi doff, dijilid mata ayam agar tahan buka-tutup sampai 6 semester.",
+    image: "/produk/rapot.png",
+  },
+  {
+    category: "Penghargaan",
+    title: "Piala & Plakat",
+    desc: "Resin cor dan akrilik custom, gravir nama/logo presisi, finishing tanpa sambungan kasar.",
+    image: "/produk/piala.png",
+  },
+  {
+    category: "Konveksi",
+    title: "Sablon & Merch",
+    desc: "Kaos combed 24s/30s, sablon rubber atau plastisol dikuatkan hot press, tidak retak walau dicuci berkali-kali.",
+    image: "/produk/kaos.png",
+  },
 ]
 
 export function waLink(phone: string, text?: string) {

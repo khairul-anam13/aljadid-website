@@ -11,8 +11,17 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["var(--font-sans)", "system-ui", "sans-serif"],
-        display: ["var(--font-sans)", "system-ui", "sans-serif"],
+        sans: ["var(--font-body)", "Georgia", "serif"],
+        serif: ["var(--font-body)", "Georgia", "serif"],
+        display: ["var(--font-display)", "Impact", "sans-serif"],
+        mono: ["var(--font-mono)", "ui-monospace", "monospace"],
+      },
+      boxShadow: {
+        print: "5px 5px 0 0 hsl(var(--foreground))",
+        "print-sm": "3px 3px 0 0 hsl(var(--foreground))",
+        "print-lg": "8px 8px 0 0 hsl(var(--foreground))",
+        "print-red": "5px 5px 0 0 hsl(var(--primary))",
+        "print-invert": "5px 5px 0 0 hsl(var(--background))",
       },
       colors: {
         background: 'hsl(var(--background))',
@@ -60,8 +69,8 @@ const config: Config = {
       },
       borderRadius: {
         lg: 'var(--radius)',
-        md: 'calc(var(--radius) - 6px)',
-        sm: 'calc(var(--radius) - 10px)'
+        md: 'var(--radius)',
+        sm: 'var(--radius)'
       },
       keyframes: {
         'accordion-down': {
